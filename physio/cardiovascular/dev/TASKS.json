@@ -82,10 +82,12 @@
         150,
         171
       ],
-      "status": "todo",
-      "claimed_by": null,
+      "status": "done",
+      "claimed_by": "kimi-main",
+      "claimed_at": "2026-10-21",
       "dod": "重点：P161 压力感受性反射整页定制 + homeostasis 失血场景引导（全章高潮）；P153-157 神经支配双侧对照版式",
-      "notes": null
+      "notes": "21页定制（P154纯图自动）：节封面/目标5条/神经支配总图/P153-155交感vs迷走双侧对照卡(递质-受体-cAMP机制链+三效应徽章)/P156缩血管紧张/P157三类纤维表重绘(修正原表合并单元格错位:交感缩血管=胸腰段侧角)/P158延髓四核团/P160反射弧SVG重绘(窦神经舌咽+减压神经→孤束核→CVLM⊣RVLM+背核疑核)/P161双向负反馈链SVG(BP↑↓两排六节点)/P162功能曲线+重调定/P163化学感受器应急分工/P164RAAS级联SVG+肾素三诱因/P165AngII四作用/P166E强心vsNE升压对照/P167VP两副面孔/P168内皮舒缩/P169ANP反对派/P170自身调节双机制/P171压力性利尿。homeostasis@161失血场景3步引导(sections.json guide)。commit 568e513",
+      "done_at": "2026-10-21"
     },
     {
       "id": "P5-sec5-review",
