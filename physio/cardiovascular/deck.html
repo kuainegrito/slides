@@ -13,6 +13,7 @@
     <a class="home" href="index.html">⌂ 血液循环</a>
     <span class="crumb" id="crumbSec"><b>加载中…</b></span>
     <div class="spacer"></div>
+    <span class="step-badge" id="stepBadge" style="display:none"></span>
     <span class="counter"><b id="pageNo">–</b> / <span id="pageTotal">–</span></span>
     <button class="iconbtn" title="侧栏 (M)" onclick="document.getElementById('sidebar').classList.toggle('hidden');window.Deck&&window.dispatchEvent(new Event('resize'))">☰</button>
     <button class="iconbtn" title="讲稿备注 (N)" onclick="document.getElementById('notesPanel').classList.toggle('open')">✎</button>
@@ -52,6 +53,7 @@
 <div class="hint"><kbd>←</kbd><kbd>→</kbd> 翻页 · <kbd>F</kbd> 全屏 · <kbd>O</kbd> 总览 · <kbd>N</kbd> 讲稿 · <kbd>M</kbd> 侧栏</div>
 
 <script src="assets/js/deck.js"></script>
-<!-- 精修覆盖器：后续按节补充，例如 <script src="data/overrides/sec1.js"></script> -->
+<!-- 精修覆盖器：按节加载 -->
+<script src="data/overrides/sec1.js"></script>
 </body>
 </html>

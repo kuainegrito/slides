@@ -24,9 +24,12 @@
         { "t": "体表心电图", "at": 30 }
       ],
       "apps": [
-        { "at": 5, "name": "动作电位互动教学系统", "url": "https://kuaiyu.site/action_potential/", "note": "PPT 本页二维码指向的工具：预习心肌细胞电活动", "qr": true },
-        { "at": 11, "name": "动作电位互动教学系统", "url": "https://kuaiyu.site/action_potential/", "note": "学完心室肌 AP 各期后，亲手调离子浓度验证", "qr": false },
-        { "at": 18, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态软件」：在整体网络中看心肌兴奋性的意义", "qr": true }
+        { "at": 5, "name": "动作电位互动教学系统", "url": "https://kuaiyu.site/action_potential/", "note": "PPT 本页二维码指向的工具：预习心肌细胞电活动", "qr": true,
+          "guide": ["先静息观察：膜电位为什么稳定在 -90 mV？", "调低细胞外 Na⁺，预测再验证 0 期峰值怎么变", "堵住钠通道，看动作电位还能不能产生"] },
+        { "at": 11, "name": "动作电位互动教学系统", "url": "https://kuaiyu.site/action_potential/", "note": "学完心室肌 AP 各期后，亲手调离子浓度验证", "qr": false,
+          "guide": ["对照左边表格，逐期说出主要离子流", "在模拟器里复现 2 期平台期：哪个电流是关键？", "和同学互相出题：改一个参数，让对方猜曲线变化"] },
+        { "at": 18, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态软件」：在整体网络中看心肌兴奋性的意义", "qr": true,
+          "guide": ["找到心脏节点，看心率与血压的联动", "思考：如果心肌兴奋性异常，全身会发生什么？", "至少观察 90 秒再下结论"] }
       ]
     },
     {

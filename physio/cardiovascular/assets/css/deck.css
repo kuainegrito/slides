@@ -241,3 +241,180 @@ body::before { /* 柔化底图，保证可读性 */
 .sec-card .topics { margin-top: 10px; font-size: 12px; color: var(--ink-soft); line-height: 1.8; }
 .portal-title { font-family: var(--font-serif); }
 footer.credit { text-align: center; font-size: 11px; color: var(--ink-soft); padding: 26px 0 30px; position: relative; z-index: 1; }
+
+/* ============================================================
+   v0.2 律动系统（参考 PhysioRushAI / 叠满Buff 的节奏语言）
+   缓动统一 cubic-bezier(.2,.8,.2,1)；尊重 motion-paused
+   ============================================================ */
+:root { --ease: cubic-bezier(.2, .8, .2, 1); }
+
+/* 分步显现：默认隐藏，.on 入场（上浮+微缩放+淡入） */
+.slide-page .obj, .slide-page .x-el {
+  opacity: 0; transform: translateY(16px) scale(.985);
+  transition: opacity .5s ease, transform .55s var(--ease);
+  will-change: opacity, transform;
+}
+.slide-page .obj.on, .slide-page .x-el.on { opacity: 1; transform: none; }
+.slide-page.no-steps .obj { opacity: 1; transform: none; transition: none; }
+/* 图片稍慢的质感 */
+.slide-page .obj.pic { transition-duration: .6s, .7s; }
+
+/* 步进心跳：revealing 时舞台底 ECG 加速一拍 */
+.stage.beat::after { animation: stageBeat .7s var(--ease); }
+@keyframes stageBeat {
+  0% { opacity: .5; filter: none; }
+  25% { opacity: .95; filter: drop-shadow(0 0 6px rgba(194,84,106,.5)); }
+  100% { opacity: .5; filter: none; }
+}
+
+/* 步数徽标 */
+.step-badge {
+  font-size: 11px; color: var(--sec-color); border: 1px solid currentColor;
+  border-radius: 99px; padding: 2px 9px; letter-spacing: .06em; opacity: .85;
+}
+
+/* App 引导条 */
+.app-guide {
+  display: flex; gap: 10px; padding: 9px 18px; flex-wrap: wrap;
+  background: linear-gradient(90deg, rgba(194,84,106,.05), rgba(58,90,120,.05));
+  border-bottom: 1px solid var(--line);
+}
+.app-guide-chip {
+  display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--ink);
+  background: rgba(255,255,255,.75); border: 1px solid var(--line); border-radius: 99px; padding: 4px 12px 4px 5px;
+}
+.app-guide-chip i {
+  width: 20px; height: 20px; border-radius: 50%; font-style: normal; font-size: 11px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--sec-color); color: #fff;
+}
+
+/* ============ 第一节精修样式（x- 前缀） ============ */
+
+/* — 通用标题条 — */
+.x-title {
+  position: absolute; left: 56px; top: 40px; right: 56px;
+  display: flex; align-items: baseline; gap: 16px;
+}
+.x-title .bar {
+  width: 6px; height: 34px; border-radius: 3px; flex: none; align-self: center;
+  background: linear-gradient(180deg, var(--sec-color), var(--heart-deep));
+}
+.x-title h2 { font-family: var(--font-serif); font-size: 30px; letter-spacing: .04em; }
+.x-title .sub { font-size: 13px; color: var(--ink-soft); letter-spacing: .12em; }
+.x-title .sweep { position: absolute; left: 0; bottom: -10px; height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--sec-color) 0%, transparent 80%);
+  transform-origin: left; animation: xSweep .9s var(--ease) both .15s; }
+@keyframes xSweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* — 节封面（P2/P6） — */
+.x-cover { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 90px; }
+.x-cover .no {
+  font-family: var(--font-serif); font-size: 150px; line-height: 1;
+  background: linear-gradient(120deg, var(--sec-color), var(--heart-deep));
+  -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .9;
+}
+.x-cover h1 { font-family: var(--font-serif); font-size: 52px; margin: 12px 0 6px; letter-spacing: .06em; }
+.x-cover .en { font-size: 14px; letter-spacing: .3em; color: var(--ink-soft); text-transform: uppercase; }
+.x-cover .ecg { width: 520px; margin-top: 26px; }
+.x-cover .ecg path { stroke: var(--sec-color); stroke-width: 2; fill: none;
+  stroke-dasharray: 1100; stroke-dashoffset: 1100; animation: ecgdraw 2.6s var(--ease) forwards .3s; }
+.x-cover .toc { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; max-width: 780px; }
+.x-cover .toc span {
+  font-size: 13px; padding: 6px 14px; border-radius: 99px;
+  border: 1px solid rgba(194,84,106,.35); color: var(--heart-deep); background: rgba(255,255,255,.6);
+}
+
+/* — 卡片组 — */
+.x-cards { position: absolute; display: flex; gap: 18px; }
+.x-card {
+  background: rgba(255,253,249,.92); border: 1px solid var(--line); border-radius: 14px;
+  padding: 18px 20px; box-shadow: 0 10px 26px -14px rgba(80,40,50,.25);
+  position: relative; overflow: hidden;
+}
+.x-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--card-c, var(--sec-color)); }
+.x-card h4 { font-size: 16px; margin-bottom: 8px; color: var(--card-c, var(--heart-deep)); }
+.x-card p { font-size: 13.5px; line-height: 1.75; color: var(--ink); }
+.x-card .tag { display: inline-block; font-size: 11px; color: var(--card-c, var(--sec-color)); border: 1px solid currentColor; border-radius: 99px; padding: 1px 9px; margin-bottom: 8px; }
+
+/* — AP 曲线图（P10 心室肌 / P16 窦房结 / P19 不应期） — */
+.x-ap { position: absolute; background: rgba(255,253,249,.7); border-radius: 14px; border: 1px solid var(--line); }
+.x-ap svg { width: 100%; height: 100%; }
+.x-ap .phase { cursor: default; }
+.x-ap .phase-band { opacity: .14; }
+.x-ap .phase-label { font-size: 13px; fill: var(--ink); font-weight: 600; }
+.x-ap .ion-label { font-size: 12px; fill: var(--ink-soft); }
+.x-ap .curve { fill: none; stroke: var(--sec-color); stroke-width: 3; stroke-linecap: round;
+  filter: drop-shadow(0 2px 5px rgba(194,84,106,.35)); }
+.x-ap .axis { stroke: rgba(43,43,51,.35); stroke-width: 1; }
+.x-ap .mv { font-size: 11px; fill: var(--ink-soft); }
+
+/* 相位高亮条（随步骤点亮） */
+.x-el.hl .phase-band { opacity: .3; }
+.x-legend { position: absolute; display: flex; gap: 14px; flex-wrap: wrap; }
+.x-legend .item { display: flex; align-items: center; gap: 7px; font-size: 12.5px; }
+.x-legend .sw { width: 14px; height: 14px; border-radius: 4px; }
+
+/* — 离子流表 — */
+.x-table { position: absolute; border-collapse: separate; border-spacing: 0; width: 100%;
+  background: rgba(255,253,249,.92); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 26px -14px rgba(80,40,50,.25); }
+.x-table th { background: linear-gradient(90deg, var(--sec-color), var(--heart-deep)); color: #fff;
+  font-size: 13px; padding: 9px 12px; text-align: left; letter-spacing: .05em; }
+.x-table td { font-size: 13.5px; padding: 8px 12px; border-bottom: 1px solid rgba(43,43,51,.07); }
+.x-table tr:last-child td { border-bottom: none; }
+.x-table tr td:first-child { font-weight: 700; color: var(--heart-deep); white-space: nowrap; }
+
+/* — 知识回顾题卡（P4） — */
+.x-q { position: absolute; display: flex; flex-direction: column; gap: 16px; }
+.x-q .q {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: rgba(255,253,249,.92); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px;
+}
+.x-q .q i {
+  width: 28px; height: 28px; border-radius: 50%; flex: none; font-style: normal;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--sec-color), var(--heart-deep)); color: #fff; font-size: 14px; font-weight: 700;
+}
+.x-q .q p { font-size: 15px; line-height: 1.7; }
+.x-q .hint { font-size: 12px; color: var(--ink-soft); padding-left: 42px; }
+
+/* — QR 引导页（P5） — */
+.x-qr { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 60px; }
+.x-qr .qrbox { text-align: center; }
+.x-qr .qrbox img { width: 200px; height: 200px; border-radius: 12px; box-shadow: 0 14px 34px -12px rgba(80,40,50,.35); background:#fff; padding:10px; }
+.x-qr .qrbox .cap { margin-top: 12px; font-size: 13px; color: var(--ink-soft); }
+.x-qr .arrow { font-size: 40px; color: var(--sec-color); animation: xNudge 1.6s ease-in-out infinite; }
+@keyframes xNudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(12px); } }
+.x-qr .web { max-width: 380px; }
+.x-qr .web h3 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 10px; color: var(--heart-deep); }
+.x-qr .web p { font-size: 14px; line-height: 1.9; color: var(--ink); }
+.x-qr .web .go { display: inline-block; margin-top: 14px; font-size: 13px; color: #fff; background: linear-gradient(90deg, var(--sec-color), var(--heart-deep)); padding: 9px 22px; border-radius: 99px; }
+
+/* — 双栏对比（P8 分类 / P13-14 自律细胞） — */
+.x-duo { position: absolute; display: flex; gap: 22px; }
+/* — 双栏对比（P8 分类 / P13-14 自律细胞） — */
+.x-duo { position: absolute; display: flex; gap: 22px; }
+.x-duo .col { flex: 1; background: rgba(255,253,249,.92); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; position: relative; overflow: hidden; }
+.x-duo .col::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--col-c, var(--sec-color)); }
+.x-duo .col h4 { font-size: 17px; color: var(--col-c, var(--heart-deep)); margin-bottom: 4px; }
+.x-duo .col .en { font-size: 11px; color: var(--ink-soft); letter-spacing: .1em; margin-bottom: 10px; }
+.x-duo .col p, .x-duo .col li { font-size: 13.5px; line-height: 1.8; }
+.x-duo .col ul { padding-left: 18px; }
+
+/* — ECG 标注图（P30-33） — */
+.x-ecg { position: absolute; background: rgba(255,253,249,.7); border: 1px solid var(--line); border-radius: 14px; }
+.x-ecg svg { width: 100%; height: 100%; }
+.x-ecg .wave { fill: none; stroke: var(--heart-deep); stroke-width: 2.6; stroke-linecap: round;
+  filter: drop-shadow(0 2px 4px rgba(158,58,80,.3)); }
+.x-ecg .grid line { stroke: rgba(194,84,106,.12); stroke-width: 1; }
+.x-ecg .wlabel { font-size: 13px; font-weight: 700; fill: var(--heart-deep); }
+.x-ecg .wdesc { font-size: 11px; fill: var(--ink-soft); }
+.x-ecg .segband { opacity: .12; }
+
+/* 动效总开关（门户约定 html.motion-paused） */
+html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after {
+  animation-play-state: paused !important; transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide-page .obj, .slide-page .x-el { transition: none !important; }
+}

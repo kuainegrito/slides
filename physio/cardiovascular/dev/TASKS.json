@@ -24,16 +24,23 @@
     {
       "id": "P1-sec1",
       "title": "精修第一节·心脏电生理（PPT页 2–33）",
-      "range": [2, 33],
-      "status": "todo",
-      "claimed_by": null,
+      "range": [
+        2,
+        33
+      ],
+      "status": "doing",
+      "claimed_by": "kimi-main",
       "dod": "见 PLAN.md「统一完成标准」；重点：0-4期离子流时间轴版式；P5/P11 action_potential、P18 homeostasis 嵌入页引导语；修复 group 占位（P10/12/15/17 等）",
-      "notes": null
+      "notes": null,
+      "claimed_at": "2026-10-21"
     },
     {
       "id": "P2-sec2",
       "title": "精修第二节·泵血功能（PPT页 34–72）",
-      "range": [34, 72],
+      "range": [
+        34,
+        72
+      ],
       "status": "todo",
       "claimed_by": null,
       "dod": "重点：P42-43 压力-容积环交互化；P35 cardiac_cycle 嵌入页引导语；P55-57 Frank-Starling 小交互；P63 homeostasis、P64 cycling 嵌入",
@@ -42,7 +49,10 @@
     {
       "id": "P3a-sec3",
       "title": "精修第三节上半·血管分类/血流动力学/动脉血压（PPT页 73–110）",
-      "range": [73, 110],
+      "range": [
+        73,
+        110
+      ],
       "status": "todo",
       "claimed_by": null,
       "dod": "重点：P104-107 血压形成三因素信息图；P98 homeostasis 嵌入页；血管功能分类（84-88）卡片化",
@@ -51,7 +61,10 @@
     {
       "id": "P3b-sec3",
       "title": "精修第三节下半·脉搏/静脉/微循环/组织液/淋巴（PPT页 111–149）",
-      "range": [111, 149],
+      "range": [
+        111,
+        149
+      ],
       "status": "todo",
       "claimed_by": null,
       "dod": "重点：P135-136 微循环通路流程图；P142-145 有效滤过压动态平衡图解",
@@ -60,7 +73,10 @@
     {
       "id": "P4-sec4",
       "title": "精修第四节·心血管调节（PPT页 150–171）",
-      "range": [150, 171],
+      "range": [
+        150,
+        171
+      ],
       "status": "todo",
       "claimed_by": null,
       "dod": "重点：P161 压力感受性反射整页定制 + homeostasis 失血场景引导（全章高潮）；P153-157 神经支配双侧对照版式",
@@ -69,7 +85,10 @@
     {
       "id": "P5-sec5-review",
       "title": "精修第五节+总结复习（PPT页 172–192）",
-      "range": [172, 192],
+      "range": [
+        172,
+        192
+      ],
       "status": "todo",
       "claimed_by": null,
       "dod": "要点20条做可勾选清单卡；P191 简答题折叠答案卡",
