@@ -42,10 +42,11 @@
         34,
         72
       ],
-      "status": "todo",
+      "status": "done",
       "claimed_by": null,
       "dod": "重点：P42-43 压力-容积环交互化；P35 cardiac_cycle 嵌入页引导语；P55-57 Frank-Starling 小交互；P63 homeostasis、P64 cycling 嵌入",
-      "notes": null
+      "notes": "PV环SVG四相分步(P42/43)、时间轴(P38)、EF双仪表(P51)、Starling对比曲线(P55)、HR-CO拐点曲线(P63)、心力储备条形对比(P65)、药理联想(P68)等17页定制；app引导x3",
+      "done_at": "2026-10-21"
     },
     {
       "id": "P3a-sec3",
