@@ -28,11 +28,12 @@
         2,
         33
       ],
-      "status": "doing",
+      "status": "done",
       "claimed_by": "kimi-main",
       "dod": "见 PLAN.md「统一完成标准」；重点：0-4期离子流时间轴版式；P5/P11 action_potential、P18 homeostasis 嵌入页引导语；修复 group 占位（P10/12/15/17 等）",
-      "notes": null,
-      "claimed_at": "2026-10-21"
+      "notes": "分步显现引擎+14页定制（封面/回顾/目标/分类/AP0-4期/离子流表/窦房结/不应期三联/早搏/心电/异常对比）；app三步引导；工具extract_anim.py+enrich_groups.py入库",
+      "claimed_at": "2026-10-21",
+      "done_at": "2026-10-21"
     },
     {
       "id": "P2-sec2",
