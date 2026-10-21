@@ -55,10 +55,11 @@
         73,
         110
       ],
-      "status": "todo",
+      "status": "done",
       "claimed_by": null,
       "dod": "重点：P104-107 血压形成三因素信息图；P98 homeostasis 嵌入页；血管功能分类（84-88）卡片化",
-      "notes": null
+      "notes": "21页定制：节封面/血管树总览/八类血管卡/NO发现史时间轴/泊肃叶r⁴演示/血压形成四要素/MAP公式/双峰双谷；homeostasis(98)三步引导",
+      "done_at": "2026-10-21"
     },
     {
       "id": "P3b-sec3",

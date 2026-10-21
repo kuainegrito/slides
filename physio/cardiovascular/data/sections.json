@@ -78,7 +78,8 @@
         { "t": "淋巴液", "at": 146 }
       ],
       "apps": [
-        { "at": 98, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态模拟」：改变外周阻力，看血压变化与全身代偿", "qr": true }
+        { "at": 98, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态模拟」：改变外周阻力，看血压变化与全身代偿", "qr": true,
+          "guide": ["找到外周阻力滑块，逐步调高，盯动脉血压", "看心率与每搏量如何代偿（CO = SV × HR 回来了）", "思考：机体为什么把微动脉当总开关？——回到 r⁴"] }
       ]
     },
     {
