@@ -50,9 +50,12 @@
         { "t": "前负荷·后负荷·心功能评价", "at": 67 }
       ],
       "apps": [
-        { "at": 35, "name": "3D 心动周期模拟器", "url": "https://kuaiyu.site/cardiac_cycle/", "note": "PPT 本页二维码（微信小程序同源）：三维心脏与压力-容积环同步演示", "qr": true },
-        { "at": 63, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态软件」：心率调节在整体网络中的效果", "qr": true },
-        { "at": 64, "name": "骑行能量代谢模拟器", "url": "https://kuaiyu.site/cycling/", "note": "心率过快为何心输出量反降？在骑行情境中验证（设计性嵌入）", "qr": false }
+        { "at": 35, "name": "3D 心动周期模拟器", "url": "https://kuaiyu.site/cardiac_cycle/", "note": "PPT 本页二维码（微信小程序同源）：三维心脏与压力-容积环同步演示", "qr": true,
+          "guide": ["旋转 3D 心脏，找二尖瓣/主动脉瓣开闭的时机", "拖动进度到 4 个时期，对照 P39 的分期图", "打开压力-容积环视图——它就是本节的地图（P42）"] },
+        { "at": 63, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态软件」：心率调节在整体网络中的效果", "qr": true,
+          "guide": ["逐步调高心率，盯紧心输出量曲线", "找到 CO 开始下降的心率拐点（≈170-180）", "思考：运动员静息心率低，CO 怎么维持？"] },
+        { "at": 64, "name": "骑行能量代谢模拟器", "url": "https://kuaiyu.site/cycling/", "note": "心率过快为何心输出量反降？在骑行情境中验证（设计性嵌入）", "qr": false,
+          "guide": ["开始骑行，看心率升高时舒张期缩短更明显", "验证：心率过快 → 充盈不足 → 每搏量下降", "赛后读 AI 报告里的心血管复盘与追问"] }
       ]
     },
     {
