@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>血液循环 · 课件</title>
+<link rel="stylesheet" href="assets/css/deck.css">
+</head>
+<body>
+<div id="app">
+  <!-- 顶栏 -->
+  <header class="topbar">
+    <a class="home" href="index.html">⌂ 血液循环</a>
+    <span class="crumb" id="crumbSec"><b>加载中…</b></span>
+    <div class="spacer"></div>
+    <span class="counter"><b id="pageNo">–</b> / <span id="pageTotal">–</span></span>
+    <button class="iconbtn" title="侧栏 (M)" onclick="document.getElementById('sidebar').classList.toggle('hidden');window.Deck&&window.dispatchEvent(new Event('resize'))">☰</button>
+    <button class="iconbtn" title="讲稿备注 (N)" onclick="document.getElementById('notesPanel').classList.toggle('open')">✎</button>
+    <button class="iconbtn" title="总览 (O)" onclick="document.dispatchEvent(new KeyboardEvent('keydown',{key:'o'}))">▦</button>
+    <button class="iconbtn" title="全屏 (F)" onclick="document.dispatchEvent(new KeyboardEvent('keydown',{key:'f'}))">⛶</button>
+  </header>
+
+  <div class="main">
+    <!-- 侧栏 -->
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <!-- 舞台 -->
+    <div class="stage-wrap">
+      <div class="stage" id="stage"><div class="loading">正在装配课件…</div></div>
+
+      <!-- 讲稿面板 -->
+      <div class="notes-panel" id="notesPanel">
+        <h3>讲稿 · NOTES</h3>
+        <pre id="notesBody"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ECG 装饰 + 进度 -->
+  <svg class="ecg-line" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,13 L180,13 L196,13 L204,4 L212,22 L220,13 L260,13 L272,13 L280,1 L290,25 L298,13 L430,13 L446,13 L454,4 L462,22 L470,13 L510,13 L522,13 L530,1 L540,25 L548,13 L700,13 L716,13 L724,4 L732,22 L740,13 L780,13 L792,13 L800,1 L810,25 L818,13 L960,13 L976,13 L984,4 L992,22 L1000,13 L1040,13 L1052,13 L1060,1 L1070,25 L1078,13 L1200,13"/>
+  </svg>
+  <div class="progress"><i style="width:0"></i></div>
+</div>
+
+<!-- 总览 -->
+<div class="overview" id="overview">
+  <h2>本节总览 <span style="font-size:12px;color:var(--ink-soft)">（按 Esc 关闭）</span></h2>
+  <div class="grid"></div>
+</div>
+
+<div class="hint"><kbd>←</kbd><kbd>→</kbd> 翻页 · <kbd>F</kbd> 全屏 · <kbd>O</kbd> 总览 · <kbd>N</kbd> 讲稿 · <kbd>M</kbd> 侧栏</div>
+
+<script src="assets/js/deck.js"></script>
+<!-- 精修覆盖器：后续按节补充，例如 <script src="data/overrides/sec1.js"></script> -->
+</body>
+</html>

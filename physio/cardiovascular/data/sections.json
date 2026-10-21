@@ -1,0 +1,130 @@
+{
+  "deck": {
+    "title": "血液循环",
+    "chapter": "第四章",
+    "book": "《生理学》第10版 · 人卫社",
+    "totalSlides": 192
+  },
+  "sections": [
+    {
+      "id": "sec1",
+      "no": "01",
+      "title": "心脏的电生理学及生理特性",
+      "short": "心脏电生理",
+      "en": "Cardiac Electrophysiology",
+      "range": [2, 33],
+      "color": "#C2546A",
+      "topics": [
+        { "t": "心肌细胞分类", "at": 8 },
+        { "t": "工作心肌细胞跨膜电位", "at": 9 },
+        { "t": "自律细胞跨膜电位", "at": 12 },
+        { "t": "心肌生理特性·兴奋性", "at": 18 },
+        { "t": "自律性", "at": 23 },
+        { "t": "传导性", "at": 26 },
+        { "t": "体表心电图", "at": 30 }
+      ],
+      "apps": [
+        { "at": 5, "name": "动作电位互动教学系统", "url": "https://kuaiyu.site/action_potential/", "note": "PPT 本页二维码指向的工具：预习心肌细胞电活动", "qr": true },
+        { "at": 11, "name": "动作电位互动教学系统", "url": "https://kuaiyu.site/action_potential/", "note": "学完心室肌 AP 各期后，亲手调离子浓度验证", "qr": false },
+        { "at": 18, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态软件」：在整体网络中看心肌兴奋性的意义", "qr": true }
+      ]
+    },
+    {
+      "id": "sec2",
+      "no": "02",
+      "title": "心脏的泵血功能",
+      "short": "泵血功能",
+      "en": "Cardiac Pumping",
+      "range": [34, 72],
+      "color": "#B84A3E",
+      "topics": [
+        { "t": "心动周期", "at": 37 },
+        { "t": "心室射血与充盈·压力容积环", "at": 39 },
+        { "t": "心音", "at": 44 },
+        { "t": "心输出量与心脏做功", "at": 47 },
+        { "t": "心输出量的调节", "at": 53 },
+        { "t": "心力储备", "at": 65 },
+        { "t": "前负荷·后负荷·心功能评价", "at": 67 }
+      ],
+      "apps": [
+        { "at": 35, "name": "3D 心动周期模拟器", "url": "https://kuaiyu.site/cardiac_cycle/", "note": "PPT 本页二维码（微信小程序同源）：三维心脏与压力-容积环同步演示", "qr": true },
+        { "at": 63, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态软件」：心率调节在整体网络中的效果", "qr": true },
+        { "at": 64, "name": "骑行能量代谢模拟器", "url": "https://kuaiyu.site/cycling/", "note": "心率过快为何心输出量反降？在骑行情境中验证（设计性嵌入）", "qr": false }
+      ]
+    },
+    {
+      "id": "sec3",
+      "no": "03",
+      "title": "血管生理",
+      "short": "血管生理",
+      "en": "Vascular Physiology",
+      "range": [73, 149],
+      "color": "#3A5A78",
+      "topics": [
+        { "t": "血管的分类与结构", "at": 75 },
+        { "t": "血管的内分泌功能", "at": 89 },
+        { "t": "血流量·血流速度·血流阻力", "at": 94 },
+        { "t": "动脉血压", "at": 101 },
+        { "t": "动脉脉搏", "at": 121 },
+        { "t": "静脉血压与静脉回心血量", "at": 124 },
+        { "t": "微循环", "at": 132 },
+        { "t": "组织液的生成与回流", "at": 140 },
+        { "t": "淋巴液", "at": 146 }
+      ],
+      "apps": [
+        { "at": 98, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "PPT 标注「稳态模拟」：改变外周阻力，看血压变化与全身代偿", "qr": true }
+      ]
+    },
+    {
+      "id": "sec4",
+      "no": "04",
+      "title": "心血管活动的调节",
+      "short": "心血管调节",
+      "en": "Cardiovascular Regulation",
+      "range": [150, 171],
+      "color": "#4E7A5A",
+      "topics": [
+        { "t": "心脏和血管的神经支配", "at": 152 },
+        { "t": "心血管中枢", "at": 158 },
+        { "t": "压力感受性反射", "at": 159 },
+        { "t": "化学感受性反射", "at": 163 },
+        { "t": "体液调节·RAAS", "at": 164 },
+        { "t": "肾上腺素·血管升压素·ANP", "at": 166 },
+        { "t": "动脉血压的长期调节", "at": 171 }
+      ],
+      "apps": [
+        { "at": 161, "name": "稳态网络模拟器 HomeoXNet", "url": "https://kuaiyu.site/homeostasis/", "note": "失血场景：压力感受性反射与 RAAS 在不同时间尺度上接力（核心互动点）", "qr": true }
+      ]
+    },
+    {
+      "id": "sec5",
+      "no": "05",
+      "title": "器官循环",
+      "short": "器官循环",
+      "en": "Organ Circulation",
+      "range": [172, 180],
+      "color": "#7A5A8C",
+      "topics": [
+        { "t": "冠脉循环", "at": 174 },
+        { "t": "肺循环", "at": 177 },
+        { "t": "脑循环", "at": 179 }
+      ],
+      "apps": []
+    },
+    {
+      "id": "review",
+      "no": "06",
+      "title": "总结与复习",
+      "short": "总结复习",
+      "en": "Summary & Review",
+      "range": [181, 192],
+      "color": "#8C6D3F",
+      "topics": [
+        { "t": "本章要点 20 条", "at": 181 },
+        { "t": "考点梳理", "at": 188 },
+        { "t": "简答题", "at": 191 }
+      ],
+      "apps": []
+    }
+  ]
+}

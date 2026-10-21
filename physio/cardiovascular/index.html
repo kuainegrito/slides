@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第四章 血液循环 · 课件</title>
+<link rel="stylesheet" href="assets/css/deck.css">
+</head>
+<body class="cover-body">
+<div class="cover">
+  <div class="chapter-kicker">第四章 · CHAPTER 4</div>
+  <h1>血 液 循 环</h1>
+  <div class="en">Blood Circulation · 生理学 Physiology</div>
+  <svg class="ecg-hero" viewBox="0 0 680 80" aria-hidden="true">
+    <path d="M0,40 L120,40 L150,40 L165,18 L180,62 L195,40 L240,40 L262,40 L278,4 L296,76 L312,40 L370,40 L392,55 L410,40 L470,40 L492,40 L508,4 L526,76 L542,40 L600,40 L622,55 L640,40 L680,40"/>
+  </svg>
+  <div class="meta" id="deckMeta">《生理学》第10版 · 人卫社　|　192 页 · 五节 + 总结复习</div>
+
+  <div class="sec-cards" id="secCards"></div>
+</div>
+<footer class="credit">
+  内嵌互动工具：动作电位 · 3D心动周期 · 稳态网络 HomeoXNet · 骑行能量代谢（kuaiyu.site）<br>
+  框架版本 v0.1 · 持续建设中
+</footer>
+<script>
+fetch('data/sections.json').then(function (r) { return r.json(); }).then(function (data) {
+  var wrap = document.getElementById('secCards');
+  data.sections.forEach(function (s) {
+    var a = document.createElement('a');
+    a.className = 'sec-card';
+    a.href = 'deck.html?sec=' + s.id;
+    a.style.setProperty('--c', s.color);
+    var nSlides = s.range[1] - s.range[0] + 1;
+    var topicNames = (s.topics || []).slice(0, 3).map(function (t) { return t.t; }).join(' · ');
+    a.innerHTML =
+      '<div class="no">' + s.no + '</div>' +
+      '<h3>' + s.title + '</h3>' +
+      '<div class="en">' + (s.en || '') + '</div>' +
+      '<div class="stat"><span><b>' + nSlides + '</b> 页</span>' +
+      (s.apps && s.apps.length ? '<span><b>' + s.apps.length + '</b> 个互动工具</span>' : '') + '</div>' +
+      '<div class="topics">' + topicNames + '…</div>';
+    wrap.appendChild(a);
+  });
+});
+</script>
+</body>
+</html>
