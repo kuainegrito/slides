@@ -1,7 +1,7 @@
 {
   "_README": "并行协作任务队列。规则：1) 开工前把任务 status 改 doing 并填 claimed_by（agent 名）与 claimed_at；2) 完成后改 done 填 done_at 与 notes；3) 每次改动随 git commit 一起提交，避免冲突——冲突时以 git 历史较早者为准，后者重领；4) 页码范围可再细分（把 range 拆成更小的子任务追加到数组末尾，id 加 -a/-b 后缀）。归档快照同步到 html_development_log/TASKS.json。",
   "project": "slide/physio/cardiovascular",
-  "updated_at": "2026-10-21",
+  "updated_at": "2026-10-22",
   "tasks": [
     {
       "id": "P0-extract",
@@ -96,10 +96,12 @@
         172,
         192
       ],
-      "status": "todo",
-      "claimed_by": null,
+      "status": "done",
+      "claimed_by": "kimi-main",
+      "claimed_at": "2026-10-22",
+      "done_at": "2026-10-22",
       "dod": "要点20条做可勾选清单卡；P191 简答题折叠答案卡",
-      "notes": null
+      "notes": "21页定制：节色紫#7A5A8C/复习棕#8C6D3F；P172节封面/P173目标4条/P174冠脉解剖；P175英雄页=主动脉压×左冠脉血流双曲线SVG(收缩期红带血流骤降+舒张期蓝带黄金灌注窗+心动过速临床卡)；P176代谢调节(腺苷)/P177神经体液；P178英雄页=HPV低氧性肺血管收缩vs体循环低氧舒张duo(统一于氧供需对齐+V/Q)；P179肺循环低压低阻；P180英雄页=脑血流60–140mmHg平台SVG绿带+血脑屏障；复习节P181–187用keyPoints()渲22条<label.x-key>可勾选卡(checkbox :has划线)；P188–190用mastery()渲掌握/熟悉/了解三层横幅+分组卡；P191三道简答<details.x-qa>折叠答案(血压形成/微循环/房-室延搁)；P192章末END封面(ECG底纹+b7f569cee097.webp)。新增CSS:.x-key/.x-qa两族。覆盖器sec5.js同时管sec5与review两节。线上遍历sec5(9/9)+review(12/12)零JS错误，截图验证P175/P191/P192"
     },
     {
       "id": "P6-portal",

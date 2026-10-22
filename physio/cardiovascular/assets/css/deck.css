@@ -418,3 +418,19 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
 @media (prefers-reduced-motion: reduce) {
   .slide-page .obj, .slide-page .x-el { transition: none !important; }
 }
+
+
+/* ===== 复习节：可勾选要点卡 + 折叠答案卡 ===== */
+.x-key { position:absolute; display:flex; gap:14px; align-items:flex-start; background:rgba(255,253,249,.92); border:1px solid var(--line); border-radius:14px; padding:14px 18px; cursor:pointer; transition:opacity .25s, transform .3s; }
+.x-key input { width:20px; height:20px; margin-top:2px; accent-color:#4E7A5A; flex:0 0 auto; cursor:pointer; }
+.x-key .kn { font-family:Georgia,serif; font-weight:700; color:var(--sec-color,#8C6D3F); font-size:17px; flex:0 0 34px; line-height:1.4; }
+.x-key .kt { font-size:13.5px; line-height:1.85; }
+.x-key:has(input:checked) { opacity:.48; }
+.x-key:has(input:checked) .kt { text-decoration:line-through; }
+.x-qa { position:absolute; background:rgba(255,253,249,.94); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+.x-qa summary { padding:15px 20px; font-size:15px; font-weight:700; cursor:pointer; list-style:none; display:flex; gap:10px; align-items:center; color:var(--heart-deep); }
+.x-qa summary::-webkit-details-marker { display:none; }
+.x-qa summary::before { content:"Q"; font-family:Georgia,serif; background:var(--sec-color,#8C6D3F); color:#fff; border-radius:8px; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:14px; flex:0 0 auto; }
+.x-qa summary::after { content:"点击展开参考答案"; margin-left:auto; font-size:11.5px; color:var(--ink-soft); font-weight:400; }
+.x-qa[open] summary::after { content:"收起"; }
+.x-qa .ans { padding:14px 22px 16px 58px; font-size:13.5px; line-height:2; border-top:1px dashed var(--line); }
