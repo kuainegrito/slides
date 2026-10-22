@@ -1,7 +1,7 @@
 {
   "_README": "并行协作任务队列。规则：1) 开工前把任务 status 改 doing 并填 claimed_by（agent 名）与 claimed_at；2) 完成后改 done 填 done_at 与 notes；3) 每次改动随 git commit 一起提交，避免冲突——冲突时以 git 历史较早者为准，后者重领；4) 页码范围可再细分（把 range 拆成更小的子任务追加到数组末尾，id 加 -a/-b 后缀）。归档快照同步到 html_development_log/TASKS.json。",
   "project": "slide/physio/cardiovascular",
-  "updated_at": "2026-10-22",
+  "updated_at": "2026-10-22（午后）",
   "tasks": [
     {
       "id": "P0-extract",
@@ -104,6 +104,16 @@
       "notes": "21页定制：节色紫#7A5A8C/复习棕#8C6D3F；P172节封面/P173目标4条/P174冠脉解剖；P175英雄页=主动脉压×左冠脉血流双曲线SVG(收缩期红带血流骤降+舒张期蓝带黄金灌注窗+心动过速临床卡)；P176代谢调节(腺苷)/P177神经体液；P178英雄页=HPV低氧性肺血管收缩vs体循环低氧舒张duo(统一于氧供需对齐+V/Q)；P179肺循环低压低阻；P180英雄页=脑血流60–140mmHg平台SVG绿带+血脑屏障；复习节P181–187用keyPoints()渲22条<label.x-key>可勾选卡(checkbox :has划线)；P188–190用mastery()渲掌握/熟悉/了解三层横幅+分组卡；P191三道简答<details.x-qa>折叠答案(血压形成/微循环/房-室延搁)；P192章末END封面(ECG底纹+b7f569cee097.webp)。新增CSS:.x-key/.x-qa两族。覆盖器sec5.js同时管sec5与review两节。线上遍历sec5(9/9)+review(12/12)零JS错误，截图验证P175/P191/P192"
     },
     {
+      "id": "P7-poster-pv",
+      "title": "【推广】全节 app 页 16:9 海报封面 + sec2 PV 环换官方数据 + 舞台 flex 修复",
+      "status": "done",
+      "claimed_by": "kimi-main",
+      "claimed_at": "2026-10-22",
+      "done_at": "2026-10-22",
+      "dod": "8 个 app 嵌入页全部 qrPoster 大海报（P5 例外）；PV 环数据驱动且关键点与 cardiac_cycle 基准一致；海报近乎铺满舞台",
+      "notes": "①四张官方双码海报 1400×788 webp 入库（源：My_webpage/*dual-qr*.jpg）；②deck.js renderAppSlide 支持 app.qrPoster 单海报模式（poster-mode class）；③data/pv_samples.js=PV_P/PV_V 400 点（2ms/点，源 cycle.baseline.json lv/volume），pvLoop() 分段着色重写：相位边界 100/150/270/450/510/650ms，EDV=120@10、ESV=50@95、Pmax=122@240、SV=70；P42/43 解说与 volMarks 同步修订（P47 教材安静参考值不动）；④根因修复：.stage 加 flex:none——flex 子项默认 shrink 使 1280 舞台被压到 688 再叠加 transform 缩放=双重缩小（用户报「海报太小」的真因），修复后海报 994×560 占舞台 78%；⑤验证：PV 四段坐标边界与基准逐点吻合、封面→app 步进切换正确、sec2 全节合成翻页零 JS 错误。commit 15d0f51"
+    },
+    {
       "id": "P6-portal",
       "title": "/slide/ 门户自动列表 + 下一课件（第二章）流水线复用",
       "status": "todo",
@@ -117,7 +127,7 @@
       "status": "todo",
       "claimed_by": null,
       "dod": "手机竖屏可用（至少总览+顺序翻页），iframe app 页提示横屏",
-      "notes": null
+      "notes": "2026-10-22 已修根因之一：.stage flex:none（此前窄窗口下舞台双重缩小）。剩余：竖屏布局与总览适配未做"
     },
     {
       "id": "X-a11y-i18n",
