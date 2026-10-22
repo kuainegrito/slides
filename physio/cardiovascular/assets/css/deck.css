@@ -100,7 +100,7 @@ body::before { /* 柔化底图，保证可读性 */
 /* 舞台区 */
 .stage-wrap { flex: 1; display: flex; align-items: center; justify-content: center; min-width: 0; padding: 18px; position: relative; }
 .stage {
-  position: relative; width: 1280px; height: 720px;
+  position: relative; width: 1280px; height: 720px; flex: none;
   background: #fffdf9;
   border-radius: 10px;
   box-shadow: var(--stage-shadow);
@@ -473,3 +473,17 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
   box-shadow: 0 12px 26px -10px var(--sec-color, #C2546A);
   animation: xNudge 1.6s ease-in-out infinite;
 }
+
+/* 海报版二维码封面：16:9 官方海报近乎铺满舞台（1280×720），
+   标题压缩成细条、底部操作行悬浮不遮海报二维码区 */
+.app-slide .qr-cover.poster-mode { gap: 10px; padding: 14px 30px; }
+.app-slide .qr-cover.poster-mode .qr-title { font-size: 19px; opacity: .92; }
+.app-slide .qr-cover.poster-mode .qr-row { flex: 1; min-height: 0; display: flex; align-items: center; }
+.app-slide .qr-cover.poster-mode figure.poster { margin: 0; height: 100%; display: flex; align-items: center; }
+.app-slide .qr-cover.poster-mode figure.poster img {
+  width: auto; height: auto; max-width: 1180px; max-height: 560px; padding: 0;
+  border-radius: 14px; object-fit: contain; animation: none;
+  box-shadow: 0 26px 60px -20px rgba(80,40,50,.45);
+}
+.app-slide .qr-cover.poster-mode .qr-hint { display: none; }
+.app-slide .qr-cover.poster-mode .qr-go { margin-top: 0; font-size: 13.5px; padding: 9px 26px; }

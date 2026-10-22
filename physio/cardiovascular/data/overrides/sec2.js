@@ -38,19 +38,32 @@
   var PH = { fill: '#6bcb77', isoC: '#f0a04b', eject: '#d9534f', isoR: '#4d96ff' };
 
   /* ---------- 压力-容积环 SVG ----------
-     坐标：容积 0–140 mL → x 60–340；压力 0–130 mmHg → y 300–40
-     环：充盈(绿)→等容收缩(橙)→射血(红)→等容舒张(蓝) */
+     数据驱动：window.PV_V / PV_P —— 取自 cardiac_cycle app 运行时基准
+     （dev/ref_apps/cycle.baseline.json，400 点，2ms/点）
+     相位(ms)：充盈 510–800+0–100 / 等容收缩 100–150 / 射血 150–450 / 等容舒张 450–510
+     关键点：EDV=120 mL@10 mmHg · ESV=50 mL@95 mmHg · Pmax=122@240 ms · SV=70 mL
+     坐标：容积 0–140 mL → x 60–340；压力 0–130 mmHg → y 300–40 */
   function pvLoop(api, l, t, w, h, opts) {
     opts = opts || {};
     var box = el(api, 'x-ap x-pv');
     abs(box, l, t, w, h);
     function X(v) { return 60 + v * 2; }
     function Y(p) { return 300 - p * 2; }
+    function segPath(i0, i1) {           /* 索引按 2ms/点，含两端 */
+      var d = '';
+      for (var i = i0; i <= i1; i++) {
+        var k = i % 400;
+        d += (d ? ' L' : 'M') + X(window.PV_V[k]).toFixed(1) + ',' + Y(window.PV_P[k]).toFixed(1);
+      }
+      return d;
+    }
+    /* 充盈段跨数组首尾：255..399（510–798ms）接 0..50（0–100ms） */
+    var fillD = segPath(255, 399) + segPath(0, 50).replace(/^M/, 'L');
     var segs = [
-      { name: '心室充盈', c: PH.fill, d: 'M' + X(40) + ',' + Y(8) + ' C' + X(62) + ',' + Y(4) + ' ' + X(100) + ',' + Y(4) + ' ' + X(120) + ',' + Y(10), lbl: [X(80), Y(0) + 18], anc: 'middle' },
-      { name: '等容收缩', c: PH.isoC, d: 'M' + X(120) + ',' + Y(10) + ' L' + X(120) + ',' + Y(80), lbl: [X(120) + 8, Y(45)], anc: 'start' },
-      { name: '射血', c: PH.eject, d: 'M' + X(120) + ',' + Y(80) + ' C' + X(115) + ',' + Y(102) + ' ' + X(80) + ',' + Y(112) + ' ' + X(58) + ',' + Y(96) + ' C' + X(48) + ',' + Y(88) + ' ' + X(42) + ',' + Y(72) + ' ' + X(40) + ',' + Y(60), lbl: [X(72), Y(106) - 8], anc: 'middle' },
-      { name: '等容舒张', c: PH.isoR, d: 'M' + X(40) + ',' + Y(60) + ' L' + X(40) + ',' + Y(8), lbl: [X(40) - 8, Y(35)], anc: 'end' }
+      { name: '心室充盈', c: PH.fill, d: fillD, lbl: [X(85), Y(0) + 18], anc: 'middle' },
+      { name: '等容收缩', c: PH.isoC, d: segPath(50, 75), lbl: [X(120) + 8, Y(45)], anc: 'start' },
+      { name: '射血', c: PH.eject, d: segPath(75, 225), lbl: [X(79), Y(122) - 10], anc: 'middle' },
+      { name: '等容舒张', c: PH.isoR, d: segPath(225, 255), lbl: [X(50) - 8, Y(35)], anc: 'end' }
     ];
     var svg = '<svg viewBox="0 0 400 340" preserveAspectRatio="none">';
     /* 网格与轴 */
@@ -76,12 +89,12 @@
     });
     /* EDV/ESV/SV 标注 */
     if (opts.volMarks) {
-      svg += '<line x1="' + X(40) + '" y1="' + Y(-6) + '" x2="' + X(40) + '" y2="' + Y(4) + '" stroke="#9b72cf" stroke-width="2"/>';
+      svg += '<line x1="' + X(50) + '" y1="' + Y(-6) + '" x2="' + X(50) + '" y2="' + Y(4) + '" stroke="#9b72cf" stroke-width="2"/>';
       svg += '<line x1="' + X(120) + '" y1="' + Y(-6) + '" x2="' + X(120) + '" y2="' + Y(4) + '" stroke="#9b72cf" stroke-width="2"/>';
-      svg += '<text class="mv" x="' + X(40) + '" y="' + Y(-6) + '" text-anchor="middle" fill="#9b72cf" font-weight="700">ESV 40</text>';
+      svg += '<text class="mv" x="' + X(50) + '" y="' + Y(-6) + '" text-anchor="middle" fill="#9b72cf" font-weight="700">ESV 50</text>';
       svg += '<text class="mv" x="' + X(120) + '" y="' + Y(-6) + '" text-anchor="middle" fill="#9b72cf" font-weight="700">EDV 120</text>';
-      svg += '<path d="M' + (X(40) + 6) + ',' + (Y(-14) + 22) + ' L' + (X(120) - 6) + ',' + (Y(-14) + 22) + '" stroke="#9b72cf" stroke-width="1.6" marker-end="url(#pvArrow)" marker-start="url(#pvArrow)"/>';
-      svg += '<text class="mv" x="' + X(80) + '" y="' + (Y(-14) + 40) + '" text-anchor="middle" fill="#9b72cf" font-weight="700">SV = EDV − ESV ≈ 80 mL</text>';
+      svg += '<path d="M' + (X(50) + 6) + ',' + (Y(-14) + 22) + ' L' + (X(120) - 6) + ',' + (Y(-14) + 22) + '" stroke="#9b72cf" stroke-width="1.6" marker-end="url(#pvArrow)" marker-start="url(#pvArrow)"/>';
+      svg += '<text class="mv" x="' + X(85) + '" y="' + (Y(-14) + 40) + '" text-anchor="middle" fill="#9b72cf" font-weight="700">SV = EDV − ESV = 70 mL</text>';
       svg += '<defs><marker id="pvArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#9b72cf"/></marker></defs>';
     }
     svg += '</svg>';
@@ -283,9 +296,9 @@
     var st = [titleBar(api, '压力-容积环：一个心动周期的地图', '横轴容积 · 纵轴压力 · 逆时针运行')];
     var pv = pvLoop(api, 60, 110, 700, 560, {});
     var descs = [
-      ['① 心室充盈', '二尖瓣开放，血液流入，容积 40→120 mL，压力略升', PH.fill],
+      ['① 心室充盈', '二尖瓣开放，血液流入，容积 50→120 mL，压力略升', PH.fill],
       ['② 等容收缩', '二尖瓣关闭，心室开始收缩但<b>容积不变</b>，压力急升', PH.isoC],
-      ['③ 射血', '室内压超过主动脉压 → 半月瓣开 → 容积 120→40 mL', PH.eject],
+      ['③ 射血', '室内压超过主动脉压 → 半月瓣开 → 容积 120→50 mL', PH.eject],
       ['④ 等容舒张', '半月瓣关闭，心室舒张但容积不变，压力骤降', PH.isoR]
     ];
     var steps = [[pv]];

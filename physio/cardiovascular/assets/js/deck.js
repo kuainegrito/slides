@@ -221,13 +221,15 @@
     page._appIframe = iframe;
     /* 二维码先行：PPT 里的扫码页在网页版变成 app 页的第一步——
        先让学生扫码把工具装进口袋，按 → 再在大屏展开 app */
-    if (app.qrImages && app.qrImages.length) {
+    var qrImgs = app.qrImages || (app.qrPoster ? [{ src: app.qrPoster, label: '' , poster: true }] : null);
+    if (qrImgs && qrImgs.length) {
       iframe.dataset.step = 0;
       var cover = ce('div', 'qr-cover');
       cover.dataset.step = 0;
+      if (app.qrPoster) cover.classList.add('poster-mode');
       var inner = '<div class="qr-title">先扫码 · 把模拟器装进自己手机</div><div class="qr-row">';
-      app.qrImages.forEach(function (q) {
-        inner += '<figure><img src="' + esc(q.src) + '" alt="二维码"><figcaption>' + esc(q.label || '') + '</figcaption></figure>';
+      qrImgs.forEach(function (q) {
+        inner += '<figure' + (q.poster ? ' class="poster"' : '') + '><img src="' + esc(q.src) + '" alt="二维码">' + (q.label ? '<figcaption>' + esc(q.label) + '</figcaption>' : '') + '</figure>';
       });
       inner += '</div><div class="qr-hint">课上跟大屏一起操作 · 课后用自己的手机复现</div>' +
         '<div class="qr-go">按 <b>→</b> 或点击这里，在大屏打开</div>';
