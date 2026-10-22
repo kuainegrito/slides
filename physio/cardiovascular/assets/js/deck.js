@@ -219,6 +219,24 @@
     iframe.setAttribute('allow', 'autoplay; fullscreen; clipboard-write');
     page.appendChild(iframe);
     page._appIframe = iframe;
+    /* 二维码先行：PPT 里的扫码页在网页版变成 app 页的第一步——
+       先让学生扫码把工具装进口袋，按 → 再在大屏展开 app */
+    if (app.qrImages && app.qrImages.length) {
+      iframe.dataset.step = 0;
+      var cover = ce('div', 'qr-cover');
+      cover.dataset.step = 0;
+      var inner = '<div class="qr-title">先扫码 · 把模拟器装进自己手机</div><div class="qr-row">';
+      app.qrImages.forEach(function (q) {
+        inner += '<figure><img src="' + esc(q.src) + '" alt="二维码"><figcaption>' + esc(q.label || '') + '</figcaption></figure>';
+      });
+      inner += '</div><div class="qr-hint">课上跟大屏一起操作 · 课后用自己的手机复现</div>' +
+        '<div class="qr-go">按 <b>→</b> 或点击这里，在大屏打开</div>';
+      cover.innerHTML = inner;
+      cover.onclick = function () { var b = stageEl && stageEl.querySelector('.flip.next'); if (b) b.click(); };
+      page.appendChild(cover);
+      page._totalSteps = 1;
+      page._revealed = 0;
+    }
     return page;
   }
 
@@ -483,6 +501,13 @@
         if (m) {
           for (var i = 0; i < Deck.pages.length; i++) {
             if (Deck.pages[i].n === +m[1] && Deck.pages[i].type === 'slide') { start = i; break; }
+          }
+        } else {
+          var ma = h.match(/#app-(\d+)/);
+          if (ma) {
+            for (var j = 0; j < Deck.pages.length; j++) {
+              if (Deck.pages[j].n === +ma[1] && Deck.pages[j].type === 'app') { start = j; break; }
+            }
           }
         }
       }

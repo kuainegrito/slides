@@ -31,7 +31,7 @@
       "status": "done",
       "claimed_by": "kimi-main",
       "dod": "见 PLAN.md「统一完成标准」；重点：0-4期离子流时间轴版式；P5/P11 action_potential、P18 homeostasis 嵌入页引导语；修复 group 占位（P10/12/15/17 等）",
-      "notes": "分步显现引擎+14页定制（封面/回顾/目标/分类/AP0-4期/离子流表/窦房结/不应期三联/早搏/心电/异常对比）；app三步引导；工具extract_anim.py+enrich_groups.py入库",
+      "notes": "分步显现引擎+14页定制（封面/回顾/目标/分类/AP0-4期/离子流表/窦房结/不应期三联/早搏/心电/异常对比）；app三步引导；工具extract_anim.py+enrich_groups.py入库。【2026-10-22 返工】用户报障 s8/s10/s11/s16：①P8 图错+位置错（旧代码把 group 子图按错误偏移贴出）→ 裁出图5-14净图正确放置；②P10/P16 手绘 AP 形态/分期不符 → 全部改用 cardiac_cycle 官方采样 data/ap_samples.js（800ms/2ms 真实时轴，心室肌峰+30/平台≈0mV/150ms，窦房结 MDP−60/峰+8/4期三电流沿坡标注），P10 加离子流副图+0–40ms 放大窗；③P11 教材原图 c8ff1709dd79 回主位+分步对号入座；④P5 海报整幅呈现；⑤P19-21 refractoryAP 同步换源（ERP 分界由采样真实穿越点求得 −60mV@270ms）；⑥deck.js app 页支持 qrImages 二维码先行封面（iframe 挂 data-step=0，按→封面淡出 app 淡入）+ #app-N hash 路由；⑦sections.json 新增 P10 cardiac_cycle 嵌入（QR=a99f727a4d21），P11 action_potential 补双码。教训：lazy 渲染下 textContent 断言会命中隐藏页，须锚定 pageEls[Deck.cur]；纯 hash 导航不触发整页加载，验证 URL 要加变化 query",
       "claimed_at": "2026-10-21",
       "done_at": "2026-10-21"
     },

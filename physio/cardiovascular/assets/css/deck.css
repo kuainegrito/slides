@@ -434,3 +434,42 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
 .x-qa summary::after { content:"点击展开参考答案"; margin-left:auto; font-size:11.5px; color:var(--ink-soft); font-weight:400; }
 .x-qa[open] summary::after { content:"收起"; }
 .x-qa .ans { padding:14px 22px 16px 58px; font-size:13.5px; line-height:2; border-top:1px dashed var(--line); }
+
+/* ============================================================
+   App 页 · 二维码先行封面（PPT 扫码页 → 网页版第一步）
+   iframe 与封面同挂 data-step=0：初始只见二维码，按 → 封面淡出、app 淡入
+   ============================================================ */
+.app-slide iframe[data-step] { opacity: 0; pointer-events: none; transition: opacity .55s ease .15s; }
+.app-slide iframe[data-step].on { opacity: 1; pointer-events: auto; }
+.app-slide .qr-cover {
+  position: absolute; inset: 0; z-index: 6; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  background:
+    radial-gradient(60% 80% at 78% 18%, rgba(194,84,106,.10), transparent 60%),
+    radial-gradient(50% 70% at 18% 85%, rgba(77,150,255,.08), transparent 60%),
+    #fdfcfa;
+  transition: opacity .45s var(--ease), visibility .45s;
+}
+.app-slide .qr-cover.on { opacity: 0; visibility: hidden; pointer-events: none; }
+.app-slide .qr-cover .qr-title {
+  font-family: var(--font-serif); font-size: 30px; font-weight: 700; color: var(--heart-deep);
+  letter-spacing: .02em;
+}
+.app-slide .qr-cover .qr-row { display: flex; gap: 44px; align-items: flex-end; }
+.app-slide .qr-cover figure { margin: 0; text-align: center; }
+.app-slide .qr-cover img {
+  width: 220px; height: 220px; padding: 12px; background: #fff; border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: 0 22px 48px -18px rgba(80,40,50,.35);
+  animation: qrFloat 3.2s ease-in-out infinite;
+}
+.app-slide .qr-cover figure:nth-child(2) img { animation-delay: 1.1s; }
+@keyframes qrFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+.app-slide .qr-cover figcaption { margin-top: 12px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.app-slide .qr-cover .qr-hint { font-size: 14px; color: var(--ink-soft); letter-spacing: .04em; }
+.app-slide .qr-cover .qr-go {
+  margin-top: 6px; font-size: 14px; color: #fff; padding: 11px 30px; border-radius: 99px;
+  background: linear-gradient(90deg, var(--sec-color, #C2546A), var(--heart-deep));
+  box-shadow: 0 12px 26px -10px var(--sec-color, #C2546A);
+  animation: xNudge 1.6s ease-in-out infinite;
+}

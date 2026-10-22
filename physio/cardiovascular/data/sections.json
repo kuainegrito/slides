@@ -61,15 +61,43 @@
           ]
         },
         {
+          "at": 10,
+          "name": "3D 心动周期模拟器",
+          "url": "https://www.kuaiyu.site/cardiac_cycle/",
+          "note": "五类细胞 · 同一传导序列——找到你刚画的心室肌 AP",
+          "qr": true,
+          "qrImages": [
+            {
+              "src": "assets/img/a99f727a4d21.webp",
+              "label": "微信扫码 · 心动周期模拟器"
+            }
+          ],
+          "guide": [
+            "页面滚到「五类细胞，同一传导序列」：认准心室肌细胞那条曲线",
+            "对比五种细胞：谁有 2 期平台？谁的 4 期不是平的？",
+            "勾选「为什么 T 波直立？」——看复极顺序如何决定 T 波方向"
+          ]
+        },
+        {
           "at": 11,
           "name": "动作电位互动教学系统",
           "url": "https://kuaiyu.site/action_potential/",
           "note": "学完心室肌 AP 各期后，亲手调离子浓度验证",
-          "qr": false,
+          "qr": true,
           "guide": [
             "对照左边表格，逐期说出主要离子流",
             "在模拟器里复现 2 期平台期：哪个电流是关键？",
             "和同学互相出题：改一个参数，让对方猜曲线变化"
+          ],
+          "qrImages": [
+            {
+              "src": "assets/img/6d3e21967988.webp",
+              "label": "公网入口 · 校内外均可"
+            },
+            {
+              "src": "assets/img/5c0cc24cb9ed.webp",
+              "label": "校园网入口 · 默认中文界面"
+            }
           ]
         },
         {
