@@ -1,0 +1,28 @@
+{
+  "_readme": "课件中心清单（kuaiyu.site/slide/ 门户的数据源）。新增课件流程：①把课件目录放进 slide/（建议结构 <学科>/<章节>/，内含 index.html 封面 + deck.html 放映页）；②在 decks 数组追加一条记录；③门户自动渲染，无需改 HTML。status 取值：live=已上线 / building=建设中（可点） / planned=筹备中（不可点）。",
+  "updated_at": "2026-10-23",
+  "decks": [
+    {
+      "id": "physio/cardiovascular",
+      "href": "./physio/cardiovascular/",
+      "title": "第四章 · 血液循环",
+      "subject": "《生理学》第10版 · 人卫社",
+      "color": "#c2546a",
+      "pages": 192,
+      "structure": "六节（含总结复习）",
+      "apps": 9,
+      "status": "live",
+      "statusText": "精修完成 · 已上线",
+      "updated": "2026-10-23",
+      "highlights": ["9 处互动模拟器嵌入", "官方运行时数据驱动图示", "分步动画还原 PPT 节奏"]
+    },
+    {
+      "id": "physio/cell",
+      "title": "第二章 · 细胞的基本功能",
+      "subject": "《生理学》第10版 · 人卫社",
+      "color": "#3a5a78",
+      "status": "planned",
+      "statusText": "筹备中"
+    }
+  ]
+}

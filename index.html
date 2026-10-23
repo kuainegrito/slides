@@ -5,49 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>课件中心 · kuaiyu.site/slide</title>
 <style>
-  :root { --paper:#fdfbf7; --ink:#2b2b33; --ink-soft:#6b6560; --heart:#c2546a; --vein:#3a5a78; --line:rgba(43,43,51,.1); }
+  :root {
+    --paper:#fdfbf7; --ink:#2b2b33; --ink-soft:#6b6560;
+    --heart:#c2546a; --heart-deep:#8e3a4d; --vein:#3a5a78; --line:rgba(43,43,51,.1);
+  }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif; background:var(--paper); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:10vh 6vw 60px; }
-  .kicker { font-size:13px; letter-spacing:.45em; color:var(--heart); text-indent:.45em; }
-  h1 { font-family:"Noto Serif SC","Songti SC",serif; font-size:clamp(30px,4.5vw,52px); letter-spacing:.1em; margin:14px 0 8px; }
-  .sub { color:var(--ink-soft); font-size:14px; margin-bottom:48px; }
-  .decks { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; width:min(1000px,94vw); }
-  .deck { display:block; text-decoration:none; color:var(--ink); background:#fffdf9; border:1px solid var(--line); border-radius:16px; padding:26px; position:relative; overflow:hidden; transition:transform .2s,box-shadow .2s; }
+  body {
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+    background:
+      radial-gradient(50% 40% at 85% 8%, rgba(194,84,106,.07), transparent 60%),
+      radial-gradient(45% 40% at 8% 90%, rgba(58,90,120,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink); min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:9vh 6vw 60px;
+  }
+  .kicker { font-size:13px; letter-spacing:.45em; color:var(--heart); text-indent:.45em; animation:fadeDown .7s ease both; }
+  h1 {
+    font-family:"Noto Serif SC","Songti SC",serif; font-size:clamp(30px,4.5vw,52px);
+    letter-spacing:.1em; margin:14px 0 8px; animation:fadeDown .7s ease .08s both;
+  }
+  .sub { color:var(--ink-soft); font-size:14px; margin-bottom:14px; animation:fadeDown .7s ease .16s both; }
+  .ecg { width:min(520px,80vw); margin:0 auto 44px; display:block; animation:fadeDown .7s ease .22s both; }
+  .ecg path {
+    stroke:var(--heart); stroke-width:1.8; fill:none; opacity:.6;
+    stroke-dasharray:520; stroke-dashoffset:520; animation:ecgdraw 4s linear infinite;
+  }
+  @keyframes ecgdraw { to { stroke-dashoffset:-520; } }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:none; } }
+  @keyframes cardUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+
+  .decks { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; width:min(1040px,94vw); }
+  .deck {
+    display:block; text-decoration:none; color:var(--ink); background:#fffdf9;
+    border:1px solid var(--line); border-radius:18px; padding:26px 26px 22px;
+    position:relative; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease;
+    animation:cardUp .6s ease both;
+  }
   .deck::before { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:var(--c,var(--heart)); }
-  .deck:hover { transform:translateY(-4px); box-shadow:0 20px 44px -18px rgba(80,40,50,.3); }
-  .deck .path { font-size:11px; color:var(--ink-soft); letter-spacing:.08em; }
+  .deck::after {
+    content:""; position:absolute; right:-46px; top:-46px; width:150px; height:150px; border-radius:50%;
+    background:radial-gradient(circle, var(--c,var(--heart)) 0%, transparent 70%);
+    opacity:.10; transition:opacity .25s, transform .25s;
+  }
+  a.deck:hover { transform:translateY(-5px); box-shadow:0 24px 48px -18px rgba(80,40,50,.32); }
+  a.deck:hover::after { opacity:.2; transform:scale(1.25); }
+  .deck .path { font-size:11px; color:var(--ink-soft); letter-spacing:.1em; }
   .deck h2 { font-size:21px; margin:8px 0 4px; font-family:"Noto Serif SC",serif; }
-  .deck .meta { font-size:12.5px; color:var(--ink-soft); margin-top:8px; }
-  .deck .badge { display:inline-block; font-size:11px; border:1px solid var(--line); border-radius:99px; padding:2px 10px; margin-top:12px; color:var(--ink-soft); }
+  .deck .subject { font-size:12px; color:var(--ink-soft); }
+  .deck .meta { font-size:12.5px; color:var(--ink-soft); margin-top:10px; }
+  .deck .meta b { color:var(--c,var(--heart)); font-weight:700; }
+  .chips { margin-top:14px; display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { font-size:11px; border:1px solid var(--line); border-radius:99px; padding:3px 10px; color:var(--ink-soft); background:rgba(255,255,255,.6); }
+  .deck .badge {
+    display:inline-block; font-size:11px; border:1px solid var(--line); border-radius:99px;
+    padding:3px 12px; margin-top:14px; color:var(--ink-soft);
+  }
+  .deck .badge.live { color:#fff; border-color:transparent; background:linear-gradient(90deg, var(--c,var(--heart)), var(--heart-deep)); }
   .deck .badge.building { color:var(--heart); border-color:var(--heart); }
+  .deck .updated { position:absolute; right:18px; bottom:16px; font-size:10.5px; color:var(--ink-soft); opacity:.75; }
   .soon { opacity:.55; }
-  footer { margin-top:60px; font-size:11px; color:var(--ink-soft); }
+  .soon h2::after { content:" ···"; color:var(--ink-soft); }
+  .empty { color:var(--ink-soft); font-size:13px; padding:40px 0; text-align:center; }
+  footer { margin-top:64px; font-size:11px; color:var(--ink-soft); text-align:center; line-height:1.9; }
+  footer code { background:rgba(43,43,51,.05); border-radius:4px; padding:1px 6px; }
 </style>
 </head>
 <body>
   <div class="kicker">KUAIYU.SITE / SLIDE</div>
   <h1>课 件 中 心</h1>
   <div class="sub">幻灯片的网页版 —— 可翻页、可嵌入互动工具、可持续迭代的活体课件</div>
-  <div class="decks">
-    <a class="deck" style="--c:#c2546a" href="./physio/cardiovascular/">
-      <div class="path">physio / cardiovascular</div>
-      <h2>第四章 · 血液循环</h2>
-      <div class="meta">《生理学》第10版 · 192 页 · 五节 + 总结复习 · 内嵌 4 个互动模拟器</div>
-      <span class="badge building">框架已上线 · 逐节精修中</span>
-    </a>
-    <div class="deck soon" style="--c:#3a5a78">
-      <div class="path">physio / cell</div>
-      <h2>第二章 · 细胞的基本功能</h2>
-      <div class="meta">规划中 —— 动作电位互动系统原生配套章节</div>
-      <span class="badge">待建</span>
-    </div>
-    <div class="deck soon" style="--c:#4e7a5a">
-      <div class="path">physio / …</div>
-      <h2>更多章节</h2>
-      <div class="meta">呼吸 · 血液 · 消化 · 尿生成 · 神经 · 内分泌…… 按同一流水线转换</div>
-      <span class="badge">待建</span>
-    </div>
-  </div>
-  <footer>kuaiyu.site · 生理学互动课件</footer>
+  <svg class="ecg" viewBox="0 0 680 60" aria-hidden="true">
+    <path d="M0,30 L110,30 L136,30 L150,12 L164,48 L178,30 L216,30 L236,30 L250,2 L266,58 L280,30 L330,30 L348,42 L364,30 L420,30 L440,30 L454,2 L470,58 L484,30 L534,30 L552,42 L568,30 L680,30"/>
+  </svg>
+
+  <div class="decks" id="decks"><div class="empty">正在读取课件清单…</div></div>
+
+  <footer>
+    新课件接入：放入 <code>slide/</code> 并在 <code>manifest.json</code> 登记一条即可出现在这里<br>
+    kuaiyu.site · 教学工具与课件持续迭代中
+  </footer>
+
+<script>
+(function () {
+  var STATUS = {
+    live:     { cls: 'live',     tag: 'a' },
+    building: { cls: 'building', tag: 'a' },
+    planned:  { cls: '',         tag: 'div' }
+  };
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function metaLine(d) {
+    var parts = [];
+    if (d.pages) parts.push('<b>' + d.pages + '</b> 页');
+    if (d.structure) parts.push(esc(d.structure));
+    if (d.apps) parts.push('内嵌 <b>' + d.apps + '</b> 处互动');
+    return parts.length ? '<div class="meta">' + parts.join(' · ') + '</div>' : '';
+  }
+  function chips(d) {
+    if (!d.highlights || !d.highlights.length) return '';
+    return '<div class="chips">' + d.highlights.map(function (h) { return '<span class="chip">' + esc(h) + '</span>'; }).join('') + '</div>';
+  }
+  function render(list) {
+    var wrap = document.getElementById('decks');
+    if (!list.length) { wrap.innerHTML = '<div class="empty">暂无课件</div>'; return; }
+    wrap.innerHTML = '';
+    list.forEach(function (d, i) {
+      var st = STATUS[d.status] || STATUS.planned;
+      var node = document.createElement(st.tag);
+      node.className = 'deck' + (st.tag === 'div' ? ' soon' : '');
+      node.style.cssText = '--c:' + (d.color || '#c2546a') + '; animation-delay:' + (0.08 * i) + 's';
+      if (st.tag === 'a') node.href = d.href || ('./' + d.id + '/');
+      node.innerHTML =
+        '<div class="path">' + esc(d.id) + '</div>' +
+        '<h2>' + esc(d.title) + '</h2>' +
+        (d.subject ? '<div class="subject">' + esc(d.subject) + '</div>' : '') +
+        metaLine(d) + chips(d) +
+        '<span class="badge ' + st.cls + '">' + esc(d.statusText || d.status) + '</span>' +
+        (d.updated ? '<span class="updated">更新于 ' + esc(d.updated) + '</span>' : '');
+      wrap.appendChild(node);
+    });
+  }
+  fetch('manifest.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (m) { render(m.decks || []); })
+    .catch(function () {
+      document.getElementById('decks').innerHTML =
+        '<div class="empty">清单读取失败——请通过 https://www.kuaiyu.site/slide/ 访问</div>';
+    });
+})();
+</script>
 </body>
 </html>
