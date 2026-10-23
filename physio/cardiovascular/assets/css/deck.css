@@ -487,3 +487,26 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
 }
 .app-slide .qr-cover.poster-mode .qr-hint { display: none; }
 .app-slide .qr-cover.poster-mode .qr-go { margin-top: 0; font-size: 13.5px; padding: 9px 26px; }
+
+/* ---------- 底部虚拟翻页按钮（独立 chrome 行，不遮挡舞台/iframe） ---------- */
+.pagenav {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 4px 0 6px; flex: none;
+}
+.pagenav-btn {
+  font-family: inherit; font-size: 13px; font-weight: 600; color: var(--heart-deep); cursor: pointer;
+  padding: 7px 22px; border-radius: 99px; border: 1px solid var(--line);
+  background: rgba(255,255,255,.85); box-shadow: 0 4px 14px -6px rgba(80,40,50,.25);
+  transition: all .2s var(--ease);
+}
+.pagenav-btn:hover {
+  color: #fff; background: linear-gradient(90deg, var(--sec-color, #C2546A), var(--heart-deep));
+  border-color: transparent; transform: translateY(-1px);
+  box-shadow: 0 10px 22px -8px var(--sec-color, #C2546A);
+}
+.pagenav-btn:active { transform: translateY(0) scale(.97); }
+.pagenav-pos { font-size: 12px; color: var(--ink-soft); min-width: 56px; text-align: center; }
+.pagenav-pos b { color: var(--sec-color, #C2546A); font-size: 14px; }
+
+/* app 嵌入页：隐藏左右边缘热区，让模拟器自己的边缘控件可点击 */
+.stage.app-mode .flip { display: none; }

@@ -269,6 +269,11 @@
     prev.onclick = function () { back(); };
     next.onclick = function () { forward(); };
     stageEl.appendChild(prev); stageEl.appendChild(next);
+    /* 底部虚拟翻页按钮（不遮挡舞台的独立 chrome 行） */
+    var np = $('#navPrev'), nn = $('#navNext'), nt = $('#navTotal2');
+    if (np) np.onclick = function () { back(); };
+    if (nn) nn.onclick = function () { forward(); };
+    if (nt) nt.textContent = Deck.pages.length;
     fitStage();
   }
 
@@ -348,6 +353,10 @@
     }
     applySteps(el);
     $('#pageNo').textContent = (idx + 1);
+    var navNo = $('#navNo');
+    if (navNo) navNo.textContent = (idx + 1);
+    /* app 页隐藏左右边缘热区，避免遮挡模拟器自己的边缘按钮 */
+    stageEl.classList.toggle('app-mode', el.classList.contains('app-slide'));
     $('.progress i').style.width = ((idx + 1) / Deck.pages.length * 100) + '%';
     updateNotes(p);
     highlightTopic(p);
@@ -455,8 +464,8 @@
     document.addEventListener('keydown', function (e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       switch (e.key) {
-        case 'ArrowLeft': case 'PageUp': back(); break;
-        case 'ArrowRight': case 'PageDown': case ' ': e.preventDefault(); forward(); break;
+        case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); back(); break;
+        case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': e.preventDefault(); forward(); break;
         case 'Home': go(0); break;
         case 'End': go(Deck.pages.length - 1); break;
         case 'f': case 'F':

@@ -37,6 +37,13 @@
     </div>
   </div>
 
+  <!-- 底部虚拟翻页按钮：独立 chrome 行，不遮挡舞台/app 内容 -->
+  <div class="pagenav">
+    <button class="pagenav-btn" id="navPrev" title="上一页（← 或 ↑）">‹ 上一页</button>
+    <span class="pagenav-pos"><b id="navNo">–</b> / <span id="navTotal2">–</span></span>
+    <button class="pagenav-btn" id="navNext" title="下一页（→ 或 ↓）">下一页 ›</button>
+  </div>
+
   <!-- ECG 装饰 + 进度 -->
   <svg class="ecg-line" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0,13 L180,13 L196,13 L204,4 L212,22 L220,13 L260,13 L272,13 L280,1 L290,25 L298,13 L430,13 L446,13 L454,4 L462,22 L470,13 L510,13 L522,13 L530,1 L540,25 L548,13 L700,13 L716,13 L724,4 L732,22 L740,13 L780,13 L792,13 L800,1 L810,25 L818,13 L960,13 L976,13 L984,4 L992,22 L1000,13 L1040,13 L1052,13 L1060,1 L1070,25 L1078,13 L1200,13"/>
@@ -50,7 +57,7 @@
   <div class="grid"></div>
 </div>
 
-<div class="hint"><kbd>←</kbd><kbd>→</kbd> 翻页 · <kbd>F</kbd> 全屏 · <kbd>O</kbd> 总览 · <kbd>N</kbd> 讲稿 · <kbd>M</kbd> 侧栏</div>
+<div class="hint"><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 翻页 · <kbd>F</kbd> 全屏 · <kbd>O</kbd> 总览 · <kbd>N</kbd> 讲稿 · <kbd>M</kbd> 侧栏</div>
 
 <script src="assets/js/deck.js"></script>
 <!-- 精修覆盖器：按节加载 -->
