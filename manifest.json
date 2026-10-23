@@ -1,5 +1,5 @@
 {
-  "_readme": "课件中心清单（kuaiyu.site/slide/ 门户的数据源）。新增课件流程：①把课件目录放进 slide/（建议结构 <学科>/<章节>/，内含 index.html 封面 + deck.html 放映页）；②在 decks 数组追加一条记录；③门户自动渲染，无需改 HTML。status 取值：live=已上线 / building=建设中（可点） / planned=筹备中（不可点）。",
+  "_readme": "课件中心清单（kuaiyu.site/slides/ 门户的数据源）。新增课件流程：①把课件目录放进本仓库（建议结构 <学科>/<章节>/，内含 index.html 封面 + deck.html 放映页）；②在 decks 数组追加一条记录；③门户自动渲染，无需改 HTML。status 取值：live=已上线 / building=建设中（可点） / planned=筹备中（不可点）。",
   "updated_at": "2026-10-23",
   "decks": [
     {

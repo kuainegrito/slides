@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>课件中心 · kuaiyu.site/slide</title>
+<title>课件中心 · kuaiyu.site/slides</title>
 <style>
   :root {
     --paper:#fdfbf7; --ink:#2b2b33; --ink-soft:#6b6560;
@@ -71,7 +71,7 @@
 </style>
 </head>
 <body>
-  <div class="kicker">KUAIYU.SITE / SLIDE</div>
+  <div class="kicker">KUAIYU.SITE / SLIDES</div>
   <h1>课 件 中 心</h1>
   <div class="sub">幻灯片的网页版 —— 可翻页、可嵌入互动工具、可持续迭代的活体课件</div>
   <svg class="ecg" viewBox="0 0 680 60" aria-hidden="true">
@@ -81,7 +81,7 @@
   <div class="decks" id="decks"><div class="empty">正在读取课件清单…</div></div>
 
   <footer>
-    新课件接入：放入 <code>slide/</code> 并在 <code>manifest.json</code> 登记一条即可出现在这里<br>
+    新课件接入：目录放进本仓库并在 <code>manifest.json</code> 登记一条即可出现在这里<br>
     kuaiyu.site · 教学工具与课件持续迭代中
   </footer>
 
@@ -133,7 +133,7 @@
     .then(function (m) { render(m.decks || []); })
     .catch(function () {
       document.getElementById('decks').innerHTML =
-        '<div class="empty">清单读取失败——请通过 https://www.kuaiyu.site/slide/ 访问</div>';
+        '<div class="empty">清单读取失败——请通过 https://www.kuaiyu.site/slides/ 访问</div>';
     });
 })();
 </script>
