@@ -125,11 +125,21 @@
     },
     {
       "id": "P6-portal",
-      "title": "/slide/ 门户自动列表 + 下一课件（第二章）流水线复用",
+      "title": "/slide/ 门户自动列表（manifest 驱动）",
+      "status": "done",
+      "claimed_by": "kimi-main",
+      "claimed_at": "2026-10-23",
+      "done_at": "2026-10-23",
+      "dod": "门户读 manifest.json 自动生成卡片；新课件只需登记一条记录",
+      "notes": "manifest.json（live/building/planned 三态 + highlights chips + updated）；index.html 重写为 fetch 渲染（ECG 动画线/渐变 badge/卡片入场动画，fetch 失败有兜底文案）；cardiovascular 封面版权行同步为已上线。线上验证：2 卡片渲染正确，live 为链接、planned 不可点。commit 25497b2"
+    },
+    {
+      "id": "P6b-pipeline-skill",
+      "title": "第二份课件（第二章·细胞）跑通流水线 + 沉淀 pptx-to-html-courseware skill",
       "status": "todo",
       "claimed_by": null,
-      "dod": "门户读 manifest 生成；跑通第二份 PPTX 验证流水线通用性；沉淀 pptx-to-html-courseware skill",
-      "notes": null
+      "dod": "用第二份 PPTX 验证提取→骨架→精修→部署管线通用性；把 LOG.md 里编号经验①–⑪ 提炼为可复用 skill",
+      "notes": "素材来自 html_development_log/LOG.md 全部条目 + dev/ 工具（extract_anim.py、enrich_groups.py 等）；门户已就绪（P6-portal done）"
     },
     {
       "id": "X-responsive",
