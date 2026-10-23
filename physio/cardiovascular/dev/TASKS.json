@@ -135,11 +135,11 @@
     },
     {
       "id": "P6b-pipeline-skill",
-      "title": "第二份课件（第二章·细胞）跑通流水线 + 沉淀 pptx-to-html-courseware skill",
+      "title": "第二份课件（第二章·细胞）跑通流水线 + 回填修订 pptx-to-html-courseware skill",
       "status": "todo",
       "claimed_by": null,
-      "dod": "用第二份 PPTX 验证提取→骨架→精修→部署管线通用性；把 LOG.md 里编号经验①–⑪ 提炼为可复用 skill",
-      "notes": "素材来自 html_development_log/LOG.md 全部条目 + dev/ 工具（extract_anim.py、enrich_groups.py 等）；门户已就绪（P6-portal done）"
+      "dod": "用第二份 PPTX 验证提取→骨架→精修→部署管线通用性；把新坑/新版式回填到 my_skills/pptx-to-html-courseware（v1 已沉淀，含 LOG 经验①–⑪ 与 13 条踩坑清单）",
+      "notes": "skill v1 已落盘 D:\\0A_TransMed\\administration\\my_skills\\pptx-to-html-courseware（含 .skill 打包）；素材来源 LOG.md 全条目+DECISIONS+AGENT_GUIDE；第二份课件完成后须修订：提取脚本跨母版鲁棒性、版式模式目录增补"
     },
     {
       "id": "X-responsive",
