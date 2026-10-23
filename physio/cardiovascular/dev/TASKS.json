@@ -114,6 +114,16 @@
       "notes": "①四张官方双码海报 1400×788 webp 入库（源：My_webpage/*dual-qr*.jpg）；②deck.js renderAppSlide 支持 app.qrPoster 单海报模式（poster-mode class）；③data/pv_samples.js=PV_P/PV_V 400 点（2ms/点，源 cycle.baseline.json lv/volume），pvLoop() 分段着色重写：相位边界 100/150/270/450/510/650ms，EDV=120@10、ESV=50@95、Pmax=122@240、SV=70；P42/43 解说与 volMarks 同步修订（P47 教材安静参考值不动）；④根因修复：.stage 加 flex:none——flex 子项默认 shrink 使 1280 舞台被压到 688 再叠加 transform 缩放=双重缩小（用户报「海报太小」的真因），修复后海报 994×560 占舞台 78%；⑤验证：PV 四段坐标边界与基准逐点吻合、封面→app 步进切换正确、sec2 全节合成翻页零 JS 错误。commit 15d0f51"
     },
     {
+      "id": "P8-nav-appmode",
+      "title": "【交互】↑↓ 热键 + 底部虚拟翻页按钮 + app 页隐藏边缘热区",
+      "status": "done",
+      "claimed_by": "kimi-main",
+      "claimed_at": "2026-10-23",
+      "done_at": "2026-10-23",
+      "dod": "模拟器载入后其边缘控件可点；底部按钮任何屏幕不遮挡内容；↑↓ 与 ←→ 等效",
+      "notes": "①deck.js 热键加 ArrowUp/ArrowDown（含 preventDefault）；②.pagenav 独立 chrome 行（文档流，刻意不用 fixed——height-bound 大屏上 fixed 底栏会盖 iframe 底边）；③go() 切 .app-mode class 隐藏 .flip 热区。线上验证：app 页 flip none、普通页 block、按钮与 ↑↓ 全链路正确。commit d53690f"
+    },
+    {
       "id": "P6-portal",
       "title": "/slide/ 门户自动列表 + 下一课件（第二章）流水线复用",
       "status": "todo",
