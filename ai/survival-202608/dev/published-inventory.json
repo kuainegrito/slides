@@ -1,0 +1,1415 @@
+{
+  "pages": 62,
+  "source_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "native_text_spans": 618,
+  "masked_pages": [
+    4,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    27,
+    29,
+    30,
+    31,
+    35,
+    36,
+    38,
+    43,
+    58
+  ],
+  "delivery_bytes": 20796093,
+  "initial_bytes_upper_bound": 3891784,
+  "files": {
+    "ai/survival-202608/deck.css": {
+      "sha256": "8b773eeb878d745889d43b9e5282277fbfd4dbc4cf5d3cdfb5e62af948c61900",
+      "bytes": 11461
+    },
+    "ai/survival-202608/deck.html": {
+      "sha256": "986cea64860cde866e0248c7b2c38c592d68e49e862468ac506a39ced3068e40",
+      "bytes": 187
+    },
+    "ai/survival-202608/deck.js": {
+      "sha256": "97e8386ed5193010612e7db6297f2d1ff5a0b40ca4371afe7a7c097cbfc40602",
+      "bytes": 18604
+    },
+    "ai/survival-202608/gradient-math.js": {
+      "sha256": "c2d698f7c8d782bd3c662139b404a17c1bbeeac42e24d54c6b95c650ae6aff6c",
+      "bytes": 793
+    },
+    "ai/survival-202608/gradient-math.mjs": {
+      "sha256": "c2d698f7c8d782bd3c662139b404a17c1bbeeac42e24d54c6b95c650ae6aff6c",
+      "bytes": 793
+    },
+    "ai/survival-202608/gradient.css": {
+      "sha256": "17c87690846c21db947379a3130b41573873931d0a8629f2a0736352bcd72476",
+      "bytes": 6167
+    },
+    "ai/survival-202608/gradient.js": {
+      "sha256": "aa6642edb7774c0d133f80bef16a89e64a4612fd59151dc519cea8cffc0582f7",
+      "bytes": 16415
+    },
+    "ai/survival-202608/index.html": {
+      "sha256": "e0a2da3f51c90e72870a3cce4cbd8eaa454182b0bafa15ef5f459c1219bcbd72",
+      "bytes": 5640
+    },
+    "ai/survival-202608/slides.json": {
+      "sha256": "1a43809cf45de8b82797931dc5cfc78f230046dbac4dca4f03a4db9b2c68b8a8",
+      "bytes": 305324
+    },
+    "ai/survival-202608/assets/001e1c14540be7dd.webp": {
+      "sha256": "001e1c14540be7dd19a31b7d22c442efd1a3331de98885bae1042afd18c44d1d",
+      "bytes": 143112
+    },
+    "ai/survival-202608/assets/0184cbf831223e36.webp": {
+      "sha256": "0184cbf831223e3638c53403560ca18e4d610340b4b8fd652d1c0b8a4ff13e33",
+      "bytes": 101558
+    },
+    "ai/survival-202608/assets/0547b3b7b1f6731c.webp": {
+      "sha256": "0547b3b7b1f6731ccb6ea1e3a39fa3065ab10f9788226ded55e082dbb5b32a4a",
+      "bytes": 25234
+    },
+    "ai/survival-202608/assets/05776b6b8e7f4065.webp": {
+      "sha256": "05776b6b8e7f40655f2e9adfe441e17d0333ec77c92e2be5fff5fef8f0cd9622",
+      "bytes": 79872
+    },
+    "ai/survival-202608/assets/07dece026aa44e50.webp": {
+      "sha256": "07dece026aa44e504770da6580a26ee94e5f9a20226580f6bcd3e859bbf98fdf",
+      "bytes": 6554
+    },
+    "ai/survival-202608/assets/0cc9d9ebb1bce11f.webp": {
+      "sha256": "0cc9d9ebb1bce11fe435b0ddb90ddfdc70db717e8eacc012888c0b234c735b4e",
+      "bytes": 620
+    },
+    "ai/survival-202608/assets/0d5c3f393f38484b.webp": {
+      "sha256": "0d5c3f393f38484bf25222a72334cfaddeb34275222cfc8c0c11119ff67938be",
+      "bytes": 130986
+    },
+    "ai/survival-202608/assets/0dd435a50284e059.webp": {
+      "sha256": "0dd435a50284e059add471007ed73106943f54516b5c36afb7b0a219ebf3883c",
+      "bytes": 10456
+    },
+    "ai/survival-202608/assets/0e2d14ad6642d62c.webp": {
+      "sha256": "0e2d14ad6642d62c424da66a0fd48a1af447e97dbf48521a386f0c9557f29b7d",
+      "bytes": 5740
+    },
+    "ai/survival-202608/assets/0ea9ca80652aa522.webp": {
+      "sha256": "0ea9ca80652aa522575b263340e5d0efa841ff651d38007e1ecf264987bff0e2",
+      "bytes": 116296
+    },
+    "ai/survival-202608/assets/11fc3b238ed36370.webp": {
+      "sha256": "11fc3b238ed363703483f1dd42450d95b0f16936233dea4060cf92dce07d7e51",
+      "bytes": 1294
+    },
+    "ai/survival-202608/assets/136fa0f0bed80ebd.webp": {
+      "sha256": "136fa0f0bed80ebdc3e7680a0331c30aab816a95d2d9ca409695d3b3bdbac15a",
+      "bytes": 11390
+    },
+    "ai/survival-202608/assets/1406ecb32e4fb326.webp": {
+      "sha256": "1406ecb32e4fb326734ccc01bf15da8fb0b0d6be260c45e97cba990ca71a497f",
+      "bytes": 55804
+    },
+    "ai/survival-202608/assets/146f6fe2eef4f6f9.webp": {
+      "sha256": "146f6fe2eef4f6f9959e8b77e4cc3df381d3b09003d0a3b371c7738a83dfe311",
+      "bytes": 13254
+    },
+    "ai/survival-202608/assets/15da8b80b641ba92.webp": {
+      "sha256": "15da8b80b641ba92a074d307ae9c06abf945a74df57a17c30d669ce468b16f20",
+      "bytes": 6284
+    },
+    "ai/survival-202608/assets/173e75e1837a0bff.webp": {
+      "sha256": "173e75e1837a0bfff4cbb42e69487a7e804249edde91cc8dbc23e7b81d166062",
+      "bytes": 5778
+    },
+    "ai/survival-202608/assets/1a10e2dd18a5178f.webp": {
+      "sha256": "1a10e2dd18a5178f9db0998baa4be49ec5cdb1718f94133d46a5044ad4cd5766",
+      "bytes": 8672
+    },
+    "ai/survival-202608/assets/1d9cd9accf2ae0f4.webp": {
+      "sha256": "1d9cd9accf2ae0f4761777bab538fd932b8ac38352751506e07bef45e1646f1b",
+      "bytes": 9336
+    },
+    "ai/survival-202608/assets/1eec665b362321ae.webp": {
+      "sha256": "1eec665b362321aed9ccab1aa414491d038dfa2a0291b8382d5830e498d8b051",
+      "bytes": 7156
+    },
+    "ai/survival-202608/assets/2054ce3f1f17d77b.webp": {
+      "sha256": "2054ce3f1f17d77bd9e022504568c113b705118e4fcd86b5f5f973cfad0793ec",
+      "bytes": 7892
+    },
+    "ai/survival-202608/assets/20ff13489ba493c0.webp": {
+      "sha256": "20ff13489ba493c0707a8e7b43ccc5dac30e5d03cd16aeecd998ff17766307c3",
+      "bytes": 22114
+    },
+    "ai/survival-202608/assets/21ddacb1e38c874a.webp": {
+      "sha256": "21ddacb1e38c874aa5d3b0313c9414481a8ed48127d77bc3d130619d96101d2c",
+      "bytes": 6944
+    },
+    "ai/survival-202608/assets/23337e659022dda1.webp": {
+      "sha256": "23337e659022dda1c34395fba7c0189d4b84142648cae3cf1b355f0d99cce71a",
+      "bytes": 11250
+    },
+    "ai/survival-202608/assets/235f2d45747f8931.webp": {
+      "sha256": "235f2d45747f8931368858674c5cd4a7f1cafc21d4e4053ee30482f5e696a749",
+      "bytes": 9842
+    },
+    "ai/survival-202608/assets/27ec47ddd796b924.webp": {
+      "sha256": "27ec47ddd796b92470128c6a82180c2827b5acfc93ec1ff270085284e84b3317",
+      "bytes": 4862
+    },
+    "ai/survival-202608/assets/2889ffd7bde8c0fb.webp": {
+      "sha256": "2889ffd7bde8c0fb4d991b9fe3174cc79215d6abd32bf6d393acce1e48d5c78a",
+      "bytes": 207300
+    },
+    "ai/survival-202608/assets/29bac1fd0675d9e1.webp": {
+      "sha256": "29bac1fd0675d9e16d78b372e18eb4ed811a6c4255b2e21a607936b2c51a25d3",
+      "bytes": 5384
+    },
+    "ai/survival-202608/assets/2a210d40e5ac8ed1.webp": {
+      "sha256": "2a210d40e5ac8ed15fc8a7e182bed1b9b79667ab7ab1ab5e22b6df1d2cc7466e",
+      "bytes": 206770
+    },
+    "ai/survival-202608/assets/2b0b20900aaec129.webp": {
+      "sha256": "2b0b20900aaec1296358d87392b1369b3703d76024eb0fe13fea529c12b65a6f",
+      "bytes": 214502
+    },
+    "ai/survival-202608/assets/2c9191baeaff7f65.webp": {
+      "sha256": "2c9191baeaff7f65f259cd6d770f84e15e9c96a542ba1441831f193de8d97bca",
+      "bytes": 9568
+    },
+    "ai/survival-202608/assets/2d9be1a6961d0a17.webp": {
+      "sha256": "2d9be1a6961d0a17a706fd36d1c1a3625bfcbe77baa0480d9486caa1291ad466",
+      "bytes": 8928
+    },
+    "ai/survival-202608/assets/2dbfc23b845fbf93.webp": {
+      "sha256": "2dbfc23b845fbf936c89b739e3d2ebe3e2f93e36cb21a3cdab3cc612ecb1c9b6",
+      "bytes": 3674
+    },
+    "ai/survival-202608/assets/2f005ac06d470112.webp": {
+      "sha256": "2f005ac06d4701126da9e94030eada69a4f461a33e4666978f21732ad909b21b",
+      "bytes": 157182
+    },
+    "ai/survival-202608/assets/2f7821df6aef42bf.webp": {
+      "sha256": "2f7821df6aef42bfa584b2aee9a571df19c426507b338520d7e645d80fd1f48d",
+      "bytes": 7624
+    },
+    "ai/survival-202608/assets/2fc09e6760ebec9b.webp": {
+      "sha256": "2fc09e6760ebec9b49e8de3ec1fa6b18caf2ca96ae9148e48fce923c70e29c9c",
+      "bytes": 105138
+    },
+    "ai/survival-202608/assets/319df523f22af867.webp": {
+      "sha256": "319df523f22af867ec4dda2e1301b959fc5c5dbd2de6633ba4d03023f560fce3",
+      "bytes": 4496
+    },
+    "ai/survival-202608/assets/342a7536dde95fdd.webp": {
+      "sha256": "342a7536dde95fdd31b775e29555392a15ba98a9362748ecdb25e9936054a2c9",
+      "bytes": 125184
+    },
+    "ai/survival-202608/assets/3806efa2541b4c64.webp": {
+      "sha256": "3806efa2541b4c644a74db1060f53e517fdec878283bf70659b27c4a717c93c1",
+      "bytes": 8820
+    },
+    "ai/survival-202608/assets/39a94435aae2acf1.webp": {
+      "sha256": "39a94435aae2acf1b72e14a10df611f0f194b4d9dbf79ef5bc677e1d3b14e598",
+      "bytes": 198418
+    },
+    "ai/survival-202608/assets/3d472b957adf886d.webp": {
+      "sha256": "3d472b957adf886d1de82bcb4adee175f09c63c7796422f99f97abdaae02e752",
+      "bytes": 55690
+    },
+    "ai/survival-202608/assets/3ed9520feddea140.webp": {
+      "sha256": "3ed9520feddea1407b61bff359f012d88258e6fbc27c01d66e42c782e71b51e1",
+      "bytes": 400
+    },
+    "ai/survival-202608/assets/3ee73fcf9c4955a6.webp": {
+      "sha256": "3ee73fcf9c4955a65263458db7986bcb39cf94f6eba404f059e48245799c99e8",
+      "bytes": 5026
+    },
+    "ai/survival-202608/assets/3f38bf814d6ab206.webp": {
+      "sha256": "3f38bf814d6ab206fec58b6d6a747a415e1a77c2d38bb45df22a1b8b08af840c",
+      "bytes": 14180
+    },
+    "ai/survival-202608/assets/3f91908206dd2e8f.webp": {
+      "sha256": "3f91908206dd2e8f5534d992e6bd53d662fa66362b1b01735984964878689804",
+      "bytes": 153354
+    },
+    "ai/survival-202608/assets/43febd47aa1192ee.webp": {
+      "sha256": "43febd47aa1192ee66fda4ee0d2a9312129f0d9d26b098426a8a281681c41c4c",
+      "bytes": 4996
+    },
+    "ai/survival-202608/assets/4439e6147b8328c5.webp": {
+      "sha256": "4439e6147b8328c5f6be4353521d086b47a548f1b50f227329ab03df8cb3ac44",
+      "bytes": 7080
+    },
+    "ai/survival-202608/assets/44a668167fc5e4fc.webp": {
+      "sha256": "44a668167fc5e4fc7712581564f52781836fa74e44fec1532334ba84af3cd979",
+      "bytes": 121032
+    },
+    "ai/survival-202608/assets/458e777939595eb0.webp": {
+      "sha256": "458e777939595eb0d9d0560b308c19ae894b90bee8c433e9ceb83a9759179102",
+      "bytes": 123078
+    },
+    "ai/survival-202608/assets/488c28bcce32b450.webp": {
+      "sha256": "488c28bcce32b450b20c1f74452e62c990cbc771ba1d05b6bc203e3c6feb5789",
+      "bytes": 11078
+    },
+    "ai/survival-202608/assets/49e9bc1567e8c9d8.webp": {
+      "sha256": "49e9bc1567e8c9d825f9a5ab2b5284bb7dc4ef6887ccd92bd5c39938bfb3d112",
+      "bytes": 7702
+    },
+    "ai/survival-202608/assets/4cd38228518ea154.webp": {
+      "sha256": "4cd38228518ea154d2f6c924b192ad4da80e145a6dbecea79d30f02b6775ec6a",
+      "bytes": 152226
+    },
+    "ai/survival-202608/assets/5089bd39b4dfaf81.webp": {
+      "sha256": "5089bd39b4dfaf81a3466ccf10e8f90f3bcef06241157b7a44a1e56a5879df3e",
+      "bytes": 3128
+    },
+    "ai/survival-202608/assets/524ec832c832a022.webp": {
+      "sha256": "524ec832c832a022aee8dc404e054ca54c476d15690793a1c319f8a4b47b62eb",
+      "bytes": 161832
+    },
+    "ai/survival-202608/assets/52db5cc11cc71c79.webp": {
+      "sha256": "52db5cc11cc71c7952ae2aa15f4322eca81b8125d4fef10362ddc6e85b57dd6b",
+      "bytes": 6024
+    },
+    "ai/survival-202608/assets/53819a84f1674e43.webp": {
+      "sha256": "53819a84f1674e4315a8682090723f6685ffaf75d43906996aebf84b5ce36eb4",
+      "bytes": 80646
+    },
+    "ai/survival-202608/assets/576aaf05f6b3c94b.webp": {
+      "sha256": "576aaf05f6b3c94b93cd2c5f9eaaffce304fae3e70bb1e710238c4766efef49f",
+      "bytes": 149958
+    },
+    "ai/survival-202608/assets/57e85b997f882137.webp": {
+      "sha256": "57e85b997f882137d8b4753744a54a1ededda34a82c8bacd496296db8f616348",
+      "bytes": 22268
+    },
+    "ai/survival-202608/assets/58f13f42503a92fa.webp": {
+      "sha256": "58f13f42503a92faee898b52067d1a7505c72b8c5ef6866ab5530acaacfb3f0f",
+      "bytes": 1464
+    },
+    "ai/survival-202608/assets/5f71be245ba782a1.webp": {
+      "sha256": "5f71be245ba782a15c8b0059ad5ce8f6e2ed0cfcbacf5b00eebd293206a697f7",
+      "bytes": 4408
+    },
+    "ai/survival-202608/assets/60775ed9fdb62365.webp": {
+      "sha256": "60775ed9fdb62365b8e4f9b326d0473d303bbf8afe4fc5e5f0b6a7e8d0d6b91f",
+      "bytes": 6804
+    },
+    "ai/survival-202608/assets/617cd617f39b8617.webp": {
+      "sha256": "617cd617f39b8617f984213bff05a183e2fa139f285e7d45291ef94056a126c0",
+      "bytes": 4500
+    },
+    "ai/survival-202608/assets/63ac144cb939e6b0.webp": {
+      "sha256": "63ac144cb939e6b03c26e1f6468d4785ef4fc0efb2e365a6b3a714783711edd6",
+      "bytes": 13884
+    },
+    "ai/survival-202608/assets/63e3c3aeb053f8ae.webp": {
+      "sha256": "63e3c3aeb053f8ae986bb0d6d68365ea5317a30f82305f7a1f7d66f2a897b1f7",
+      "bytes": 89428
+    },
+    "ai/survival-202608/assets/6489455180b09365.webp": {
+      "sha256": "6489455180b0936558f4f34d845ca0c8fe148061618a6d39af4a6ceab8a8ac41",
+      "bytes": 28330
+    },
+    "ai/survival-202608/assets/64e5b76695716d68.webp": {
+      "sha256": "64e5b76695716d687a9eaec07791625266db5550e45d989de4fdf30d11462246",
+      "bytes": 6518
+    },
+    "ai/survival-202608/assets/653e4b8431f98a11.webp": {
+      "sha256": "653e4b8431f98a11d56f32237e9b028e89bf57760ebd54cb6d759ad9eacc8042",
+      "bytes": 52486
+    },
+    "ai/survival-202608/assets/65636e201a5e0475.webp": {
+      "sha256": "65636e201a5e047531b97ae18d1bbc268970a737d2c037c0ff42ee008e80f1ba",
+      "bytes": 6342
+    },
+    "ai/survival-202608/assets/66853a2e23896b65.webp": {
+      "sha256": "66853a2e23896b65a798891555815f1d21c368d847f218e1aa4b75d0ad941907",
+      "bytes": 4560
+    },
+    "ai/survival-202608/assets/673959fb8ed09a90.webp": {
+      "sha256": "673959fb8ed09a904060718a3127047290fdbc51559d0b35e256ee20e77d31bf",
+      "bytes": 5128
+    },
+    "ai/survival-202608/assets/6925ec642abf2f4d.webp": {
+      "sha256": "6925ec642abf2f4d02cca4d0c3a8fd711187172cd9675bcdc29d7789261c7a2d",
+      "bytes": 112460
+    },
+    "ai/survival-202608/assets/6929e20e5a45d81f.webp": {
+      "sha256": "6929e20e5a45d81f7830d8dce854d3ceb7d4c88e550077fb5c919333999b95f6",
+      "bytes": 233056
+    },
+    "ai/survival-202608/assets/6a15554deb66b1bb.webp": {
+      "sha256": "6a15554deb66b1bb7fa558e506a042d2e82c4d0105d06cfdd6740551fba74a90",
+      "bytes": 11224
+    },
+    "ai/survival-202608/assets/6d25b06db734d9b9.webp": {
+      "sha256": "6d25b06db734d9b98d598aa90eaf2a118f9bc9a0612ae32344d0b3cb6adfa64d",
+      "bytes": 87274
+    },
+    "ai/survival-202608/assets/6d2670e44633fa33.webp": {
+      "sha256": "6d2670e44633fa3310beffeba1a10c26531de378a4b0468df76587a07d7e725a",
+      "bytes": 6876
+    },
+    "ai/survival-202608/assets/72040d2f892d4c51.webp": {
+      "sha256": "72040d2f892d4c51448225eefe2fdb0abfc0738ac7b205bc18e97426c1ed4f76",
+      "bytes": 181574
+    },
+    "ai/survival-202608/assets/750068ebcf44a10d.webp": {
+      "sha256": "750068ebcf44a10d815cee2221c30291c52e88f972911100a202406aa046e7eb",
+      "bytes": 69194
+    },
+    "ai/survival-202608/assets/759695ffc8e38e9e.webp": {
+      "sha256": "759695ffc8e38e9eaeed0717ec6aa45d1e19fc091dc6820d2fadb503bdfec181",
+      "bytes": 174914
+    },
+    "ai/survival-202608/assets/764d09aca92d995b.webp": {
+      "sha256": "764d09aca92d995b8bb745af239c562ec28447f53f0147693d2fefd47f0ae0a9",
+      "bytes": 7452
+    },
+    "ai/survival-202608/assets/7be79379d748975b.webp": {
+      "sha256": "7be79379d748975b1356ec27641336b554ba290e4b74b51520098722552328b6",
+      "bytes": 111726
+    },
+    "ai/survival-202608/assets/7c31cd920c7a2a44.webp": {
+      "sha256": "7c31cd920c7a2a44322fddefac18baa950471bd4f92722558ea0e85b4129f324",
+      "bytes": 23750
+    },
+    "ai/survival-202608/assets/7c625b814d66a237.webp": {
+      "sha256": "7c625b814d66a237da0041769f4fcc1f0a30feece2edb54006fe9e185b99a769",
+      "bytes": 7784
+    },
+    "ai/survival-202608/assets/7c8d77945ad4bef1.webp": {
+      "sha256": "7c8d77945ad4bef16c281d90e7c88e60e0ee6d943f30fb0644c4b5faf303249b",
+      "bytes": 98616
+    },
+    "ai/survival-202608/assets/84b9e321010cf45c.webp": {
+      "sha256": "84b9e321010cf45ceaabb3099bed6bf9d134958fbce69c4ccde043b8efac8e2b",
+      "bytes": 1856
+    },
+    "ai/survival-202608/assets/8a956e04fe9adcb5.webp": {
+      "sha256": "8a956e04fe9adcb5d18c867e94016fad1c6e5fde96bc1d960fcde1cdef686146",
+      "bytes": 8948
+    },
+    "ai/survival-202608/assets/8b300d3b69b664dc.webp": {
+      "sha256": "8b300d3b69b664dcca614f658e9bded66a7c8b3160e7b0f86c257fcf7b42046a",
+      "bytes": 5544
+    },
+    "ai/survival-202608/assets/8ec6649bf4f1d577.webp": {
+      "sha256": "8ec6649bf4f1d577c75d880a8f4916fb0447aa22951fbe2f31ede7f2d4920d86",
+      "bytes": 6378
+    },
+    "ai/survival-202608/assets/8f0d0a0349d3fe95.webp": {
+      "sha256": "8f0d0a0349d3fe95e93285b62e9cc0791b0183cd0ea964e3e2b22b72d5a2967c",
+      "bytes": 17124
+    },
+    "ai/survival-202608/assets/8f6ea15e41cea850.webp": {
+      "sha256": "8f6ea15e41cea85081af09dd801ccfd94dccca37fa1897db385f43a28e90d216",
+      "bytes": 17764
+    },
+    "ai/survival-202608/assets/9308bb05d8494023.webp": {
+      "sha256": "9308bb05d8494023c180d42df1c36ea85b8ec8836e50504defbc922f32fdc8fa",
+      "bytes": 10286
+    },
+    "ai/survival-202608/assets/96254514fd2f8d10.webp": {
+      "sha256": "96254514fd2f8d1031e7aef22941253e718b16294bbe0c62037d368684afb7c6",
+      "bytes": 12256
+    },
+    "ai/survival-202608/assets/981c7cc7167e14fc.webp": {
+      "sha256": "981c7cc7167e14fced5ee788ef75e1ce5770421d261a1c723d49e6869c1c88a1",
+      "bytes": 141410
+    },
+    "ai/survival-202608/assets/9b9a1c44bc6b2beb.webp": {
+      "sha256": "9b9a1c44bc6b2beb7b9e6d2c2ab5531beae22f8060e121010b740cc892c7d5e7",
+      "bytes": 8838
+    },
+    "ai/survival-202608/assets/a03dfe840e72ff33.webp": {
+      "sha256": "a03dfe840e72ff3319045a47266c39ef0dc66ff5221a6d0225588920ca98f7b6",
+      "bytes": 184364
+    },
+    "ai/survival-202608/assets/a1c5964531c97427.webp": {
+      "sha256": "a1c5964531c9742798459df72b9f7921e130f33b07692c7322e4b273e7b69711",
+      "bytes": 13342
+    },
+    "ai/survival-202608/assets/a84dc92da9941333.webp": {
+      "sha256": "a84dc92da9941333d93fb5df22989fc8d97ddeb01cffde01e3b3b6483f0d0c25",
+      "bytes": 3618
+    },
+    "ai/survival-202608/assets/a858e623d12ae816.webp": {
+      "sha256": "a858e623d12ae816047515d94b9d445478c3b6559dfec6c74d3fd96abd8402d6",
+      "bytes": 1140
+    },
+    "ai/survival-202608/assets/ab28b7813abb7714.webp": {
+      "sha256": "ab28b7813abb77144bee19da8073c83afc317511811721ba67c2a29d7fe08fad",
+      "bytes": 1602
+    },
+    "ai/survival-202608/assets/ab41955d60000b53.webp": {
+      "sha256": "ab41955d60000b53d3927de81b9553719f2dc991543de438c228508011fc98cc",
+      "bytes": 151696
+    },
+    "ai/survival-202608/assets/ab690d33c2072476.webp": {
+      "sha256": "ab690d33c2072476f6fd96df9b20ef00c1f559e3173859d08450642d9ff57198",
+      "bytes": 6304
+    },
+    "ai/survival-202608/assets/acf309d4edbea173.webp": {
+      "sha256": "acf309d4edbea173e331272fa695c2556686117dbfdc17f4c3682e631f64c4bd",
+      "bytes": 181180
+    },
+    "ai/survival-202608/assets/ad0e0ea53efc8fe8.webp": {
+      "sha256": "ad0e0ea53efc8fe8aa7926e95cd63f42f8211c8b84ca52e3883f8995eff47d93",
+      "bytes": 186990
+    },
+    "ai/survival-202608/assets/ad2baed037349109.webp": {
+      "sha256": "ad2baed037349109af5d4aaa81fafd38484da78105afc6d52565a9cab64c1853",
+      "bytes": 10694
+    },
+    "ai/survival-202608/assets/ae787fa3cdf48013.webp": {
+      "sha256": "ae787fa3cdf48013c38f62865895eea47543048623774b7a3dc3aea3ba25a404",
+      "bytes": 53374
+    },
+    "ai/survival-202608/assets/aea0235aea14ea9d.webp": {
+      "sha256": "aea0235aea14ea9d3100a3d2dcf371b35a93bb23be8d3fcac0faeff947ac5b81",
+      "bytes": 236958
+    },
+    "ai/survival-202608/assets/aeaf2785f7e5e971.webp": {
+      "sha256": "aeaf2785f7e5e971f46087942b62c513a6b131e24edbe741927f4ffffb1cd733",
+      "bytes": 158406
+    },
+    "ai/survival-202608/assets/aedd31636d69805e.webp": {
+      "sha256": "aedd31636d69805e0a34d39456149b55c52d121f2dfa309cc53f4488d65108e3",
+      "bytes": 72522
+    },
+    "ai/survival-202608/assets/b02db6386e8a4a4a.webp": {
+      "sha256": "b02db6386e8a4a4a80224f067fd7d64eca83cf5059ee2a098c3b824b71278870",
+      "bytes": 87780
+    },
+    "ai/survival-202608/assets/b279ae64554bd3c4.webp": {
+      "sha256": "b279ae64554bd3c45842f9f561ce99ff48f266c0ebeeb80cd5525eb679085cf6",
+      "bytes": 10330
+    },
+    "ai/survival-202608/assets/b6dcf680bcbfcd77.webp": {
+      "sha256": "b6dcf680bcbfcd77dd8ba01bb750ad63b98d5e35840473aedece5923d3c3af3e",
+      "bytes": 92816
+    },
+    "ai/survival-202608/assets/b77c33344b7161a8.webp": {
+      "sha256": "b77c33344b7161a8f000f2ca0a93edd374330027bccaee43c0bd965d7802b688",
+      "bytes": 93188
+    },
+    "ai/survival-202608/assets/bd289179f78d30f4.webp": {
+      "sha256": "bd289179f78d30f442390f95a77ea07e0ce54d77850ad3c30094eff5a3d3f278",
+      "bytes": 4682
+    },
+    "ai/survival-202608/assets/bdf43cf4f91ac246.webp": {
+      "sha256": "bdf43cf4f91ac246119404a8b34a0c0fbdb1b075e45d77ab10d0bf44b84245ca",
+      "bytes": 11476
+    },
+    "ai/survival-202608/assets/be2988cbb0ae56c2.webp": {
+      "sha256": "be2988cbb0ae56c223d66df12d4a509fe9e96f61a12a894370decbd0ed148e59",
+      "bytes": 5042
+    },
+    "ai/survival-202608/assets/be58dc36715666c5.webp": {
+      "sha256": "be58dc36715666c5245f14de9d6b9463860e34382e5e3293a86996cbc1a0ed64",
+      "bytes": 33532
+    },
+    "ai/survival-202608/assets/bf57149affaa970b.webp": {
+      "sha256": "bf57149affaa970b837ae26f364401c03dd7c8030a4967bf276fa035037a096b",
+      "bytes": 166248
+    },
+    "ai/survival-202608/assets/c00a8c80725319e8.webp": {
+      "sha256": "c00a8c80725319e86c1e16c9de88cee436a33caa6af0905552282379b754581a",
+      "bytes": 2504
+    },
+    "ai/survival-202608/assets/c0bc3f82f54c0f9f.webp": {
+      "sha256": "c0bc3f82f54c0f9fff7bb003b4a3d6ef0a470826269487a4b594c28218913d0f",
+      "bytes": 148530
+    },
+    "ai/survival-202608/assets/c2a425f5269bbe3e.webp": {
+      "sha256": "c2a425f5269bbe3e4a2da5fd3e466fe4eb97ed96f96a6f9bfc8fa237a72dc9f7",
+      "bytes": 5120
+    },
+    "ai/survival-202608/assets/c2b9f5db210eaf6c.webp": {
+      "sha256": "c2b9f5db210eaf6cd7bae90a218c50ad04c5c5be5d6bb11f79623cc255034a8b",
+      "bytes": 13152
+    },
+    "ai/survival-202608/assets/c40c23535f02db54.webp": {
+      "sha256": "c40c23535f02db5460a46e61b136615d8164b4d843f2256d63762f66c586d818",
+      "bytes": 80888
+    },
+    "ai/survival-202608/assets/c4368076eb57867d.webp": {
+      "sha256": "c4368076eb57867d4bbda867638683bfb55984668732611af0c48ee2aa828a00",
+      "bytes": 4850
+    },
+    "ai/survival-202608/assets/c444c1f3bc251538.webp": {
+      "sha256": "c444c1f3bc2515387db4eda9e4d9b0b6acecc83cf108bb4fc66169958571f56e",
+      "bytes": 215026
+    },
+    "ai/survival-202608/assets/c5a0f6e65c587085.webp": {
+      "sha256": "c5a0f6e65c587085f82601ce000e2f458ef251c742c554acd43b1ca9e7b20aba",
+      "bytes": 15498
+    },
+    "ai/survival-202608/assets/c62a1c04d88a5930.webp": {
+      "sha256": "c62a1c04d88a5930d0ab854387ee7be159d04c92540878b3fb7add6467a8acb0",
+      "bytes": 316340
+    },
+    "ai/survival-202608/assets/c6cd4a9583f18700.webp": {
+      "sha256": "c6cd4a9583f187007831b44aaff1c7b33bce37a1d8f91b0e92c92eba1bc5791c",
+      "bytes": 13604
+    },
+    "ai/survival-202608/assets/c7a516b2dc3f8be4.webp": {
+      "sha256": "c7a516b2dc3f8be4b651a92223d9a0ca377975cf99181782cbbce0acef714f97",
+      "bytes": 59024
+    },
+    "ai/survival-202608/assets/c800b0c8d29fe7a1.webp": {
+      "sha256": "c800b0c8d29fe7a1b52494892158ac1ce4b750a65c3e8c781ef4e8493c06f76a",
+      "bytes": 94660
+    },
+    "ai/survival-202608/assets/c94398363b6777bb.webp": {
+      "sha256": "c94398363b6777bbf82d1ea9905d28ecf218780fcd0d26498ddf0a4c205b46af",
+      "bytes": 9294
+    },
+    "ai/survival-202608/assets/c9f1087dce9b0651.webp": {
+      "sha256": "c9f1087dce9b0651991394f775c1b08ac755e0505c303d05f6b7298f60bd5102",
+      "bytes": 4902
+    },
+    "ai/survival-202608/assets/ca8df1db026955e4.webp": {
+      "sha256": "ca8df1db026955e40c6fe0835c3b02040c5bb590bf1a7d458313dc19c7c3a9c5",
+      "bytes": 6792
+    },
+    "ai/survival-202608/assets/cbe709aeed115bb3.webp": {
+      "sha256": "cbe709aeed115bb369a29cc77d83f169002521a27def6736a8dc9a188c83e4fd",
+      "bytes": 500
+    },
+    "ai/survival-202608/assets/cdbd9d7f73c0458e.webp": {
+      "sha256": "cdbd9d7f73c0458e54abb5de51498d9c5d961c8d548424f8a11b1200cb15efb5",
+      "bytes": 10314
+    },
+    "ai/survival-202608/assets/ce4761e671e7a64b.webp": {
+      "sha256": "ce4761e671e7a64b23347da90b6f086236c7897d5487923d63442f4e90657abd",
+      "bytes": 6510
+    },
+    "ai/survival-202608/assets/ce799e4080a38fd0.webp": {
+      "sha256": "ce799e4080a38fd0493a6b9c41383d7a62c746d3c1fae44fbaee8304971b9e6a",
+      "bytes": 10374
+    },
+    "ai/survival-202608/assets/cf55dda869fd4a7d.webp": {
+      "sha256": "cf55dda869fd4a7d0fba7a87a8bad25dc6423d2cd203cde7e8d3a09244e24217",
+      "bytes": 10902
+    },
+    "ai/survival-202608/assets/cfdf08850d4c9c75.webp": {
+      "sha256": "cfdf08850d4c9c7571fd5b0484eb1825ab0deb60319df298b9d7b4decf5a1d97",
+      "bytes": 282550
+    },
+    "ai/survival-202608/assets/course-kai-v2.woff2": {
+      "sha256": "0ac5a6ebb07a1bb84158adfbc4e70e5522bad6ef484ad763e2b092b5cce266ee",
+      "bytes": 120700
+    },
+    "ai/survival-202608/assets/course-sans-v2.woff2": {
+      "sha256": "99e631e08a391d87b939cc736ef164e899ebd16929c8fb807b38ede73815a9e7",
+      "bytes": 11040
+    },
+    "ai/survival-202608/assets/cover-wave-v1.mp4": {
+      "sha256": "700a7d933f3bbcf1a4a29ac5814bcfdec4396ae83474a9f5688d3933523b880d",
+      "bytes": 3050779
+    },
+    "ai/survival-202608/assets/d0c47725344373ff.webp": {
+      "sha256": "d0c47725344373ffe75e5e073191372fcca5695f9dd70011b38fcc81d9fbcbe6",
+      "bytes": 19596
+    },
+    "ai/survival-202608/assets/d120ea1ced6abd63.webp": {
+      "sha256": "d120ea1ced6abd63712e58510dc9d93bdfb464d06c5cdab67f631efb07321fa6",
+      "bytes": 13260
+    },
+    "ai/survival-202608/assets/d5dfa712278470d1.webp": {
+      "sha256": "d5dfa712278470d11923c6b4858d670e13dd650bfad6edf8819c3822774a200c",
+      "bytes": 8512
+    },
+    "ai/survival-202608/assets/d66abad6a29d250e.webp": {
+      "sha256": "d66abad6a29d250e311429979d1631d40e84e3a2091766653fad8c317984129f",
+      "bytes": 93448
+    },
+    "ai/survival-202608/assets/d6bb4bec2cab033f.webp": {
+      "sha256": "d6bb4bec2cab033f1514dcfff0108c27d0495da43071cb6559feee3b5ea009da",
+      "bytes": 155252
+    },
+    "ai/survival-202608/assets/d6eff9c90c45fa8e.webp": {
+      "sha256": "d6eff9c90c45fa8e9a76d922e50757d6736e33f3d60667493b28bca0ad95c205",
+      "bytes": 90490
+    },
+    "ai/survival-202608/assets/d7bccd3376e0818d.webp": {
+      "sha256": "d7bccd3376e0818df1827ba44855d7b4b90a30997b44da2dc088c3e8b4d9c9dc",
+      "bytes": 145796
+    },
+    "ai/survival-202608/assets/d90d6543742d04be.webp": {
+      "sha256": "d90d6543742d04bec6fdc12883f5e5ed96ea4599c804e64003dd68161e3958b1",
+      "bytes": 94376
+    },
+    "ai/survival-202608/assets/da02c02c08b10abe.webp": {
+      "sha256": "da02c02c08b10abed37542e018cd5f9637aab0015d7b55bc6b1a51dfb4372e42",
+      "bytes": 3056
+    },
+    "ai/survival-202608/assets/da80aff1491f9b74.webp": {
+      "sha256": "da80aff1491f9b7478c42c8aeff7ca6c9f848472069578b7b2816a6c082b9de1",
+      "bytes": 13818
+    },
+    "ai/survival-202608/assets/dad23832a6abbeef.webp": {
+      "sha256": "dad23832a6abbeefe4866f35c899c0c2ccf62407eefa9f4ab3c98bd31f6e721c",
+      "bytes": 5362
+    },
+    "ai/survival-202608/assets/daec3035c7d8ac71.webp": {
+      "sha256": "daec3035c7d8ac717d80ca6b330eadf86bf5272b9cec182f1e031b372dabd209",
+      "bytes": 164368
+    },
+    "ai/survival-202608/assets/db8c0480794a60f0.webp": {
+      "sha256": "db8c0480794a60f00eb292f901f6bf04b015e0dc0a2220a4d5554ee7a55343ba",
+      "bytes": 67640
+    },
+    "ai/survival-202608/assets/dd139ccd22c6138d.webp": {
+      "sha256": "dd139ccd22c6138d3e5bc19f09ea34082b18b8e6b287e1eaa34f43cc8bdfbd18",
+      "bytes": 12876
+    },
+    "ai/survival-202608/assets/de13e0b6aeedb20d.webp": {
+      "sha256": "de13e0b6aeedb20d4927c4ac1270b4ae06650881573b33d98917a73fd7652cf2",
+      "bytes": 128618
+    },
+    "ai/survival-202608/assets/e151a6d7c2a61182.webp": {
+      "sha256": "e151a6d7c2a611828d9bb87830344cc96eb8418a22530602565a930fba8a5f04",
+      "bytes": 9458
+    },
+    "ai/survival-202608/assets/e27bf13f6bad0a9d.webp": {
+      "sha256": "e27bf13f6bad0a9d8e8912c666c4f13996f8addb80b1e548aea3f75ca0f53574",
+      "bytes": 27302
+    },
+    "ai/survival-202608/assets/e3c55d0c6e9d41b6.webp": {
+      "sha256": "e3c55d0c6e9d41b6bef2594b16d34351ade00d23a987db6615354c47c8baf68a",
+      "bytes": 4496
+    },
+    "ai/survival-202608/assets/e3fe94b8cdc32856.webp": {
+      "sha256": "e3fe94b8cdc3285691183a2f48b984089628ae5f5ca230e3e4ed8a3d32ba070b",
+      "bytes": 18228
+    },
+    "ai/survival-202608/assets/e419b5a66e087006.webp": {
+      "sha256": "e419b5a66e08700609fb07893306520e1bb62c3b2b0f6337aba4e0eb687d9314",
+      "bytes": 49614
+    },
+    "ai/survival-202608/assets/e537c848de249964.webp": {
+      "sha256": "e537c848de2499648cbb35c92d42e6ba7be09ea0379a5a89af816cbaca0d1db9",
+      "bytes": 7998
+    },
+    "ai/survival-202608/assets/e5782fa5c14394f9.webp": {
+      "sha256": "e5782fa5c14394f9cc46eda5c52516ba5cbd71d73a868bbed49102dddbf57da4",
+      "bytes": 9518
+    },
+    "ai/survival-202608/assets/e82622348fd4500b.webp": {
+      "sha256": "e82622348fd4500bba7c712ddaebe8ad7d9af38076a3e3829d190ae78c30d4b1",
+      "bytes": 2472
+    },
+    "ai/survival-202608/assets/e94717ac2eb91c84.webp": {
+      "sha256": "e94717ac2eb91c84a720be46ec639cd7620618b0bce7b4194d71ba7afc4d56de",
+      "bytes": 6246
+    },
+    "ai/survival-202608/assets/e9a73f2802a1fb07.webp": {
+      "sha256": "e9a73f2802a1fb0726f1671d0a15d1f5c6a81966a5bc15eb1db225911c6ec3a3",
+      "bytes": 3870
+    },
+    "ai/survival-202608/assets/eade99f78f4f8e50.webp": {
+      "sha256": "eade99f78f4f8e506c627e2bce7eaf8a29341edbccd216fed5222f9dbbfec1ba",
+      "bytes": 5318
+    },
+    "ai/survival-202608/assets/eb9ad537ba32617d.webp": {
+      "sha256": "eb9ad537ba32617dadd8ecebf54ae719b9f53aac5f5d9b45764b9eece83359ad",
+      "bytes": 9740
+    },
+    "ai/survival-202608/assets/ee5e94973204ccae.webp": {
+      "sha256": "ee5e94973204ccaefd70669f7cc2259941aa7a8a3aa8c9fa00a8502a53057c50",
+      "bytes": 12004
+    },
+    "ai/survival-202608/assets/ee9e7854729c290f.webp": {
+      "sha256": "ee9e7854729c290f34963ac8c70e957cf5fb855bbd34b295f781b3919e048e98",
+      "bytes": 9580
+    },
+    "ai/survival-202608/assets/eee14070b760f39f.webp": {
+      "sha256": "eee14070b760f39f51d7f8779bf072270f50d3e15c8951931e2561b4b06e6ccd",
+      "bytes": 8020
+    },
+    "ai/survival-202608/assets/f0f9abc212b67bd6.webp": {
+      "sha256": "f0f9abc212b67bd662793715937c0e82d815b594d221acd840e1755abaf61160",
+      "bytes": 192672
+    },
+    "ai/survival-202608/assets/f3a0eca74f9e0793.webp": {
+      "sha256": "f3a0eca74f9e0793365304a9b88cfc7dc9888d853c17e89bed3a4f5509fbbd59",
+      "bytes": 128488
+    },
+    "ai/survival-202608/assets/f433ae62a7a9dc9e.webp": {
+      "sha256": "f433ae62a7a9dc9e0c3cc1dba861e06944578e76ca652cca595fd8aff0faea6c",
+      "bytes": 7676
+    },
+    "ai/survival-202608/assets/f6b3e66d77d45d51.webp": {
+      "sha256": "f6b3e66d77d45d51c3bef90a7413a17da688a815a769bb980527b0e72594ee0d",
+      "bytes": 207996
+    },
+    "ai/survival-202608/assets/f9aba9b3c7c66266.webp": {
+      "sha256": "f9aba9b3c7c66266c55680077523b850746747616a242a62068e1ff5f8395846",
+      "bytes": 8980
+    },
+    "ai/survival-202608/assets/fbc31d648b2030dd.webp": {
+      "sha256": "fbc31d648b2030dddd5a08299949c62462e4eb0bcab2630e192b6be22985a21a",
+      "bytes": 3828
+    },
+    "ai/survival-202608/assets/fc06ed7302892e52.webp": {
+      "sha256": "fc06ed7302892e52d9e4ada3d5ba643fc1ffb3d576b9358458dccb6e4cbfd21a",
+      "bytes": 19634
+    },
+    "ai/survival-202608/assets/fc0be88a8df07b72.webp": {
+      "sha256": "fc0be88a8df07b72452fedfbad345be8111b8120f04967f7507d6b5696ce4cf3",
+      "bytes": 10878
+    },
+    "ai/survival-202608/assets/fdf5edf42f9c1bfb.webp": {
+      "sha256": "fdf5edf42f9c1bfb56a1bc0ebc9e3913ab599a5d51b1d116660674c350693c5a",
+      "bytes": 2356
+    },
+    "ai/survival-202608/assets/gradient-preview-v2.webp": {
+      "sha256": "ace8c52de1e9dac9ce103b108f2697d96c0d2bd63633289972456dbdc9d0e2de",
+      "bytes": 4794
+    },
+    "ai/survival-202608/assets/lecun-demo-v1.mp4": {
+      "sha256": "d16a1aa314e5882eb56f07ba8a99a93f1099cc4aade8d24392989ce9e65f4b62",
+      "bytes": 7210229
+    },
+    "ai/survival-202608/assets/source-kai.ttf": {
+      "sha256": "15461753ec333151d95efba3c2f0c33b93f7affd776d22b515b62eef79aabba7",
+      "bytes": 327708
+    },
+    "ai/survival-202608/assets/source-sans.ttf": {
+      "sha256": "d6e755fc8367c03e1ed01228cc55a36c448532b75de55c13d5e9994c0da8851d",
+      "bytes": 152368
+    },
+    "manifest.json": {
+      "sha256": "b12f5aa0cdb022dfb279c2c8d0bac1a0e054374d09072ca74b1dbd591c515959",
+      "bytes": 1839
+    },
+    "ai/survival/editions.css": {
+      "sha256": "f0b5bc752a72fc0a58c58630183b759daca38ef629808a3c3cc1ca6fe5df854d",
+      "bytes": 1237
+    },
+    "ai/survival/hub.css": {
+      "sha256": "998c0b4aad56c0c3115adac1b28859eac36f5c341936466cf458f8c3f8fd5566",
+      "bytes": 4644
+    },
+    "ai/survival/index.html": {
+      "sha256": "c76949b9db70765eabb31494782430c8a805f5aec327044380c80a3fdb9e2aac",
+      "bytes": 2731
+    },
+    "ai/survival/player.js": {
+      "sha256": "35fe27f4271dd7d8ee9b1822fab0c8ba4721086f379753970cb22fc02a1d6b0f",
+      "bytes": 20485
+    },
+    "ai/survival/student/assets/page-03.webp": {
+      "sha256": "ac5bb341e6abe70f6ab3f518ec7f6c4117afb2589cf60809e2f92607e7f7d674",
+      "bytes": 5520
+    },
+    "ai/survival/student/assets/page-04.webp": {
+      "sha256": "f89a0eda5266bce3c5d9191643c2a7fd785d87e11f50e740270ffb6a1cf9aea5",
+      "bytes": 8690
+    },
+    "ai/survival/student/assets/page-05.webp": {
+      "sha256": "e44e21fd299ba2ef5cf9e159f915d6473fb2a38bcc27518e116d7e1698dea601",
+      "bytes": 5398
+    },
+    "ai/survival/student/assets/page-19.webp": {
+      "sha256": "bd3c79dde51712c17707c8f4ac258073211edb63bd145074df0dc76cfcc1aa13",
+      "bytes": 5842
+    },
+    "ai/survival/student/assets/page-23.webp": {
+      "sha256": "68d57011a0c1bdeec131a15466a9fd9b5b202d99d18c0a7149574d46d6e52f3c",
+      "bytes": 8266
+    },
+    "ai/survival/student/assets/page-25.webp": {
+      "sha256": "1d05a41c648ca962ec315e9d648685728a17a3cedb026aeda39bcfb349100ff7",
+      "bytes": 10680
+    },
+    "ai/survival/student/assets/page-26.webp": {
+      "sha256": "76f46cd96c3e44512ae249ce1ed0b7ff875cee4facdfd85a32aaf8a4c99e481d",
+      "bytes": 7468
+    },
+    "ai/survival/student/assets/page-28.webp": {
+      "sha256": "28965eb31ee472dde4df898fdf3816699f122c230966a19d613fdc31d9830ff6",
+      "bytes": 9080
+    },
+    "ai/survival/student/assets/page-39.webp": {
+      "sha256": "d2d80b8b1392bee241dfea539b4583cc29488e2a73d163455f38a962c9b31abf",
+      "bytes": 13392
+    },
+    "ai/survival/student/assets/page-40.webp": {
+      "sha256": "d59a80d9b0a92996084e53525fdcaff41d5e132ff3545a5db3b8125d1a1cab30",
+      "bytes": 13294
+    },
+    "ai/survival/student/assets/page-41.webp": {
+      "sha256": "4e9c100c54bcfc0bfb1268cdf2d17ca968a83bd47dddbb8fa923d5dd2dfbf94b",
+      "bytes": 9926
+    },
+    "ai/survival/student/assets/page-42.webp": {
+      "sha256": "1e75127f5e7a55fbd4583e51484d2129250f252e77ab2983a360f73e1ac61aad",
+      "bytes": 5298
+    },
+    "ai/survival/student/assets/page-44.webp": {
+      "sha256": "9ca66d60d00c6abcb3e07fef9ca65e790d36dd873af46a2ff9a24de48877420a",
+      "bytes": 5666
+    },
+    "ai/survival/student/assets/page-45.webp": {
+      "sha256": "fbe08a86bb8fbb04f00ad1537de62bd9dea67543db1de03456a7fd89fdca95a9",
+      "bytes": 8158
+    },
+    "ai/survival/student/assets/page-46.webp": {
+      "sha256": "4599a35bc98c90c898c177e7a7f15a73f83108d76e2d75b9395c7297f3092947",
+      "bytes": 9232
+    },
+    "ai/survival/student/assets/page-47.webp": {
+      "sha256": "75a041423bd2d60e545b06247083f6b1040644c80fd86700cc4a72b495557595",
+      "bytes": 11844
+    },
+    "ai/survival/student/assets/page-48.webp": {
+      "sha256": "fc69c663dc1d4305c10af7929a13b2e1048d9b90f2c5cd8a63ea54a44bf94483",
+      "bytes": 11218
+    },
+    "ai/survival/student/assets/page-49.webp": {
+      "sha256": "298ff3f5980fcb1da854394924013030a0a5e8532af9e2a37fbbfe4d932b3cdc",
+      "bytes": 5952
+    },
+    "ai/survival/student/assets/page-50.webp": {
+      "sha256": "c134851d80f5bbb4990a87865a25b8a9625954594fcacccf52b9b55d79b2551f",
+      "bytes": 5616
+    },
+    "ai/survival/student/assets/page-51.webp": {
+      "sha256": "68da8721769edff7cf89f18a1ff6bc42b23ca9fd1c71d1fdb105f37f61ac3d18",
+      "bytes": 5818
+    },
+    "ai/survival/student/assets/page-52.webp": {
+      "sha256": "6ac51db9aea1b1e2b9a7d158ef378bf438659c788ff8d2cc424bc29cf3c05d73",
+      "bytes": 4366
+    },
+    "ai/survival/student/assets/page-56.webp": {
+      "sha256": "82de0ba4b7ee06ae8ac9a742664d02f6b1974ba197fbf47df4aaeec5f68d383e",
+      "bytes": 6568
+    },
+    "ai/survival/student/assets/page-57.webp": {
+      "sha256": "4a504066b3e646abd0cf6ff002afd4f3099ef08a481aed5c467d6ad8a5e1d383",
+      "bytes": 5676
+    },
+    "ai/survival/student/assets/page-58.webp": {
+      "sha256": "ebaf427ef129e9a1ef8a15240003874cecdfb3b6d9f4f525339659f92f2a9595",
+      "bytes": 7032
+    },
+    "ai/survival/student/assets/page-59.webp": {
+      "sha256": "f69ef344e7bbb46c3fe9af173cb1e3e7621c29c89073aad534e3554da9fe9593",
+      "bytes": 5202
+    },
+    "ai/survival/student/assets/page-60.webp": {
+      "sha256": "94d1c3eadf81e430a37bf2d6cc6071b321157d78155d6f2ffe9b7ff808e3c3b7",
+      "bytes": 9262
+    },
+    "ai/survival/student/assets/page-61.webp": {
+      "sha256": "eed5e4937ac1dc46348dd2083ef09032c00ca8bfa4b7ca7aa6d0e9c4b75827cd",
+      "bytes": 9092
+    },
+    "ai/survival/student/assets/page-62.webp": {
+      "sha256": "6edef1e660044bc3d5aa071b6b0840951a77a69761bd29192f4ebb77007da931",
+      "bytes": 8340
+    },
+    "ai/survival/student/assets/page-63.webp": {
+      "sha256": "49bda0e249aa94ddab5c6fb95f86812cd670d5b91c1f0489426067e679335f14",
+      "bytes": 3372
+    },
+    "ai/survival/student/assets/student-kai-v1.woff2": {
+      "sha256": "09ab7a72c5f41ba34ce450101157064805612ddbac06abf80b77fc6713d0c8d6",
+      "bytes": 139712
+    },
+    "ai/survival/student/assets/student-sans-v1.woff2": {
+      "sha256": "4914da831b21a8c33a91e4c7c1e6d283d8de2b1876f6d7e2ef3fb4657785a32d",
+      "bytes": 10892
+    },
+    "ai/survival/student/index.html": {
+      "sha256": "d9e2e7c4ffc19e7e041c6c52add4e78958dceafc069c224399061ca8ec27efd8",
+      "bytes": 6532
+    },
+    "ai/survival/student/slides.json": {
+      "sha256": "c4cd3bd2bec0ca9460c89f6d074a66fcaf2fa475023a20c485f9d1ace542f793",
+      "bytes": 254523
+    },
+    "ai/survival/teacher/index.html": {
+      "sha256": "35846c71297ad370751d9d84a9cc369192d7f6adcf573407fb408416a10635f6",
+      "bytes": 6016
+    },
+    "ai/survival-202608/neural.js": {
+      "sha256": "9c228fbc3bb2ac683b77aca009dc3c8e0b69ef175f3ce58055ff1e5bad5b18c2",
+      "bytes": 25671
+    },
+    "ai/survival-202608/neural.css": {
+      "sha256": "f5c8c4ecf65491b6235eb3b4f2e32b96b7f1949fcaddf4753715a8a2bd9b3261",
+      "bytes": 8868
+    },
+    "ai/survival-202608/neural-model.js": {
+      "sha256": "409d69b5924e352b0cf9f9126ee0ee591bc786ec158add2f11818f66ee8bee53",
+      "bytes": 1607
+    },
+    "ai/survival-202608/neural-weights.js": {
+      "sha256": "e39e90b75f289328cb71ccc53c411df509a280d7370340df40fa6dcb409f7c25",
+      "bytes": 5728
+    },
+    "ai/survival-202608/assets/neural-sans-v1.woff2": {
+      "sha256": "ed18920d9282246af55d5d83e9ceb520cc2cb2fd68b2cee0b185facaf8f63558",
+      "bytes": 10196
+    },
+    "ai/survival-202608/assets/neural-kai-v1.woff2": {
+      "sha256": "d0525db10c861280b98c5c473ba08d2b554393568d13abd4b9333ed1dd7ac1c3",
+      "bytes": 41668
+    },
+    "ai/survival-202608/assets/neural-preview-v1.webp": {
+      "sha256": "666f4ccac18634a65e9534d3cf9e552f63b85cf28d27f81fbead40a20f7e62bd",
+      "bytes": 9700
+    },
+    "ai/survival-202608/assets/bilingual-kai-v1.woff2": {
+      "sha256": "d7988fbcc5e9dc0f052a42169b58a92f1a55e39bcab5223b69983a7ddc7bdb59",
+      "bytes": 144128
+    },
+    "ai/survival-202608/assets/bilingual-page-02-v1.webp": {
+      "sha256": "19d77e76a7e02e3396771f57f12dbda63792ac765c050d0c6ebd8ec7f98a8079",
+      "bytes": 11414
+    },
+    "ai/survival-202608/assets/bilingual-page-03-v1.webp": {
+      "sha256": "277613aa1ad95b51b0ca5bcc65fd44dc418e575b3de46f673072d9fb2406e651",
+      "bytes": 11050
+    },
+    "ai/survival-202608/assets/bilingual-page-05-v1.webp": {
+      "sha256": "723bd77350e9c424601757e2200d1339d747426b92e9a1cc9263ade19b70b31a",
+      "bytes": 7676
+    },
+    "ai/survival-202608/assets/bilingual-page-06-v1.webp": {
+      "sha256": "0e42c029798657b2f7b06615645efc11df731756bb1cc81a9376e91a3125157e",
+      "bytes": 8228
+    },
+    "ai/survival-202608/assets/bilingual-page-07-v1.webp": {
+      "sha256": "d011b49de473d7f7c2a73afbbb52436b104850c475fedbeaf0fcd18be1a06af5",
+      "bytes": 7142
+    },
+    "ai/survival-202608/assets/bilingual-page-08-v1.webp": {
+      "sha256": "4faca99d741d031ec0112bea1cd28ec72b9f6c0a825ea713f92f4039da4aa535",
+      "bytes": 10794
+    },
+    "ai/survival-202608/assets/bilingual-page-09-v1.webp": {
+      "sha256": "a325e6f59814675e057df52eadcf33e4ac84a5c5e39d58b1124603adefd9bd7c",
+      "bytes": 9322
+    },
+    "ai/survival-202608/assets/bilingual-page-10-v1.webp": {
+      "sha256": "38f7b8b98f9f6724dfa0e0c7244227481d5f4bad11485aafd0c6507c4840ec74",
+      "bytes": 7350
+    },
+    "ai/survival-202608/assets/bilingual-page-11-v1.webp": {
+      "sha256": "3919c2ea8c9a0a1260655f37eb14728e10622e01c20f0dec924c88a7170791ee",
+      "bytes": 9432
+    },
+    "ai/survival-202608/assets/bilingual-page-12-v1.webp": {
+      "sha256": "a55162f04bc3ce76c02f43cf9a7d004f9ba46c6a9deeaa2ca84cc5ef5626696d",
+      "bytes": 7660
+    },
+    "ai/survival-202608/assets/bilingual-page-15-v1.webp": {
+      "sha256": "214041cc17df33e50a7f073f269c0408a339e62d21f0c34a59eb576aa98e28c7",
+      "bytes": 5252
+    },
+    "ai/survival-202608/assets/bilingual-page-16-v1.webp": {
+      "sha256": "d5d27406ff07ec4e57886e522a7cc6af337e00f54aebba1e5cdfac81e163b94b",
+      "bytes": 11392
+    },
+    "ai/survival-202608/assets/bilingual-page-19-v1.webp": {
+      "sha256": "c99d5b1bbe7d600af85c51dd3ee1e2ea5eca2f52d26390bb62f6baac04a61cd8",
+      "bytes": 9138
+    },
+    "ai/survival-202608/assets/bilingual-page-23-v1.webp": {
+      "sha256": "4a8383242caaed290e12795ed926f32894d0e96bd3005b211db404b74a43c608",
+      "bytes": 12836
+    },
+    "ai/survival-202608/assets/bilingual-page-25-v1.webp": {
+      "sha256": "5fc1d597eaf70f33a803711941439a15e063e0bc8eacc9113877938983702131",
+      "bytes": 15320
+    },
+    "ai/survival-202608/assets/bilingual-page-26-v1.webp": {
+      "sha256": "9fbffd3a4d5b3f082b277dd653a32d8c420c010920cea6837cbc30796eb99730",
+      "bytes": 11446
+    },
+    "ai/survival-202608/assets/bilingual-page-28-v1.webp": {
+      "sha256": "3c2c7790aa4b6c75435ce7f7eae18933af4208838c296cc59da8f521d6782787",
+      "bytes": 8354
+    },
+    "ai/survival-202608/assets/bilingual-page-34-v1.webp": {
+      "sha256": "7d2d44c261850f309d89aeebb1876c7ae94885037c8d459b0d6e39c01a88b29d",
+      "bytes": 18616
+    },
+    "ai/survival-202608/assets/bilingual-page-39-v1.webp": {
+      "sha256": "a9147e66d384cc2c664b745081cdf30a0ca57a0d47c9d6f151233a53f3e42cfd",
+      "bytes": 15706
+    },
+    "ai/survival-202608/assets/bilingual-page-40-v1.webp": {
+      "sha256": "71c61c0b22caed2e278c7039a2e8fd3f72985740dec9b38677b259b70b433d71",
+      "bytes": 15818
+    },
+    "ai/survival-202608/assets/bilingual-page-41-v1.webp": {
+      "sha256": "e7a8dee2456d3105e2b7cbb872501430b3826b6e2ce62e36731b343ce92c786d",
+      "bytes": 12286
+    },
+    "ai/survival-202608/assets/bilingual-page-44-v1.webp": {
+      "sha256": "74dd73bb236c0ec06bbba22ab195f0d7e89d92ebd022b8c961eca7bc99625b91",
+      "bytes": 7222
+    },
+    "ai/survival-202608/assets/bilingual-page-45-v1.webp": {
+      "sha256": "d890cea888ff80a3bc28b84b6fb6954339cb573af0e018fd0123310fe96aa705",
+      "bytes": 10264
+    },
+    "ai/survival-202608/assets/bilingual-page-46-v1.webp": {
+      "sha256": "c01dcd0530bf1362f01bc002ca296348d64e095a6a2e7115d72997ee553fcf6d",
+      "bytes": 11028
+    },
+    "ai/survival-202608/assets/bilingual-page-47-v1.webp": {
+      "sha256": "35357bcda85722772cae88ae3954a7e822df76f93766197b0841f6486d1a1ab9",
+      "bytes": 16452
+    },
+    "ai/survival-202608/assets/bilingual-page-48-v1.webp": {
+      "sha256": "b2b7c4ba49346be2f079e1cae7ac8e78de878d9494f0599c0290fadfd66fddba",
+      "bytes": 12978
+    },
+    "ai/survival-202608/assets/bilingual-page-49-v1.webp": {
+      "sha256": "9e8ec8f074b4baefe6770a4853795c72aeac2e54eedfdac781f0d7a884fde46a",
+      "bytes": 11964
+    },
+    "ai/survival-202608/assets/bilingual-page-50-v1.webp": {
+      "sha256": "ea96ce6101b9386471b274b5cebac6314aacf35cf9f1d39516d8c71833a251ca",
+      "bytes": 14264
+    },
+    "ai/survival-202608/assets/bilingual-page-51-v1.webp": {
+      "sha256": "795445d728095473dbd4c82dc6ae21e5b1dccadcb096d9b141a5c7f4153e68ec",
+      "bytes": 12736
+    },
+    "ai/survival-202608/assets/bilingual-page-52-v1.webp": {
+      "sha256": "ae5622917105f5ad09734d8924a1335c3de69645525e5f8ea32ed3dae7779adb",
+      "bytes": 4002
+    },
+    "ai/survival-202608/assets/bilingual-page-56-v1.webp": {
+      "sha256": "89d709e4b43d4c7a3848722b8821d737f5fe8951d37c46cb48850c57041134b4",
+      "bytes": 10738
+    },
+    "ai/survival-202608/assets/bilingual-page-57-v1.webp": {
+      "sha256": "798f800947cbfe55f7da622c9ec003f5345f5111e8e981c53bc2ec39a4463b1a",
+      "bytes": 10434
+    },
+    "ai/survival-202608/assets/bilingual-page-59-v1.webp": {
+      "sha256": "9e09573e122584f64b007e4284fd8a6c76f9a9f1c19b8428abbaeadc13353412",
+      "bytes": 12846
+    },
+    "ai/survival-202608/assets/bilingual-page-61-v1.webp": {
+      "sha256": "6d03911795e990bea59d2a9de38c08bb056e680c562e4f9adb06878be5a8ddcf",
+      "bytes": 11262
+    },
+    "ai/survival-202608/assets/bilingual-page-62-v1.webp": {
+      "sha256": "41ec3c7b55b849e724d1de497e435e10cda378643b5a76864ddf637975975af0",
+      "bytes": 9994
+    },
+    "ai/survival-202608/assets/bilingual-page-63-v1.webp": {
+      "sha256": "ae83185dc784fdd93a7ce08b99fb979b948bef251114de190aeff9075a69b632",
+      "bytes": 3390
+    },
+    "ai/survival-202608/assets/bilingual-sans-v1.woff2": {
+      "sha256": "fa4cde0d8655e05aaad877bec8404be860507e4a3b238f6f0bbcd625eb7285c5",
+      "bytes": 11028
+    },
+    "ai/survival-202608/bilingual.css": {
+      "sha256": "a9ba13e1dda492e9c20a8a87ddc89da1f1b43552bd1969726c317d2a8e8684b4",
+      "bytes": 8351
+    },
+    "ai/survival-202608/bilingual.js": {
+      "sha256": "610db43c4397b7af1d22acb2618fbb95ef966590e2a79e237850e2a26ca9c1f4",
+      "bytes": 1419
+    },
+    "ai/survival/student/assets/bilingual-page-03-v1.webp": {
+      "sha256": "e4b374144316342ef2980a046e66be637d8d73d87bfbd7d4d8a67bf20b137676",
+      "bytes": 9142
+    },
+    "ai/survival/student/assets/bilingual-page-04-v1.webp": {
+      "sha256": "2a7a6f9c60c43b11ea376f6613e1c6ca9d1a0d9ea9b707d3481fb338e5f42159",
+      "bytes": 11638
+    },
+    "ai/survival/student/assets/bilingual-page-05-v1.webp": {
+      "sha256": "a9e101aa3799b8bcde8ea70807a6f098d0c63c6a0cdf85f53c7831c516049beb",
+      "bytes": 8616
+    },
+    "ai/survival/student/assets/bilingual-page-19-v1.webp": {
+      "sha256": "79e6e720f64e49739cf273a337d11a371d0d0c3df9f4d48cb4f18b5abe6d058a",
+      "bytes": 9270
+    },
+    "ai/survival/student/assets/bilingual-page-23-v1.webp": {
+      "sha256": "8ecb462f27b6075fd9ca5060aef172aff3f90555b885263bfb5607c6b6dbaacf",
+      "bytes": 10456
+    },
+    "ai/survival/student/assets/bilingual-page-25-v1.webp": {
+      "sha256": "f7489fa53363bc09c9366f861b9d1d7cf7847ca99762be2f0f685459bcb31a83",
+      "bytes": 12588
+    },
+    "ai/survival/student/assets/bilingual-page-26-v1.webp": {
+      "sha256": "c88cec3713bbded626cfbefe0e8b635422b37e05aa6af6fe78ed26387a505377",
+      "bytes": 9860
+    },
+    "ai/survival/student/assets/bilingual-page-28-v1.webp": {
+      "sha256": "8019e72db51bb90ce42f4b7eb276c0b8c8421a04f23b0df6376835fb7b2a7efd",
+      "bytes": 10814
+    },
+    "ai/survival/student/assets/bilingual-page-39-v1.webp": {
+      "sha256": "73f5e85982bab48637d30834369963d77db32bf116da92d8c0befd67a9aa17d2",
+      "bytes": 15840
+    },
+    "ai/survival/student/assets/bilingual-page-40-v1.webp": {
+      "sha256": "54042ca44c018516d49093d3a1737e35fe404203be1d11033e48d33df38f2099",
+      "bytes": 16168
+    },
+    "ai/survival/student/assets/bilingual-page-41-v1.webp": {
+      "sha256": "5cc89aff4f5110403cca08ce083a968dcf7fa05a3acb3db6f3cab1a0fe9b9d89",
+      "bytes": 11826
+    },
+    "ai/survival/student/assets/bilingual-page-42-v1.webp": {
+      "sha256": "35842a683624dd48bdee2252b2262adea4524d70d39bc772e6478fe767dcf7b0",
+      "bytes": 8136
+    },
+    "ai/survival/student/assets/bilingual-page-44-v1.webp": {
+      "sha256": "2c2dd5128bbb127179d1da5b1e485bb4d932bd31b7dba6e51ae6786a6f847aea",
+      "bytes": 6836
+    },
+    "ai/survival/student/assets/bilingual-page-45-v1.webp": {
+      "sha256": "4e583ae553967aa4388bfb902e42a86ae2678bb9c1bb937741b1472781e89d8b",
+      "bytes": 10568
+    },
+    "ai/survival/student/assets/bilingual-page-46-v1.webp": {
+      "sha256": "eb04ae7894abd8c894c186b91d2ecc762ec7fa8854f468f21ed5e3f5fdb043db",
+      "bytes": 10904
+    },
+    "ai/survival/student/assets/bilingual-page-47-v1.webp": {
+      "sha256": "2de95c88178c9ee5e367311328c7bf11d392bd50c47c1b71ba0852b89d258f10",
+      "bytes": 14488
+    },
+    "ai/survival/student/assets/bilingual-page-48-v1.webp": {
+      "sha256": "2960edafda7f0f56043d502c0c557d126ff12362b7382a63e8f2abe7ffc77cb3",
+      "bytes": 12074
+    },
+    "ai/survival/student/assets/bilingual-page-49-v1.webp": {
+      "sha256": "bb6c898899621e6139b928cf5070f6976c9193cc09bf8d69d0eda884e46a8f17",
+      "bytes": 9174
+    },
+    "ai/survival/student/assets/bilingual-page-50-v1.webp": {
+      "sha256": "583a1d907360e5826215b7f1cc7a1455ecfb6227d34b2f2aeebf53f35cd20d9b",
+      "bytes": 10860
+    },
+    "ai/survival/student/assets/bilingual-page-51-v1.webp": {
+      "sha256": "f009e087a88ed2a5a4f5344c961bee185e579fcf8bcb83372a811ca96bde9efb",
+      "bytes": 11002
+    },
+    "ai/survival/student/assets/bilingual-page-52-v1.webp": {
+      "sha256": "bbe870a8ab46611be78e4c18be32bb08f7612c6e0337481240b708157b9c965d",
+      "bytes": 7718
+    },
+    "ai/survival/student/assets/bilingual-page-56-v1.webp": {
+      "sha256": "17f4e75f414832f77c222d88702ba18ad6385db77903c108e3b23de675a8d32c",
+      "bytes": 9964
+    },
+    "ai/survival/student/assets/bilingual-page-57-v1.webp": {
+      "sha256": "799a0279bf974ff803490a414a069b9df14b54915518a8b36afbbf2cddeeb764",
+      "bytes": 8652
+    },
+    "ai/survival/student/assets/bilingual-page-58-v1.webp": {
+      "sha256": "d1a87658c29c26d2599e67a77563762bc06f20f548980c6e1c4d7f7461caa462",
+      "bytes": 9962
+    },
+    "ai/survival/student/assets/bilingual-page-59-v1.webp": {
+      "sha256": "5089828dcf046bec88effcaf7259532eff8805d2a140607c24f44532f5ac817b",
+      "bytes": 10158
+    },
+    "ai/survival/student/assets/bilingual-page-60-v1.webp": {
+      "sha256": "e414c126b36a0795a08624933b1eb7da4a172db379bc05714f14d54eb738359c",
+      "bytes": 12974
+    },
+    "ai/survival/student/assets/bilingual-page-61-v1.webp": {
+      "sha256": "7e703ac45e4d4a6476784edfbdf2bcb5b0471384746a98aa00deaccfa32bb331",
+      "bytes": 11486
+    },
+    "ai/survival/student/assets/bilingual-page-62-v1.webp": {
+      "sha256": "517c2c45314af4f6a6f036e5dfdae367790120ad909d166db8b22258dde088cd",
+      "bytes": 10424
+    },
+    "ai/survival/student/assets/bilingual-page-63-v1.webp": {
+      "sha256": "8f410379932f81c57a00dda8a7731bd0677e1cdba2e184f83c8e09fb7ebddb7d",
+      "bytes": 5924
+    },
+    "ai/survival-202608/assets/descent-kai-v1.woff2": {
+      "sha256": "9353cd39128d665714af61e83c36bbaa2383ef5733cd7a4b57dd560fca63b147",
+      "bytes": 30124
+    },
+    "ai/survival-202608/assets/descent-preview-v1.webp": {
+      "sha256": "632a7c9bace69b0f5a726d4c9fecd68326b2d7be23da2e48f3dc0961846ef64c",
+      "bytes": 6058
+    },
+    "ai/survival-202608/assets/interaction-sans-v1.woff2": {
+      "sha256": "59d38c4dc12a2d5ef896daadb93b5baa301c62eb11602605ad3ebfeb4299cf66",
+      "bytes": 924
+    },
+    "ai/survival-202608/assets/tokens-kai-v1.woff2": {
+      "sha256": "dd140ef4deeeafb171ab6c60d9b0f948f03f3bb828b21ca5be056efcf7d51303",
+      "bytes": 33788
+    },
+    "ai/survival-202608/assets/tokens-preview-v1.webp": {
+      "sha256": "eff7360156312d495943c8aa89cca888d47867f55e5ee0c333f38b9ce4f29f7d",
+      "bytes": 6294
+    },
+    "ai/survival-202608/descent-math.js": {
+      "sha256": "ae5be287ca9e6c1d9251839fe4fde7433652cf01747aaa37365e61e9d23eca07",
+      "bytes": 550
+    },
+    "ai/survival-202608/descent.css": {
+      "sha256": "d76a6da2f6b6fce0f4f84149ad0f7ecd10d2ef5c71c1a6690beb994d312baafa",
+      "bytes": 6816
+    },
+    "ai/survival-202608/descent.js": {
+      "sha256": "ddee15f75ec20e4f0c74810a516adeb4ab1142688a4fe078a786ce4474a9273e",
+      "bytes": 14716
+    },
+    "ai/survival-202608/tokens-math.js": {
+      "sha256": "90b04e8c5fa99260a1257837b5edd69f25f0fe33e9f116c4831be0d6d0517141",
+      "bytes": 7921
+    },
+    "ai/survival-202608/tokens.css": {
+      "sha256": "18fa3bf7221f24984f6d1036111e654c2a9a67308aba1f4137f3570398fa9636",
+      "bytes": 4415
+    },
+    "ai/survival-202608/tokens.js": {
+      "sha256": "5372615f5191e0b75bb32ffa6f3034dd3bc92a436c9fd4adc937126fe9b4a8ea",
+      "bytes": 21251
+    },
+    "ai/survival-202608/assets/tokens-kai-v2.woff2": {
+      "sha256": "c45d953d0cf7e86e295c99a472754441858e61a7c84710c439943929658716ad",
+      "bytes": 46552
+    },
+    "ai/survival-202608/assets/tokens-preview-v2.webp": {
+      "sha256": "e7c9c08e4628291c0c77a817b23a6b614862bad72028197ae9a0ab3a78e292ef",
+      "bytes": 25536
+    },
+    "ai/survival-202608/assets/tokens-sans-v2.woff2": {
+      "sha256": "52aa60317f3ff4404addd348973d7670c5c592df5dbaca894559089eeaa2d5d9",
+      "bytes": 9796
+    },
+    "ai/survival-202608/assets/tokens-preview-v3.webp": {
+      "sha256": "8cfc04811f9db790b1b280846b1f57a3ddfa5d2626c0b948dc7f43fa6849c275",
+      "bytes": 25848
+    },
+    "ai/survival-202608/assets/tokens-preview-v4.webp": {
+      "sha256": "f91bfc1bb5bea7a61aa264d6040ac6a20a6f26e0e5d020626585509fd5f54a62",
+      "bytes": 25796
+    },
+    "ai/survival-202608/assets/tokens-kai-v5.woff2": {
+      "sha256": "3f92e6d32639b6b9707d0b82e6ad34c680518c1896970b908194856f3c0f6277",
+      "bytes": 55292
+    },
+    "ai/survival-202608/assets/tokens-preview-v5.webp": {
+      "sha256": "b2a1bf3a1cab28e6ccde534e0784c8019590c179083d76708ab5c3fb257f3d8f",
+      "bytes": 23296
+    },
+    "ai/survival-202608/assets/tokens-sans-v5.woff2": {
+      "sha256": "cff6f836fb2d75ffc38193341132d5d82dfe6778ba7f2c4f7d6d2cfbea55bebe",
+      "bytes": 9804
+    },
+    "ai/survival-202608/assets/tokens-preview-v6.webp": {
+      "sha256": "5ca2431582d9fcfa11d2711238f221dcc2e3db4a6bd81fa53f915edf03d4b120",
+      "bytes": 22856
+    }
+  },
+  "editions": [
+    "teacher",
+    "student"
+  ],
+  "release": "/root/releases/slides-tokens-v6-20261113-090801",
+  "neural_page": 12,
+  "bilingual_style": "English charcoal first; Chinese KaiTi purple second",
+  "interactive_pages": [
+    12,
+    13,
+    15,
+    21
+  ],
+  "tokens_version": "20261113-tk6"
+}

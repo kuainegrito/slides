@@ -36,3 +36,13 @@
 - 权威开发档案：`html_development_log/`（README / PLAN / DECISIONS(ADR) / AGENT_GUIDE / LOG / TASKS 快照）
 - 全套方法论已沉淀为可复用 skill：`pptx-to-html-courseware`（提取脚本、引擎协议、部署与验证 playbook、踩坑清单）
 - 部署：tar-over-ssh 直传 VPS `/var/www/slides/`，nginx 独立 snippet，不走主门户构建
+
+## AI 生存课件 · 2026-11-13
+
+- [教师版 / 学生版入口](ai/survival/index.html)，各 62 页，源 PDF 页码保持稳定。
+- [共享课件与互动模块](ai/survival-202608/)，包括原声视频、神经网络、梯度下降和 SVG 词元星云。
+- P21：八秒全景开场，六组语境，每组按 3 秒起点、6 秒移动、5 秒到达停留播放；循环不重复开场，重新进入才重播。
+- [源代码、构建与证据使用说明](ai/survival-202608/dev/ARCHIVE.md)。静态资源可直接部署，原 PDF/PPTX 与本地缓存不入库。
+- [SVG 语义空间 skill](docs/skills/svg-semantic-space/SKILL.md)：空间投影、光流、镜头叙事、字体、响应式与验收方法。
+
+本次 Git 归档保存已发布文件；不会再次部署或覆盖服务器。公开版本的身份与验证记录见 dev/published-inventory.json 和 dev/DEVELOPMENT.md。

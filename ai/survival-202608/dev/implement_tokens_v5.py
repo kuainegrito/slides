@@ -1,0 +1,26 @@
+from pathlib import Path
+p=Path('site/ai/survival-202608/tokens.js');s=p.read_text();s=s.replace('tokens-math.js?v=20261113-tk2','tokens-math.js?v=20261113-tk5');s='\n'.join(l for l in s.splitlines() if '<div class="tk-contexts"' not in l)+'\n';s=s.replace('<span class="tk-click-tip">${bi(\'Click either sentence to explore\',\'点击句子，手动切换语境\',true)}</span>', '<button class="tk-sense">${bi(\'Switch meaning\',\'切换词义\',true)}</button>');s=s.replace('let W=918,H=310','let W=918,H=371');s=s.replace('const pointers=new Map()',"let camera=[0,0,0],cameraTween=null,focusWeights=CLUSTERS.map(()=>.3);\n const pointers=new Map()")
+a=s.index(' function explain()');b=s.index(' function world(',a)
+s=s[:a]+""" function explain(){const c=CASES[route];cameraTween={from:[...camera],weights:[...focusWeights],start:performance.now()};$('.tk-a11y').textContent=(c.pun?c.pun+' '+c.punZh+' ':'')+c.contexts.map(t=>`${t.en}. ${t.zh}。 Français: ${t.fr}. Español: ${t.es}.`).join(' ');buttons();}
+ function updateCamera(now){const c=CASES[route],goal=curve(c,progress).map(v=>v*.55),t=cameraTween?clamp((now-cameraTween.start)/1300,0,1):1,e=t*t*(3-2*t);camera=goal.map((v,i)=>cameraTween?cameraTween.from[i]+(v-cameraTween.from[i])*e:v);focusWeights=CLUSTERS.map((_,k)=>{const target=[NODES[c.a].cluster,NODES[c.b].cluster].includes(k)?1:.23;return cameraTween?cameraTween.weights[k]+(target-cameraTween.weights[k])*e:target;});if(t===1)cameraTween=null;}
+"""+s[b:]
+s=s.replace('rotate([v[0],v[1],v[2]*1.45]','rotate([v[0]-camera[0],v[1]-camera[1],(v[2]-camera[2])*1.45]').replace('12/(12-z)','12/Math.max(4,12-z)');s=s.replace("const add=(en,zh,vector,major=false,phase=0)","const add=(en,zh,vector,major=false,phase=0,cluster=0)");s=s.replace('wordElements.push({g,vector,major,phase,en})','wordElements.push({g,vector,major,phase,en,cluster})')
+s=s.replace('[4,10,20,route===2?26:29,32,44][k]','[4,10,20,route===2?26:29,32,44,48,route===5?57:56,64][k]').replace('add(n.en,n.zh,n.vector,true,k)','add(n.en,n.zh,n.vector,true,k,k)').replace('add(en,zh,v,false,j+k)','add(en,zh,v,false,j+k,k)').replace('add(n.en,n.zh,n.vector,true,i)','add(n.en,n.zh,n.vector,true,i,n.cluster)').replace("add(str,'',v,false,3+i+j)","add(str,'',v,false,3+i+j,n.cluster)")
+s=s.replace("e.setAttribute('ry',r*.8);","e.setAttribute('ry',r*.8);e.setAttribute('opacity',focusWeights[k]);")
+s=s.replace("clamp(.45+q.z*.05+Math.sin(phase+p.phase)*.15,.12,.85)","clamp(.45+q.z*.05+Math.sin(phase+p.phase)*.15,.12,.85)*focusWeights[p.cluster]")
+s=s.replace('words.forEach(({g,p,major})','words.forEach(({g,p,major,cluster})');s=s.replace("g.setAttribute('opacity',major?clamp(.8+p.z*.045,.45,1):clamp(.5+p.z*.08,.12,.9))","g.setAttribute('data-cluster',cluster);g.setAttribute('data-focus',focusWeights[cluster].toFixed(3));g.setAttribute('opacity',(major?clamp(.8+p.z*.045,.45,1):clamp(.5+p.z*.08,.12,.9))*focusWeights[cluster])")
+s=s.replace("i===route?.8:.22","i===route?.95:.07").replace("i===route?.32:.025","i===route?.4:.01").replace("i===route?(1-j*.06):.22","i===route?(1-j*.06):.07")
+s=s.replace('flowTime:String(flowTime)','flowTime:String(flowTime),camera:JSON.stringify(camera),focusWeights:JSON.stringify(focusWeights)')
+s=s.replace('*.00014','*.000075').replace('draw();if(running||orbit||projectionTween||contextTween)','updateCamera(now);draw();if(running||orbit||projectionTween||contextTween||cameraTween)')
+s=s.replace('function chooseRoute(i){pause();route=i;elapsed=i*TOUR_MS;progress=0;explain();draw();}',"function chooseRoute(i){pause(true);route=i;elapsed=i*TOUR_MS;progress=0;explain();if(reduced()){updateCamera(performance.now()+1300);draw();}else schedule();}")
+s=s.replace("root.querySelectorAll('[data-context]').forEach(b=>b.addEventListener('click',()=>chooseContext(+b.dataset.context)));","$('.tk-sense').addEventListener('click',()=>chooseContext(progress<.5?1:0));")
+s=s.replace('contextTween=null;}buttons();','contextTween=null;cameraTween=null;}buttons();')
+s=s.replace('if(!orbit&&!projectionTween&&!contextTween)cancelAnimationFrame','if(!orbit&&!projectionTween&&!contextTween&&!cameraTween)cancelAnimationFrame')
+s=s.replace('if(running)schedule();document.fonts','if(running)schedule();else{updateCamera(performance.now()+1300);draw();}document.fonts')
+p.write_text(s,encoding='utf8')
+p=Path('site/ai/survival-202608/tokens.css');s=p.read_text();import re
+s=re.sub(r'\.tk-(?:contexts(?: button(?:\[aria-pressed=true\])?| \.lang-zh)?|context-letter|languages(?: small)?|transfer|click-tip)\{[^}]*\}','',s)
+s=s.replace('height:310px','height:371px').replace('height:370px','height:430px').replace('.tk-play{min-width:150px}', '.tk-play{min-width:120px}').replace('.tk-tour{height:30px;display:flex;align-items:stretch;gap:7px;flex:none}', '.tk-tour{height:30px;display:flex;align-items:stretch;gap:4px;flex:none}').replace('.tk-tour [data-route]{position:relative;', '.tk-tour [data-route]{font-size:9px;padding:5px;min-width:0;position:relative;')
+s=s.replace('tokens-kai-v2.woff2','tokens-kai-v5.woff2').replace('tokens-sans-v2.woff2','tokens-sans-v5.woff2');p.write_text(s,encoding='utf8')
+for fn in ['site/ai/survival-202608/deck.js','site/ai/survival-202608/index.html','build_editions.py']:
+ p=Path(fn);p.write_text(p.read_text(encoding='utf8').replace('20261113-tk4','20261113-tk5'),encoding='utf8')

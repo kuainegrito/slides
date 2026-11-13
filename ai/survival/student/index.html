@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN" data-edition="student" data-source="/slides/ai/survival/student/slides.json?v=20261113-tk6">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#e7f1f7">
+  <meta name="description" content="于快的 AI 主题课件：人工智能的发展、基本架构、学习实践、作品探索，以及如何把 AI 素养练成大学基本功。">
+  <title>如何在 AI 浪潮中存活 · 学生版 · 于快</title>
+  <link rel="stylesheet" href="/slides/ai/survival-202608/deck.css?v=20261110-r2a">
+  <link rel="stylesheet" href="/slides/ai/survival-202608/gradient.css?v=20261110-r2a">
+  <link rel="stylesheet" href="/slides/ai/survival-202608/neural.css?v=20261111-nn1">
+  <link rel="stylesheet" href="../editions.css?v=20261113-tk6">
+  <script type="module" src="../player.js?v=20261113-tk6"></script>
+  <link rel="stylesheet" href="/slides/ai/survival-202608/bilingual.css?v=20261112-bi4">
+  <link rel="stylesheet" href="/slides/ai/survival-202608/descent.css?v=20261113-gd5">
+  <link rel="stylesheet" href="/slides/ai/survival-202608/tokens.css?v=20261113-tk6">
+</head>
+<body>
+  <canvas id="ambient" aria-hidden="true"></canvas>
+  <header class="topbar">
+    <a class="home-link" href="../" title="选择教师版或学生版"><span class="brand-mark" aria-hidden="true">K<span>Y</span></span><span>版本选择</span></a>
+    <div class="deck-brand"><span>HOW TO SURVIVE IN THE ERA OF AI</span><small>Kuai Yu · 于快 <b class="edition-badge">学生版</b></small></div>
+    <div class="header-actions">
+      <button id="motion" type="button" title="播放或暂停装饰动效" aria-pressed="false">◌ <span>动效</span></button>
+      <button id="fullscreen" type="button" title="全屏 · F" aria-label="全屏放映">⛶ <span>全屏</span></button>
+    </div>
+  </header>
+  <main id="main">
+    <div class="chapter-line"><button id="chapters-toggle" type="button" aria-controls="chapters" aria-expanded="false">☰ <span id="chapter-label">开场</span></button><span id="chapter-en">Opening</span><span class="edition">STUDENT EDITION</span></div>
+    <div id="viewport">
+      <div id="stage" tabindex="0" aria-label="幻灯片，按左右方向键翻页">
+        <svg class="edge-light" viewBox="0 0 960 540" aria-hidden="true"><defs><linearGradient id="edge"><stop stop-color="#78bddf"/><stop offset=".5" stop-color="#c0a1db"/><stop offset="1" stop-color="#74cbbf"/></linearGradient></defs><path d="M22 526H870Q944 526 944 452V45"/><circle r="3"><animateMotion dur="8s" repeatCount="indefinite" path="M22 526H870Q944 526 944 452V45"/></circle></svg>
+        <div id="slide-content" aria-live="polite"><p class="loading">正在打开课件…</p></div>
+        <div id="laser" hidden aria-hidden="true"></div>
+      </div>
+    </div>
+    <nav class="controls" aria-label="放映控制">
+      <div class="control-group"><button id="overview-toggle" title="总览 · O" aria-label="课件总览" aria-controls="overview" aria-expanded="false">▦ <span>总览</span></button><button id="text-toggle" title="本页文字 · T" aria-label="本页文字" aria-controls="transcript" aria-expanded="false">T<span>文字</span></button><button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button></div>
+      <div class="pager"><button id="prev" title="上一页 · ←" aria-label="上一页">←</button><button id="page-jump" title="跳转到原 PDF 页码"><b id="current">1</b><span>/</span><span id="total">62</span></button><button id="next" title="下一页 · →" aria-label="下一页">→</button></div>
+      <div class="control-group right"><span id="source-page">PDF 1</span><button id="laser-toggle" title="激光笔 · L" aria-label="激光笔" aria-pressed="false">⌖ <span>激光笔</span></button><button id="help-toggle" title="快捷键 · ?" aria-label="查看快捷键">?</button></div>
+    </nav>
+    <div class="progress" aria-hidden="true"><i id="progress-fill"></i></div>
+  </main>
+  <dialog id="chapters" class="panel chapters-panel"><div class="panel-head"><div><small>CONTENTS</small><h2>章节目录</h2></div><button data-close aria-label="关闭目录">×</button></div><div id="chapter-list"></div></dialog>
+  <dialog id="overview" class="panel overview-panel"><div class="panel-head"><div><small>SLIDE OVERVIEW</small><h2>课件总览</h2></div><button data-close aria-label="关闭总览">×</button></div><label class="search-label"><span>⌕</span><input id="search" type="search" placeholder="搜索主题、关键词或原 PDF 页码" autocomplete="off"></label><div id="overview-grid"></div></dialog>
+  <dialog id="transcript" class="panel transcript-panel"><div class="panel-head"><div><small>SLIDE TEXT</small><h2 id="text-title">本页文字</h2></div><button data-close aria-label="关闭文字面板">×</button></div><div id="text-content"></div><div id="page-links"></div></dialog>
+  <dialog id="help" class="panel help-panel"><div class="panel-head"><h2>放映快捷键</h2><button data-close aria-label="关闭快捷键">×</button></div><dl><dt>← / → / 空格</dt><dd>上一页 / 下一页</dd><dt>Home / End</dt><dd>第一张 / 最后一张</dd><dt>F</dt><dd>全屏放映</dd><dt>O / M</dt><dd>缩略图总览 / 章节目录</dd><dt>T / L</dt><dd>本页文字 / 激光笔</dd><dt>Esc</dt><dd>关闭面板或退出全屏</dd></dl><p>触屏可左右轻扫翻页。点击页码可跳到原 PDF 对应页。</p></dialog>
+  <dialog id="jump" class="panel jump-panel"><form id="jump-form"><div class="panel-head"><h2>跳转到原 PDF 页码</h2><button type="button" data-close aria-label="取消跳页">×</button></div><label for="jump-input">页码（1–63）</label><input id="jump-input" type="number" min="1" max="63" required><p id="jump-error" role="alert"></p><button type="submit" class="primary">前往</button></form></dialog>
+  <dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>
+  <div id="toast" role="status"></div>
+  <noscript>这份交互课件需要启用 JavaScript。</noscript>
+</body>
+</html>

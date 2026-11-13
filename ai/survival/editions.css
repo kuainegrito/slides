@@ -1,0 +1,6 @@
+.edition-badge{font-weight:400;display:inline-block;margin-left:9px;border-left:1px solid #b7cbdc;padding-left:10px;color:#795299}.home-link{min-width:125px}.deck-brand{min-width:0}#student-task-toggle{color:#71509a}#student-task-content{font-size:22px;line-height:1.8;white-space:pre-wrap}#student-task-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}#student-task-links a{border:1px solid #abc8da;border-radius:20px;padding:10px 16px;text-decoration:none;color:#296b90;background:#e5f0f8}
+@font-face{font-family:StudentSans;src:url('student/assets/student-sans-v1.woff2') format('woff2');font-display:swap;ascent-override:90%;descent-override:20%;line-gap-override:0%}
+@font-face{font-family:StudentKai;src:url('student/assets/student-kai-v1.woff2') format('woff2');font-display:swap;ascent-override:90%;descent-override:20%;line-gap-override:0%}
+html[data-edition=student]{font-family:StudentSans,StudentKai,sans-serif}
+html[data-edition=student] .slide-svg text,html[data-edition=student] .gradient-lab,html[data-edition=student] .gl-return{font-family:StudentSans,StudentKai,sans-serif}
+@media(max-width:640px){#student-task-content{font-size:19px}.home-link{min-width:0}.edition-badge{padding-left:6px;margin-left:5px}}
