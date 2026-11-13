@@ -615,3 +615,26 @@ SHA-256/MIME checks and three entrance HTML checks passed. The 316 other
 inventory files and all original slide artwork are protected; inventory is
 326 files. UI checks were local; public acceptance used HTTP/hash verification.
 No Git commit/push in this standalone workspace.
+
+## 2026-11-13 — Cloud-owned grain texture (20261113-tk7)
+
+Rebalanced particle texture around the semantic clouds. Replaced 3,600 spiral
+stars and 32 geometric arm paths with 420 faint, neutrally colored ambient
+grains. Each semantic region now contains 570 local particles (5,130 total),
+using deterministic jitter around its existing 8D decorative dust positions.
+Reduced cloud mist from ten lobes to six, with lighter gradient opacity, so
+the colored grains remain distinct. Cloud particles retain the region's color,
+focus weighting, scale and local swirl; occasional small pale cores add texture.
+No changes to source vectors, six examples, 8-second intro, 3/6/5-second timing,
+camera travel or endpoint holds. The added particle module is decorative geometry.
+
+Local checks: desktop and 390px phone appearance, teacher/student loading,
+manual A/B camera travel, balanced deterministic particle generation and no
+mutation of source dust, syntax, timing regression tests, no console errors.
+An interrupted browser tool call was recovered before saving the final evidence.
+Public checks: ten updated/added assets passed SHA-256 and MIME, three entrance
+HTML routes matched. Protected 318 prior inventory files; inventory is 328 files.
+Release: /root/releases/slides-tokens-v7-20261113-093042/rollback.py.
+Evidence: work/tokens-v7/. Browser visual checks were local; public verification
+used HTTP hashes. Runtime and authoring changes are synchronized to the slides
+Git master workspace for this explicitly requested commit/push.

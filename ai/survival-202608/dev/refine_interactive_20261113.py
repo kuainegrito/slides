@@ -5,5 +5,5 @@ UPDATES={13: {'interactive': 'descent', 'titleZh': '梯度下降', 'textExcerpt'
 def apply_page(slide):
     slide.update(UPDATES[slide["n"]])
     name="descent" if slide["n"]==13 else "tokens"
-    target=Path(__file__).resolve().parent/"site/ai/survival-202608/assets"/(name+("-preview-v6.webp" if name=="tokens" else "-preview-v1.webp"))
+    target=Path(__file__).resolve().parent/"site/ai/survival-202608/assets"/(name+("-preview-v7.webp" if name=="tokens" else "-preview-v1.webp"))
     if target.exists():slide["thumb"]="assets/"+target.name
