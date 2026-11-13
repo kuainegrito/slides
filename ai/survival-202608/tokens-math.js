@@ -8,7 +8,9 @@ export const CLUSTERS=[
  {en:'Body & health',zh:'身体与健康',color:'#4faaa8',center:[3,-1.6,-1.3,2.6,.5,1.3,-.5,-2.2],words:[['weight','体重'],['health','健康'],['body','身体'],['diet','饮食'],['light','轻的'],['energy','能量'],['exercise','运动'],['balance','平衡']]},
  {en:'Romance & company',zh:'约会与陪伴',color:'#c77ca4',center:[-1,.3,3.3,1.6,-1.1,2.3,.8,-2.4],words:[['date','约会'],['romance','浪漫'],['dinner','晚餐'],['flowers','鲜花'],['love','爱'],['couple','情侣'],['candle','烛光'],['heart','心动']]},
  {en:'Fruit & food',zh:'水果与食物',color:'#9caa4c',center:[2.2,-.5,-3.2,-1.8,2.7,.3,-2,1.1],words:[['date','椰枣'],['avocat','牛油果'],['fruit','水果'],['palm','棕榈'],['sweet','甜'],['salad','沙拉'],['guacamole','牛油果酱'],['eat','吃']]},
- {en:'Law & justice',zh:'法律与正义',color:'#7d93c1',center:[-3,.3,-2.3,2.8,.9,-2.1,1.9,.4],words:[['avocat','律师'],['court','法庭'],['law','法律'],['justice','正义'],['defence','辩护'],['judge','法官'],['case','案件'],['rights','权利']]}
+ {en:'Law & justice',zh:'法律与正义',color:'#7d93c1',center:[-3,.3,-2.3,2.8,.9,-2.1,1.9,.4],words:[['avocat','律师'],['court','法庭'],['law','法律'],['justice','正义'],['defence','辩护'],['judge','法官'],['case','案件'],['rights','权利']]},
+ {en:'Past & memory',zh:'过去与记忆',color:'#8d9cc3',center:[-2.7,2.5,-1.8,.4,-2.1,2.9,-.5,1.8],words:[['kal','昨天'],['memory','记忆'],['history','历史'],['finished','完成'],['before','之前'],['remember','回想'],['past','过去'],['yesterday','昨天']]},
+ {en:'Future & possibility',zh:'未来与可能',color:'#63b7ae',center:[2.9,2.2,2.3,-.7,1.9,-2.4,1.3,-1.6],words:[['kal','明天'],['plan','计划'],['hope','希望'],['tomorrow','明天'],['later','以后'],['next','下一个'],['will','将要'],['future','未来']]}
 
 ];
 let seed=13021;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
@@ -34,7 +36,8 @@ export const CASES=[
  {en:'flower / spend',zh:'花',a:26,b:12,contexts:[{en:'A flower in spring',zh:'春天的一朵花',fr:'fleur',es:'flor'},{en:'Spend money on books',zh:'花钱买书',fr:'dépenser',es:'gastar'}]},
  {en:'mouse',zh:'鼠',a:29,b:20,contexts:[{en:'A mouse eats cheese',zh:'老鼠吃奶酪',fr:'souris',es:'ratón'},{en:'Click with the mouse',zh:'用鼠标点击',fr:'souris',es:'ratón'}]},
  {en:'date',zh:'约会／椰枣',a:48,b:56,pun:'I brought a date to dinner.',punZh:'我带了约会对象来吃晚餐。／我带了一颗椰枣来吃晚餐。',contexts:[{en:'A date at a candlelit dinner',zh:'烛光晚餐的约会对象',fr:'rendez-vous',es:'cita'},{en:'A sweet date from a palm',zh:'棕榈树上的甜椰枣',fr:'datte',es:'dátil'}]},
- {en:'avocat',zh:'律师／牛油果',a:64,b:57,pun:'J’ai mangé mon avocat.',punZh:'我吃了我的牛油果。／我把我的律师吃了。',contexts:[{en:'The lawyer speaks in court',zh:'律师在法庭上发言',fr:'avocat',es:'abogado'},{en:'Eat avocado in a salad',zh:'吃沙拉里的牛油果',fr:'avocat',es:'aguacate'}]}
+ {en:'avocat',zh:'律师／牛油果',a:64,b:57,pun:'J’ai mangé mon avocat.',punZh:'我吃了我的牛油果。／我把我的律师吃了。',contexts:[{en:'The lawyer speaks in court',zh:'律师在法庭上发言',fr:'avocat',es:'abogado'},{en:'Eat avocado in a salad',zh:'吃沙拉里的牛油果',fr:'avocat',es:'aguacate'}]},
+ {en:'kal · کل',zh:'昨天／明天',a:72,b:80,pun:'ہم کل کا کام کل کریں گے۔',punZh:'我们把 kal 的工作留到 kal 做：昨天的工作明天做／明天的工作明天做。',roman:'Ham kal kā kām kal kareṅge.',contexts:[{en:'The exam was yesterday',zh:'考试在昨天',fr:'hier',es:'ayer',ur:'کل',urSentence:'کل امتحان تھا۔',urNeighbors:['یاد','ماضی','گزرا']},{en:'The exam will be tomorrow',zh:'考试将在明天',fr:'demain',es:'mañana',ur:'کل',urSentence:'کل امتحان ہو گا۔',urNeighbors:['منصوبہ','مستقبل','امید']}]}
 
 ];
 export const NEIGHBORS=[
@@ -46,7 +49,9 @@ export const NEIGHBORS=[
  [['weight','重量'],['heavy','重的'],['carry','携带'],['bag','包'],['balance','平衡'],['feather','羽毛']],
  [['romance','浪漫'],['dinner','晚餐'],['flowers','鲜花'],['love','爱'],['candle','烛光'],['heart','心动']],
  [['fruit','水果'],['palm','棕榈'],['sweet','甜'],['salad','沙拉'],['guacamole','牛油果酱'],['eat','吃']],
- [['court','法庭'],['law','法律'],['justice','正义'],['defence','辩护'],['judge','法官'],['rights','权利']]
+ [['court','法庭'],['law','法律'],['justice','正义'],['defence','辩护'],['judge','法官'],['rights','权利']],
+ [['memory','记忆'],['history','历史'],['finished','完成'],['before','之前'],['remember','回想'],['past','过去']],
+ [['plan','计划'],['hope','希望'],['tomorrow','明天'],['later','以后'],['next','下一个'],['will','将要']]
 
 ];
 export const SOURCE_HOLD_MS=3000,TRAVEL_MS=6000,DESTINATION_HOLD_MS=5000;

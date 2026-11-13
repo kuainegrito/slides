@@ -78,7 +78,7 @@ import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
     if(slide.interactive==='tokens'){
-      import('./tokens.js?v=20261113-tk7').then(module=>{
+      import('./tokens.js?v=20261113-tk8').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountTokens(content,slide.svg);
       }).catch(error=>{console.error(error);toast('星云加载失败，已保留原图。');});
@@ -157,5 +157,5 @@ import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
     const loading=content.querySelector('.loading');if(loading)setBi(loading,'Opening the slides…','正在打开课件…');
   }
   localizeUi();
-  fetch('slides.json?v=20261113-tk7').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(data=>{deck=data;slides=data.slides;stage.style.backgroundImage='url("'+data.background+'")';for(const [i,c] of deck.chapters.entries()){const b=document.createElement('button');b.className='chapter-option';b.dataset.chapter=c.id;const number=document.createElement('span');number.className='number';number.textContent=String(i+1).padStart(2,'0');const label=document.createElement('span'),title=document.createElement('b'),subtitle=document.createElement('small');title.textContent=c.en;title.className='lang-en';subtitle.textContent=c.title;subtitle.className='lang-zh';label.append(title,subtitle);b.append(number,label);b.addEventListener('click',()=>{goPdf(c.start);$('chapters').close();});$('chapter-list').append(b);}const n=Number(location.hash.replace(/^#s/,''));if(!goPdf(n))setSlide(0);}).catch(error=>{content.replaceChildren();const p=document.createElement('p');p.className='loading';setBi(p,'Unable to load. Please refresh.','课件暂时未能加载，请刷新重试。');content.append(p);console.error('Slide loading failed',error);});
+  fetch('slides.json?v=20261113-tk8').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(data=>{deck=data;slides=data.slides;stage.style.backgroundImage='url("'+data.background+'")';for(const [i,c] of deck.chapters.entries()){const b=document.createElement('button');b.className='chapter-option';b.dataset.chapter=c.id;const number=document.createElement('span');number.className='number';number.textContent=String(i+1).padStart(2,'0');const label=document.createElement('span'),title=document.createElement('b'),subtitle=document.createElement('small');title.textContent=c.en;title.className='lang-en';subtitle.textContent=c.title;subtitle.className='lang-zh';label.append(title,subtitle);b.append(number,label);b.addEventListener('click',()=>{goPdf(c.start);$('chapters').close();});$('chapter-list').append(b);}const n=Number(location.hash.replace(/^#s/,''));if(!goPdf(n))setSlide(0);}).catch(error=>{content.replaceChildren();const p=document.createElement('p');p.className='loading';setBi(p,'Unable to load. Please refresh.','课件暂时未能加载，请刷新重试。');content.append(p);console.error('Slide loading failed',error);});
 })();

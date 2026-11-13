@@ -22,7 +22,7 @@ TASK_EN={
 18:'Add an audience, context and purpose to the same request. How do the reasonable answers change?',
 19:'Choose a learning task. State which parts AI can support and which you must perform and verify yourself.',
 20:'Use a paragraph you wrote: ask for logical gaps, preserve your view and request an explanation of each revision.',
-21:'Select date or avocat and switch meanings. Follow the camera and light flow between the highlighted clouds. Explain the puns in I brought a date to dinner and J’ai mangé mon avocat; why might the pun disappear in translation?',
+21:'Explore Urdu kal: yesterday or tomorrow. Ask a classmate familiar with Urdu to compare کل امتحان تھا۔ and کل امتحان ہو گا۔ Which tense cues disambiguate kal? Explain the wordplay about doing kal’s work kal.',
 22:'Start with one small function. Define its input, output and a checkable example before adding complexity.',
 23:'Try a tool made by Kuai Yu: predict, change one condition and explain the result. Judge the work by the problem it helps solve.',
 24:'Write a prediction before using the tool. Afterwards, record and explain the result; consult your textbook or teacher if it conflicts with your understanding.',

@@ -638,3 +638,34 @@ Release: /root/releases/slides-tokens-v7-20261113-093042/rollback.py.
 Evidence: work/tokens-v7/. Browser visual checks were local; public verification
 used HTTP hashes. Runtime and authoring changes are synchronized to the slides
 Git master workspace for this explicitly requested commit/push.
+
+## 2026-11-13 — Twelve-second intro, Urdu kal and translucent mist (20261113-tk8)
+
+Extended the mount-only overview from 8 to 12 seconds. Subsequent loops and the
+14-second per-case pacing are unchanged. Added a seventh context example,
+Urdu کل (kal), yesterday/tomorrow, with past/memory and future/possibility
+regions. There are now 11 regions, 88 synthetic word vectors, 6,270 cloud grains
+and 420 faint ambient grains. Dedicated Noto Naskh Arabic WOFF2 provides Urdu
+joining and RTL text; the font's OFL license is included with the assets.
+Chinese and Latin subsets cover the added words. Each endpoint shows کل near
+its English/Chinese meaning, with Urdu semantic neighbors and French/Spanish
+translations. The student task now invites classmates familiar with Urdu to
+explain the tense cues. New lecturer notes explain the authored wordplay and
+link the dictionary source. This does not assert all Pakistani students have
+the same first language.
+
+Slightly increased the existing mist gradient (.24/.085 to .30/.105) and added
+one low-opacity drifting veil per region. All mist remains behind unblurred
+particles; no individual-particle blur or spiral bands were introduced.
+Endpoint fitting now also protects the desktop view for the wider time pair.
+
+Validation: deterministic particle balance and seven-case timeline tests,
+local 12.05-second opening, Urdu glyph coverage and shaping table, RTL DOM
+attributes and positive text bounds, manual past/future camera travel,
+teacher/student mounting, mobile 390px no horizontal overflow and seven controls,
+no console errors. Original source artwork/other slides remain protected.
+Evidence: work/tokens-v8/. Public acceptance is SHA-256/MIME rather than public
+browser rendering. Release: /root/releases/slides-tokens-v8-20261113-094140/rollback.py.
+All 15 public assets and three entrance HTML routes matched local files;
+318 prior files protected; inventory 333 files. Explicit source/runtime paths
+are synchronized to Git master for the ongoing authorized release workflow.
