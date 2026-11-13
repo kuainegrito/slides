@@ -7,6 +7,7 @@ HUB.mkdir(parents=True,exist_ok=True)
 shared='/slides/ai/survival-202608/'
 version='20261113-tk12'
 sourceVersion='20261113-tk12'
+playerVersion='20261113-p1'
 
 player=(SOURCE/'deck.js').read_text(encoding='utf8')
 player=player.replace("const $ = id => document.getElementById(id);", """const $ = id => document.getElementById(id);
@@ -50,7 +51,7 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
     src=shared+'slides.json?v='+sourceVersion if edition=='teacher' else '/slides/ai/survival/student/slides.json?v='+version
     doc=template.replace('<html lang="zh-CN">',f'<html lang="zh-CN" data-edition="{edition}" data-source="{src}">')
     doc=doc.replace('href="deck.css?v=20261110-r2a"',f'href="{shared}deck.css?v=20261110-r2a"').replace('href="gradient.css?v=20261110-r2a"',f'href="{shared}gradient.css?v=20261110-r2a"')
-    doc=doc.replace(f'<script type="module" src="deck.js?v={sourceVersion}"></script>',f'<link rel="stylesheet" href="../editions.css?v={version}">\n  <script type="module" src="../player.js?v={version}"></script>')
+    doc=doc.replace(f'<script type="module" src="deck.js?v={playerVersion}"></script>',f'<link rel="stylesheet" href="../editions.css?v={version}">\n  <script type="module" src="../player.js?v={playerVersion}"></script>')
     doc=doc.replace('href="neural.css?v=20261111-nn1"',f'href="{shared}neural.css?v=20261111-nn1"')
     doc=doc.replace('href="bilingual.css?v=20261112-bi4"',f'href="{shared}bilingual.css?v=20261112-bi4"')
     doc=doc.replace('href="descent.css?v=20261113-gd5"',f'href="{shared}descent.css?v=20261113-gd5"').replace('href="tokens.css?v=20261113-tk12"',f'href="{shared}tokens.css?v=20261113-tk12"')

@@ -1,3 +1,4 @@
+import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/ai/survival-202608/presentation.js?v=20261113-p1';
 import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
 /* Original source artwork + native text, with a dependency-free slide player. */
 (() => {
@@ -10,6 +11,7 @@ import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
   let deck, slides = [], current = 0, laser = false, touchStart = null, overviewBuilt = false;
   let toastTimer, enteringTimer, disposeInteraction=null, slideGeneration=0;
   const stage = $('stage'), content = $('slide-content');
+  installPresentation();
   function syncSlideVideo() {
     const video=content.querySelector('.slide-video');
     if(!video)return;
@@ -49,6 +51,7 @@ import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
     const previousVideo=content.querySelector('video');
     if(previousVideo){previousVideo.pause();previousVideo.removeAttribute('src');previousVideo.load();}
     content.innerHTML=slide.svg;
+    prepareSteps(content,current===0,current===slides.length-1);
     if(slide.video){
       const video=document.createElement('video');
       video.className='slide-video';video.muted=true;video.defaultMuted=true;
@@ -101,6 +104,7 @@ import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
     clearTimeout(enteringTimer);enteringTimer=setTimeout(()=>stage.classList.remove('entering'),450);
     $('current').textContent=current+1;$('total').textContent=slides.length;$('source-page').textContent='PDF '+slide.n;
     $('prev').disabled=current===0;$('next').disabled=current===slides.length-1;
+    if(content.querySelector('[aria-hidden="true"][style*="hidden"]'))$('next').disabled=false;
     $('progress-fill').style.width=((current+1)/slides.length*100)+'%';
     setBi($('chapter-label'),chapter.en,chapter.title);$('chapter-en').textContent=chapter.en;
     document.documentElement.style.setProperty('--accent',chapter.color);
@@ -114,10 +118,10 @@ import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
     if(next){const parser=new DOMParser().parseFromString(next.svg,'image/svg+xml');parser.querySelectorAll('image').forEach(node=>{const im=new Image();im.src=node.getAttribute('href');});}
   }
   function goPdf(n,{hash=true,notify=false}={}) {const i=slides.findIndex(s=>s.n===n);if(i<0){if(notify)toast('该原 PDF 页未纳入放映。');return false;}setSlide(i,{hash});return true;}
-  function next(){setSlide(current+1);}function prev(){setSlide(current-1);}
+  function next(){if(revealNext())return;if(current<slides.length-1)setSlide(current+1);}function prev(){if(hidePrevious())return;if(current>0)setSlide(current-1);}
   $('next').addEventListener('click',next);$('prev').addEventListener('click',prev);
   addEventListener('hashchange',()=>{const n=Number(location.hash.replace(/^#s/,''));if(!goPdf(n,{hash:false,notify:true}))setSlide(current);});
-  async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.body.requestFullscreen();}catch{toast('此浏览器暂不支持全屏，可横屏放映。');}}
+  async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await $('viewport').requestFullscreen();}catch{toast('此浏览器暂不支持全屏，可横屏放映。');}}
   $('fullscreen').addEventListener('click',fullscreen);
   function buildOverview(){if(overviewBuilt)return;overviewBuilt=true;for(const [index,s] of slides.entries()){const b=document.createElement('button');b.type='button';b.className='thumb';b.dataset.page=s.n;b.dataset.search=(s.n+' '+s.title+' '+s.text).toLowerCase();b.setAttribute('aria-label','原 PDF 第 '+s.n+' 页：'+s.title);const img=new Image();img.src=s.thumb;img.alt='';img.loading='lazy';img.width=320;img.height=180;const caption=document.createElement('span'),number=document.createElement('b');number.textContent=String(s.n).padStart(2,'0');caption.append(number);const words=document.createElement('span');words.className='thumb-title';setBi(words,s.titleEn,s.titleZh||s.title);caption.append(words);b.append(img,caption);b.addEventListener('click',()=>{setSlide(index);$('overview').close();});$('overview-grid').append(b);} }
   function showOverview(){buildOverview();openPanel('overview','overview-toggle');document.querySelectorAll('.thumb').forEach(b=>b.classList.toggle('active',+b.dataset.page===slides[current].n));}

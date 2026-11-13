@@ -760,3 +760,14 @@ release records). Final public checks are HTTP hashes rather than live-browser
 rendering. Release: /root/releases/slides-tokens-v12-20261113-102612/rollback.py.
 All nine public changed/added files matched SHA-256/MIME, all three entrance
 HTML routes matched; 333 previous inventory files protected. Inventory 342.
+
+
+## 2026-11-13 · Presentation controls v1
+
+Shared presentation.js groups native bullet glyphs and their following bilingual text lines into one click step; student bilingual list paragraphs and their adjacent numbered markers reveal together. Next reveals one item before advancing; previous reverses reveals before leaving the page. Lists reset when re-entered. Source SVG/artwork bytes stay unchanged. Raster-baked text remains part of its original image.
+
+Navigation buttons now live at the bottom right inside the stage. Fullscreen requests only the viewport, fits the 16:9 slide to the screen with black letterboxing where needed, and hides surrounding page chrome. Existing left/right/up/down, space and page-key navigation reuse the step controller; form and interactive-widget keyboard guards remain in place.
+
+Validation: JS syntax checks; local browser teacher P19 one bilingual bullet per click, Down reveals next; student P4 three items then Right advances to P5, P5 number and corresponding bilingual paragraph reveal together, Up hides the last revealed item. Teacher/student fullscreen accessibility trees contain only slide content and the two internal navigation buttons; screenshot at F:/codex_worktrees/projects/slides/ai-survival-202608/work/presentation-v1/fullscreen.png. No new particle or timeline work.
+
+Published six files with preflight hashes for all previous managed files; 337 existing files protected. Release /root/releases/slides-presentation-v1-20261113-105707 has backups and rollback.py. Public SHA/MIME verification passed for six files and all three entrance HTML routes. Browser checks were localhost, public checks were HTTP hashes. The edition generator now separates playerVersion from unchanged data and interaction versions.
