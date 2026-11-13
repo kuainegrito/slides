@@ -669,3 +669,34 @@ browser rendering. Release: /root/releases/slides-tokens-v8-20261113-094140/roll
 All 15 public assets and three entrance HTML routes matched local files;
 318 prior files protected; inventory 333 files. Explicit source/runtime paths
 are synchronized to Git master for the ongoing authorized release workflow.
+
+## 2026-11-13 — Revised wordplays and lower-right playback (20261113-tk9)
+
+Replaced the active mouse case with French glace (ice/mirror), and avocat with
+Spanish llama (Andean llama/flame). Animal label uses 大羊驼 for zoological
+precision. Added Chinese 东西: things/belongings vs east/west, with distinct
+pronunciations dōngxi and dōngxī. The object region now contains bags/keys/books;
+the added direction region contains east/west/compass/map/sunrise/sunset.
+Glace and llama use context-specific related words. Sources checked:
+https://dle.rae.es/llama and
+https://www.larousse.fr/dictionnaires/francais-anglais/glace/36976 .
+
+Moved the tour play/pause button to the right end of the lower control row.
+The freed first navigation slot holds 东西. Visual order is [7,0,1,2,3,4,5,6],
+while the internal tour still starts at bank and loops through eight cases.
+Progress bars now use the button's case ID instead of DOM order. Preserved
+12-second entry-only overview, 14-second cases, pause, camera follow, light
+flow, Urdu shaping and the thin-mist/particle balance. New Chinese/Latin font
+subsets cover the changed vocabulary. Static original artwork is unchanged.
+
+Validation: eight-case timing and deterministic particle tests (12 semantic
+regions, 6,840 cloud grains); local A/B camera transitions for glace, llama
+and 东西; right-aligned playback; first-slot 东西; 390px eight-case layout with
+no document horizontal overflow; teacher labels and no console errors. One
+browser call was interrupted after the main checks and recovered; evidence
+was persisted before and after the recovery. Screenshots and assertions are
+in work/tokens-v9/. All 13 updated/new public files passed SHA-256/MIME and all
+three entrance HTML routes matched local artifacts. Protected 323 prior files;
+inventory 336 files. Public verification was HTTP/hash, UI rendering local.
+Release: /root/releases/slides-tokens-v9-20261113-095654/rollback.py.
+Runtime/source changes are synchronized to the slides Git master workspace.

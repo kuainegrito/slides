@@ -102,7 +102,7 @@
       "bytes": 187
     },
     "ai/survival-202608/deck.js": {
-      "sha256": "656895e00f75b90163d9049fdb1abde64e5d1fb1541a5afe801a5a46852cd624",
+      "sha256": "13fbb0e2aba0cd07d7ae94f2ccdb745afb534bd0bbe5764a8ae05948717d58b3",
       "bytes": 18604
     },
     "ai/survival-202608/gradient-math.js": {
@@ -122,12 +122,12 @@
       "bytes": 16415
     },
     "ai/survival-202608/index.html": {
-      "sha256": "f2b7d8e00b04a991464da3f699100292838e1104e0df4bfa6309e9df50a4f1ec",
+      "sha256": "e92f5cf3add43ae8c49a14a803ee7ef29851bfa7d910ba9329bdff53e01672c5",
       "bytes": 5640
     },
     "ai/survival-202608/slides.json": {
-      "sha256": "5ec2f1a9b5e33f7c747b09bb2507c1f1f5925f4e9d161760cffec300f9fecd50",
-      "bytes": 305698
+      "sha256": "f68801d5af8af1d65e2ac6bc1559bc59b0aa919fc3145c00421f01e041590dc1",
+      "bytes": 304517
     },
     "ai/survival-202608/assets/001e1c14540be7dd.webp": {
       "sha256": "001e1c14540be7dd19a31b7d22c442efd1a3331de98885bae1042afd18c44d1d",
@@ -874,7 +874,7 @@
       "bytes": 2731
     },
     "ai/survival/player.js": {
-      "sha256": "ea14c56f971f0d4a68074cc526c1861fc61eaee275b876c2de9f41b1dc2b3dba",
+      "sha256": "9670d64052922a407407fdb32e31959cf9ef84df19e853d9eee30510e8806f11",
       "bytes": 20485
     },
     "ai/survival/student/assets/page-03.webp": {
@@ -1002,15 +1002,15 @@
       "bytes": 10892
     },
     "ai/survival/student/index.html": {
-      "sha256": "586c5a17a323297aba59a16d0d4cee25bf71bd9de59fb309514def2444c6a04d",
+      "sha256": "dd86bc0df274c2765af1fdcb4068e075d4d5736b2a2663aff3d247715f7e9ab2",
       "bytes": 6532
     },
     "ai/survival/student/slides.json": {
-      "sha256": "15013c72e7a66a5848d430d4e75df9064c8f82ce208192091b4661e6b9b43aae",
-      "bytes": 254953
+      "sha256": "8c96ce9a0bfe268db923f31d5f3cfa58d08457246d3f88bc571fa6b80211106f",
+      "bytes": 253689
     },
     "ai/survival/teacher/index.html": {
-      "sha256": "f114025dbd4e3bff25849d1552419f9eacb0b712047505ad1e3f45ea73736237",
+      "sha256": "6d915eb77c51c510b153be5fd77510f2b214de45581babd5b474c6fb72e8ed37",
       "bytes": 6016
     },
     "ai/survival-202608/neural.js": {
@@ -1350,16 +1350,16 @@
       "bytes": 14716
     },
     "ai/survival-202608/tokens-math.js": {
-      "sha256": "4b9b527814b3f96f0e783c01d912390ce15cbf67ba63ee6cd4b886f5abdf9b03",
-      "bytes": 9329
+      "sha256": "f6476ba438f1fc72af8d64f22904ebe02667d14bf4377f4fbda565817709c4ee",
+      "bytes": 10161
     },
     "ai/survival-202608/tokens.css": {
-      "sha256": "e3245b0e69a0c567bd8006cabfb149893cd0cdbcb771378006e11969bac2d5fa",
-      "bytes": 4606
+      "sha256": "ae99b51a198bee697330473d4a7b45b5d01c806f930477e9d0a437a99a4753ff",
+      "bytes": 4797
     },
     "ai/survival-202608/tokens.js": {
-      "sha256": "aad02dc25d266608b4378c51b340ef3c8a7bf7e402fe1d02e57a721faee78149",
-      "bytes": 21691
+      "sha256": "a582c42b12c4ee7e674a4b5b73a38a3e7d134ca554b7df3562da96ab2eccd065",
+      "bytes": 22285
     },
     "ai/survival-202608/assets/tokens-kai-v2.woff2": {
       "sha256": "c45d953d0cf7e86e295c99a472754441858e61a7c84710c439943929658716ad",
@@ -1424,13 +1424,25 @@
     "ai/survival-202608/assets/tokens-urdu-v8.woff2": {
       "sha256": "0847e2d1d12acc0c7ddb1d7065f4c80673ff63336d6288a22925ad06f4b33b72",
       "bytes": 11008
+    },
+    "ai/survival-202608/assets/tokens-kai-v9.woff2": {
+      "sha256": "997319c594fe2760dcc851884815dba6095890f2b07c6193ef05a02a1214fe78",
+      "bytes": 65572
+    },
+    "ai/survival-202608/assets/tokens-preview-v9.webp": {
+      "sha256": "a508e012538a17329bbc625368e6f9e3e6359c767ae11ca02f5145f65b1c1021",
+      "bytes": 21816
+    },
+    "ai/survival-202608/assets/tokens-sans-v9.woff2": {
+      "sha256": "ac73e28815f47f66bc91cc932c7cac8ae477483a5b1495097fb6b240b8f829e2",
+      "bytes": 10568
     }
   },
   "editions": [
     "teacher",
     "student"
   ],
-  "release": "/root/releases/slides-tokens-v8-20261113-094140",
+  "release": "/root/releases/slides-tokens-v9-20261113-095654",
   "neural_page": 12,
   "bilingual_style": "English charcoal first; Chinese KaiTi purple second",
   "interactive_pages": [
@@ -1439,5 +1451,5 @@
     15,
     21
   ],
-  "tokens_version": "20261113-tk8"
+  "tokens_version": "20261113-tk9"
 }
