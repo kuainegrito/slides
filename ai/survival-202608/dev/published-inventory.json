@@ -102,8 +102,8 @@
       "bytes": 187
     },
     "ai/survival-202608/deck.js": {
-      "sha256": "13fbb0e2aba0cd07d7ae94f2ccdb745afb534bd0bbe5764a8ae05948717d58b3",
-      "bytes": 18604
+      "sha256": "60ae8f80599495a147ef3b894afd5ca800e6982f339d9aaa405ce05b697beb49",
+      "bytes": 18606
     },
     "ai/survival-202608/gradient-math.js": {
       "sha256": "c2d698f7c8d782bd3c662139b404a17c1bbeeac42e24d54c6b95c650ae6aff6c",
@@ -122,12 +122,12 @@
       "bytes": 16415
     },
     "ai/survival-202608/index.html": {
-      "sha256": "e92f5cf3add43ae8c49a14a803ee7ef29851bfa7d910ba9329bdff53e01672c5",
-      "bytes": 5640
+      "sha256": "7ec56c5bd8257a634c2ecec2c07bd6041c490934232d1f9eedfff88d4e81261a",
+      "bytes": 5642
     },
     "ai/survival-202608/slides.json": {
-      "sha256": "f68801d5af8af1d65e2ac6bc1559bc59b0aa919fc3145c00421f01e041590dc1",
-      "bytes": 304517
+      "sha256": "eff7730c5e791dd9e6fe0ccba83d91de5c4258367bb5f982b688525ba45e4155",
+      "bytes": 304768
     },
     "ai/survival-202608/assets/001e1c14540be7dd.webp": {
       "sha256": "001e1c14540be7dd19a31b7d22c442efd1a3331de98885bae1042afd18c44d1d",
@@ -874,8 +874,8 @@
       "bytes": 2731
     },
     "ai/survival/player.js": {
-      "sha256": "9670d64052922a407407fdb32e31959cf9ef84df19e853d9eee30510e8806f11",
-      "bytes": 20485
+      "sha256": "dec7b98326f4628afd3232ff6b4268ccb9413d2ddfa9aeac81adbe52234f2d59",
+      "bytes": 20486
     },
     "ai/survival/student/assets/page-03.webp": {
       "sha256": "ac5bb341e6abe70f6ab3f518ec7f6c4117afb2589cf60809e2f92607e7f7d674",
@@ -1002,16 +1002,16 @@
       "bytes": 10892
     },
     "ai/survival/student/index.html": {
-      "sha256": "dd86bc0df274c2765af1fdcb4068e075d4d5736b2a2663aff3d247715f7e9ab2",
-      "bytes": 6532
+      "sha256": "553f92346d645f65407eb0d7d31488ee5e8bfafe95d54e9f332140262c030a9a",
+      "bytes": 6536
     },
     "ai/survival/student/slides.json": {
-      "sha256": "8c96ce9a0bfe268db923f31d5f3cfa58d08457246d3f88bc571fa6b80211106f",
-      "bytes": 253689
+      "sha256": "1b21b6e8509faab4feadf04edc07c466259e45ae4711339c7315516e1b324bea",
+      "bytes": 253940
     },
     "ai/survival/teacher/index.html": {
-      "sha256": "6d915eb77c51c510b153be5fd77510f2b214de45581babd5b474c6fb72e8ed37",
-      "bytes": 6016
+      "sha256": "9bb7fa4c5992d5a2aef6ea847c3689a3353ce0d3fec5af7210e7919a2490a5a7",
+      "bytes": 6020
     },
     "ai/survival-202608/neural.js": {
       "sha256": "9c228fbc3bb2ac683b77aca009dc3c8e0b69ef175f3ce58055ff1e5bad5b18c2",
@@ -1354,12 +1354,12 @@
       "bytes": 10161
     },
     "ai/survival-202608/tokens.css": {
-      "sha256": "ae99b51a198bee697330473d4a7b45b5d01c806f930477e9d0a437a99a4753ff",
-      "bytes": 4797
+      "sha256": "3f24012a60c262de78a2616a3d72f33c504acf2f779c357c0797eef1bc410068",
+      "bytes": 5348
     },
     "ai/survival-202608/tokens.js": {
-      "sha256": "a582c42b12c4ee7e674a4b5b73a38a3e7d134ca554b7df3562da96ab2eccd065",
-      "bytes": 22285
+      "sha256": "353d7b652dc4eee72ba83badd4a026b65b8e93543f3eb3ef5cd8bb1ba47fea69",
+      "bytes": 27602
     },
     "ai/survival-202608/assets/tokens-kai-v2.woff2": {
       "sha256": "c45d953d0cf7e86e295c99a472754441858e61a7c84710c439943929658716ad",
@@ -1436,13 +1436,37 @@
     "ai/survival-202608/assets/tokens-sans-v9.woff2": {
       "sha256": "ac73e28815f47f66bc91cc932c7cac8ae477483a5b1495097fb6b240b8f829e2",
       "bytes": 10568
+    },
+    "ai/survival-202608/assets/tokens-kai-v10.woff2": {
+      "sha256": "51acad851451b5c68ed27be4f0247d11c40feb7d2b9f97fe7992308b9e59ca6a",
+      "bytes": 66976
+    },
+    "ai/survival-202608/assets/tokens-preview-v10.webp": {
+      "sha256": "00e1a14d2697c4aea74eda8becee4295083ddb017e5b590a24bd532d58410efa",
+      "bytes": 23834
+    },
+    "ai/survival-202608/assets/tokens-sans-v10.woff2": {
+      "sha256": "c609bbb680e6f601e993afc366cff00ef7fa59586b5047e42954dd9beb1b32d5",
+      "bytes": 10552
+    },
+    "ai/survival-202608/tokens-languages.js": {
+      "sha256": "b51d4702a5ca6c05a3d3b7cb2ff108990241068f7ad630882783497715fc5c2e",
+      "bytes": 1322
+    },
+    "ai/survival-202608/assets/tokens-preview-v11.webp": {
+      "sha256": "87b9692837a029f94b22215abca1674f9067ea52e66c4dce89427dfc5af931bd",
+      "bytes": 16788
+    },
+    "ai/survival-202608/assets/tokens-preview-v12.webp": {
+      "sha256": "383c0803ec02d85b8632cdd09758a281961729ec7bf4da4312642bc4ae6c1d69",
+      "bytes": 28920
     }
   },
   "editions": [
     "teacher",
     "student"
   ],
-  "release": "/root/releases/slides-tokens-v9-20261113-095654",
+  "release": "/root/releases/slides-tokens-v12-20261113-102612",
   "neural_page": 12,
   "bilingual_style": "English charcoal first; Chinese KaiTi purple second",
   "interactive_pages": [
@@ -1451,5 +1475,5 @@
     15,
     21
   ],
-  "tokens_version": "20261113-tk9"
+  "tokens_version": "20261113-tk12"
 }

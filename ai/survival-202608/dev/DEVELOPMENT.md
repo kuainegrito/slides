@@ -700,3 +700,63 @@ three entrance HTML routes matched local artifacts. Protected 323 prior files;
 inventory 336 files. Public verification was HTTP/hash, UI rendering local.
 Release: /root/releases/slides-tokens-v9-20261113-095654/rollback.py.
 Runtime/source changes are synchronized to the slides Git master workspace.
+
+## 2026-11-13 — Language annotations and inline title (20261113-tk10 / tk11)
+
+Added case suffixes in visual order (中Zh),(英En),(英En),(中Zh),(法Fr),(英En),
+(西Es),(乌Ur). Added 36 semantically placed decorative foreign neighbors from
+Portuguese, German, Italian, French and Spanish; selection varies per mount
+but stays seeded and stable within a case. Existing foreign labels, including
+Urdu, now use word (中文语言一字+两字母代码). Chinese tag glyphs are KaiTi/purple;
+Latin words and codes remain Sans Serif Collection/charcoal. Correct Portuguese
+apple spelling is maçã; source checked at https://dicionario.priberam.org/ma%C3%A7%C3%A3 .
+
+Title is now one line: A Galaxy of Tokens | 词元的语义星云. Responsive header
+moves Original below the title on narrow screens. Play/space starts tour and
+orbit together; pause stops both, and source/arrival camera holds remain.
+Validated desktop/mobile, tag order, randomized-pool reproducibility, glyph
+coverage, teacher/student shared loading, play/pause coupling and no errors.
+Public tk10 release: /root/releases/slides-tokens-v10-20261113-101025/rollback.py;
+tk11: /root/releases/slides-tokens-v11-20261113-101348/rollback.py. Both passed
+scoped public SHA-256/MIME and all three HTML entry checks. Local screenshots
+and browser evidence remain in work/tokens-v10/ and work/tokens-v11/.
+
+## 2026-11-13 — Smoothness-first hybrid rendering (20261113-tk12)
+
+Measured the SVG-heavy baseline before replacing its hot paths. Dense grain
+animation updated more than 7,000 SVG circles each frame. The new renderer
+keeps primary words, Urdu joining, links, endpoint emphasis and controls in
+SVG, and renders decorative particles in a single Canvas2D foreignObject.
+It batches grain paths by color/opacity and culls offscreen particles. Fog is
+pre-rendered into reusable transparent textures beneath the grains. Secondary
+Latin/Chinese labels are cached at 2x resolution from their original styled
+tspan runs and composited as sprites; major and Urdu text remain native SVG.
+Font readiness invalidates those caches. This preserves multilingual colors
+and sharp primary text while avoiding most per-frame SVG text repainting.
+
+Camera trig/projection bases and projected region centers are cached per
+frame. Word DOM order changes only when depth order changes. Inactive blurred
+paths/spark effects are omitted, the old 30fps cap is removed, and sustained
+frame pressure automatically reduces uniformly sampled particle density.
+Narrow viewports start with lower decorative density and capped raster DPR.
+Timeline uses elapsed time independently of rendering quality. Original
+vectors, 12-second opening, 3/6/5-second narrative, camera hold and controls
+remain intact. Do not rerun old one-off renderer patch scripts over this final
+module; tokens.js is the authoritative implementation, and build_editions.py
+emits the shared wrappers with the current cache key.
+
+In the same local IAB preview session, baseline average draw work was 69.00ms,
+frame interval 142.95ms, with 8,295 subtree elements. Warm final playback:
+10.99ms draw work, 17.36ms interval, 950 elements, automatic stride 2. Narrow
+preview: 6.19ms draw work and 17.01ms interval. These are environment-specific
+observations, not a universal hardware guarantee or physical-phone test.
+The quality policy prioritizes steady motion on slower devices.
+
+Validated syntax, unchanged timeline/language unit tests, actual context
+camera movement, hybrid visual appearance, both editions, mobile no horizontal
+overflow, adaptive density, linked play/pause and no console errors. Evidence:
+work/tokens-v12/ (baseline/intermediate/final metrics, screenshots, browser and
+release records). Final public checks are HTTP hashes rather than live-browser
+rendering. Release: /root/releases/slides-tokens-v12-20261113-102612/rollback.py.
+All nine public changed/added files matched SHA-256/MIME, all three entrance
+HTML routes matched; 333 previous inventory files protected. Inventory 342.

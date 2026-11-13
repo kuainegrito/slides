@@ -5,8 +5,8 @@ ROOT=Path(__file__).resolve().parent
 SOURCE=ROOT/'site/ai/survival-202608';HUB=ROOT/'site/ai/survival'
 HUB.mkdir(parents=True,exist_ok=True)
 shared='/slides/ai/survival-202608/'
-version='20261113-tk9'
-sourceVersion='20261113-tk9'
+version='20261113-tk12'
+sourceVersion='20261113-tk12'
 
 player=(SOURCE/'deck.js').read_text(encoding='utf8')
 player=player.replace("const $ = id => document.getElementById(id);", """const $ = id => document.getElementById(id);
@@ -27,7 +27,7 @@ player=player.replace("const $ = id => document.getElementById(id);", """const $
 player=player.replace("'ai-survival-motion'","storageKey('motion')").replace("'ai-survival-last-page'","storageKey('last-page')")
 player=player.replace("import('./gradient.js?v=20261112-bi4')","import('/slides/ai/survival-202608/gradient.js?v=20261112-bi4')")
 player=player.replace("import('./descent.js?v=20261113-gd5')","import('/slides/ai/survival-202608/descent.js?v=20261113-gd5')")
-player=player.replace("import('./tokens.js?v=20261113-tk9')","import('/slides/ai/survival-202608/tokens.js?v=20261113-tk9')")
+player=player.replace("import('./tokens.js?v=20261113-tk12')","import('/slides/ai/survival-202608/tokens.js?v=20261113-tk12')")
 player=player.replace("fetch('slides.json?v="+sourceVersion+"')","fetch(sourceURL)")
 player=player.replace("import('./neural.js?v=20261112-bi4')","import('/slides/ai/survival-202608/neural.js?v=20261112-bi4')")
 player=player.replace("from './bilingual.js?v=20261112-bi4'","from '/slides/ai/survival-202608/bilingual.js?v=20261112-bi4'")
@@ -53,7 +53,7 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
     doc=doc.replace(f'<script type="module" src="deck.js?v={sourceVersion}"></script>',f'<link rel="stylesheet" href="../editions.css?v={version}">\n  <script type="module" src="../player.js?v={version}"></script>')
     doc=doc.replace('href="neural.css?v=20261111-nn1"',f'href="{shared}neural.css?v=20261111-nn1"')
     doc=doc.replace('href="bilingual.css?v=20261112-bi4"',f'href="{shared}bilingual.css?v=20261112-bi4"')
-    doc=doc.replace('href="descent.css?v=20261113-gd5"',f'href="{shared}descent.css?v=20261113-gd5"').replace('href="tokens.css?v=20261113-tk9"',f'href="{shared}tokens.css?v=20261113-tk9"')
+    doc=doc.replace('href="descent.css?v=20261113-gd5"',f'href="{shared}descent.css?v=20261113-gd5"').replace('href="tokens.css?v=20261113-tk12"',f'href="{shared}tokens.css?v=20261113-tk12"')
     doc=doc.replace('<title>How to survive in the era of AI · 于快</title>',f'<title>如何在 AI 浪潮中存活 · {caption} · 于快</title>')
     doc=doc.replace('href="/slides/" title="返回课件中心"','href="../" title="选择教师版或学生版"').replace('<span>课件中心</span>','<span>版本选择</span>')
     doc=doc.replace('<small>Kuai Yu · 于快</small>',f'<small>Kuai Yu · 于快 <b class="edition-badge">{caption}</b></small>')
