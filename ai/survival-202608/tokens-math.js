@@ -57,8 +57,11 @@ export const NEIGHBORS=[
  [['east','东'],['west','西'],['compass','指南针'],['map','地图'],['sunrise','日出'],['sunset','日落']]
 
 ];
-export const SOURCE_HOLD_MS=3000,TRAVEL_MS=6000,DESTINATION_HOLD_MS=5000;
+export const INTRO_MS=14000;
+// Match the visible example order; the overview runs only once per slide entry.
+export const TOUR_ORDER=[7,0,1,2,3,4,5,6];
+export const SOURCE_HOLD_MS=2000,TRAVEL_MS=4000,DESTINATION_HOLD_MS=2000;
 export const TOUR_MS=SOURCE_HOLD_MS+TRAVEL_MS+DESTINATION_HOLD_MS;
 export const smoother=t=>{const x=Math.max(0,Math.min(1,t));return x*x*x*(x*(x*6-15)+10);};
-export function tourState(elapsed){const time=Math.max(0,elapsed),local=time%TOUR_MS,t=(local-SOURCE_HOLD_MS)/TRAVEL_MS;return {route:Math.floor(time/TOUR_MS)%CASES.length,local,progress:smoother(t),phase:t<=0?'source':t>=1?'arrival':'travel'};}
+export function tourState(elapsed){const time=Math.max(0,elapsed),local=time%TOUR_MS,t=(local-SOURCE_HOLD_MS)/TRAVEL_MS;return {route:TOUR_ORDER[Math.floor(time/TOUR_MS)%TOUR_ORDER.length],local,progress:smoother(t),phase:t<=0?'source':t>=1?'arrival':'travel'};}
 export function contextVector(route,progress){const c=CASES[route],a=NODES[c.a].vector,b=NODES[c.b].vector,t=Math.max(0,Math.min(1,progress));return a.map((v,i)=>v+(b[i]-v)*t);}

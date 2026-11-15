@@ -81,7 +81,7 @@ import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
     if(slide.interactive==='tokens'){
-      import('./tokens.js?v=20261113-tk12').then(module=>{
+      import('./tokens.js?v=20261115-zoom1').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountTokens(content,slide.svg);
       }).catch(error=>{console.error(error);toast('星云加载失败，已保留原图。');});
