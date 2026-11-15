@@ -20,3 +20,7 @@ The 672 contextual neighbors are 144 English, 240 Chinese, 96 Spanish, 96 Portug
 Desktop 1440px and phone-width 390px tests cover actual intro/slot timing, neutral/selected emphasis, source/travel/arrival zoom, script coverage, explore persistence and zoom, far/rapid switches, pause/resume, reduced motion, global pause, navigation reentry, original-image fallback, and overflow. Screenshots and JSON evidence stay outside the repository under the F-drive runs workspace.
 
 Only the P21 modules, font assets, tests/docs and required shared import/cache lines belong to this change. Cover, other slide animations, general typography, Stats and cardiovascular work are intentionally excluded.
+
+### Follow-up: Urdu separator
+
+Removed the inline slash specifically from the Urdu tab while retaining RTL shaping and the 昨天／明天 label. Autoplay focus remains the original 1.9x; timing and wide travel are unchanged.

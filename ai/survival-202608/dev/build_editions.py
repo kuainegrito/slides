@@ -7,7 +7,7 @@ HUB.mkdir(parents=True,exist_ok=True)
 shared='/slides/ai/survival-202608/'
 version='20261113-tk12'
 sourceVersion='20261113-tk12'
-playerVersion='20261115-zoom1'
+playerVersion='20261115-urdu2'
 
 player=(SOURCE/'deck.js').read_text(encoding='utf8')
 player=player.replace("const $ = id => document.getElementById(id);", """const $ = id => document.getElementById(id);
@@ -28,7 +28,7 @@ player=player.replace("const $ = id => document.getElementById(id);", """const $
 player=player.replace("'ai-survival-motion'","storageKey('motion')").replace("'ai-survival-last-page'","storageKey('last-page')")
 player=player.replace("import('./gradient.js?v=20261112-bi4')","import('/slides/ai/survival-202608/gradient.js?v=20261112-bi4')")
 player=player.replace("import('./descent.js?v=20261113-gd5')","import('/slides/ai/survival-202608/descent.js?v=20261113-gd5')")
-player=player.replace("import('./tokens.js?v=20261115-zoom1')","import('/slides/ai/survival-202608/tokens.js?v=20261115-zoom1')")
+player=player.replace("import('./tokens.js?v=20261115-urdu2')","import('/slides/ai/survival-202608/tokens.js?v=20261115-urdu2')")
 player=player.replace("fetch('slides.json?v="+sourceVersion+"')","fetch(sourceURL)")
 player=player.replace("import('./neural.js?v=20261112-bi4')","import('/slides/ai/survival-202608/neural.js?v=20261112-bi4')")
 player=player.replace("from './bilingual.js?v=20261112-bi4'","from '/slides/ai/survival-202608/bilingual.js?v=20261112-bi4'")

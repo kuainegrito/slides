@@ -95,7 +95,7 @@ import {bi,setBi,escapeText} from '/slides/ai/survival-202608/bilingual.js?v=202
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
     if(slide.interactive==='tokens'){
-      import('/slides/ai/survival-202608/tokens.js?v=20261115-zoom1').then(module=>{
+      import('/slides/ai/survival-202608/tokens.js?v=20261115-urdu2').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountTokens(content,slide.svg);
       }).catch(error=>{console.error(error);toast('星云加载失败，已保留原图。');});
