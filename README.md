@@ -46,3 +46,13 @@
 - [SVG 语义空间 skill](docs/skills/svg-semantic-space/SKILL.md)：空间投影、光流、镜头叙事、字体、响应式与验收方法。
 
 本次 Git 归档保存已发布文件；不会再次部署或覆盖服务器。公开版本的身份与验证记录见 dev/published-inventory.json 和 dev/DEVELOPMENT.md。
+
+
+## 2026-11-15：公开课入口路径迁移
+
+公开入口改为 `/slides/open_class/`，AI 课件改为
+`/slides/open_class/ai_survival/`，共享互动资源改为
+`/slides/open_class/ai_survival-202608/`。教师 / 学生及资源深链保持兼容，
+物理源码目录和稳定内容 ID 不变。只提交本次 URL 替换，不带入原有
+未提交课件开发；部署对当前线上字节作路径补丁并备份。
+详见 [路径与发布说明](docs/URL_ROUTES.md)。部署状态：待公网验收。

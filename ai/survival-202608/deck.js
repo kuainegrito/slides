@@ -1,4 +1,4 @@
-import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/ai/survival-202608/presentation.js?v=20261113-p1';
+import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261113-p1';
 import {bi,setBi,escapeText} from './bilingual.js?v=20261112-bi4';
 /* Original source artwork + native text, with a dependency-free slide player. */
 (() => {

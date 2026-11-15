@@ -1,5 +1,5 @@
-import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/ai/survival-202608/presentation.js?v=20261113-p1';
-import {bi,setBi,escapeText} from '/slides/ai/survival-202608/bilingual.js?v=20261112-bi4';
+import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261113-p1';
+import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingual.js?v=20261112-bi4';
 /* Original source artwork + native text, with a dependency-free slide player. */
 (() => {
   'use strict';
@@ -89,25 +89,25 @@ import {bi,setBi,escapeText} from '/slides/ai/survival-202608/bilingual.js?v=202
       holder.append(video,play);content.append(holder);
     }
     if(slide.interactive==='descent'){
-      import('/slides/ai/survival-202608/descent.js?v=20261113-gd5').then(module=>{
+      import('/slides/open_class/ai_survival-202608/descent.js?v=20261113-gd5').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountDescent(content,slide.svg);
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
     if(slide.interactive==='tokens'){
-      import('/slides/ai/survival-202608/tokens.js?v=20261115-urdu2').then(module=>{
+      import('/slides/open_class/ai_survival-202608/tokens.js?v=20261115-urdu2').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountTokens(content,slide.svg);
       }).catch(error=>{console.error(error);toast('星云加载失败，已保留原图。');});
     }
     if(slide.interactive==='neural'){
-      import('/slides/ai/survival-202608/neural.js?v=20261112-bi4').then(module=>{
+      import('/slides/open_class/ai_survival-202608/neural.js?v=20261112-bi4').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountNeural(content,slide.svg);
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
     if(slide.interactive==='gradient'){
-      import('/slides/ai/survival-202608/gradient.js?v=20261112-bi4').then(module=>{
+      import('/slides/open_class/ai_survival-202608/gradient.js?v=20261112-bi4').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountGradient(content,slide.svg);
       }).catch(error=>{console.error(error);toast('互动加载失败，已保留原图。');});
