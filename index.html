@@ -130,7 +130,7 @@
   }
   fetch('manifest.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (m) { render(m.decks || []); })
+    .then(function (m) { render(m.categories || m.decks || []); })
     .catch(function () {
       document.getElementById('decks').innerHTML =
         '<div class="empty">清单读取失败——请通过 https://www.kuaiyu.site/slides/ 访问</div>';

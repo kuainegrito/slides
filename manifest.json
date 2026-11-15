@@ -1,6 +1,6 @@
 {
   "_readme": "课件中心清单（kuaiyu.site/slides/ 门户的数据源）。新增课件流程：①把课件目录放进本仓库（建议结构 <学科>/<章节>/，内含 index.html 封面 + deck.html 放映页）；②在 decks 数组追加一条记录；③门户自动渲染，无需改 HTML。status 取值：live=已上线 / building=建设中（可点） / planned=筹备中（不可点）。",
-  "updated_at": "2026-11-11",
+  "updated_at": "2026-11-15",
   "decks": [
     {
       "id": "physio/cardiovascular",
@@ -43,6 +43,66 @@
         "教师与学生双入口",
         "原声视频与高维交互",
         "学生学习任务与作品实践"
+      ]
+    },
+    {
+      "id": "other/teaching-innovation",
+      "href": "./其他课件/教学创新大赛讲座总结/",
+      "title": "教学创新大赛专家讲座总结",
+      "subject": "真实课堂问题 · 教学创新 · 备赛表达",
+      "color": "#8a6740",
+      "structure": "10 组图文 · 10 段原声 · 备赛流程图",
+      "status": "live",
+      "statusText": "密码阅读",
+      "updated": "2026-11-15",
+      "highlights": [
+        "完整内容主线",
+        "幻灯片与原声片段",
+        "邮件索取访问密码"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "physio",
+      "href": "./生理学课件/",
+      "title": "生理学课件",
+      "subject": "《生理学》第10版 · 人卫社",
+      "structure": "第四章已上线 · 第二章筹备中",
+      "color": "#c2546a",
+      "status": "live",
+      "statusText": "进入分类",
+      "highlights": [
+        "192 页血液循环",
+        "9 处互动模拟器"
+      ]
+    },
+    {
+      "id": "ai",
+      "href": "./open_class/",
+      "title": "公开课",
+      "subject": "开放学习的主题课程与交互内容",
+      "structure": "教师版 / 学生版 · 各 62 页",
+      "color": "#4d87ab",
+      "status": "live",
+      "statusText": "进入分类",
+      "highlights": [
+        "AI 生存公开课",
+        "原声视频与高维交互"
+      ]
+    },
+    {
+      "id": "other",
+      "href": "./其他课件/",
+      "title": "其他课件",
+      "subject": "跨主题专家讲座与教研资料",
+      "structure": "完整图文总结 · 原声片段 · 备赛流程图",
+      "color": "#8a6740",
+      "status": "live",
+      "statusText": "进入分类",
+      "highlights": [
+        "教学创新大赛专家讲座",
+        "指定内容密码阅读"
       ]
     }
   ]

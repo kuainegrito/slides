@@ -1,0 +1,21 @@
+[Unit]
+Description=Single-password access for protected slides courseware
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/slides-course-auth
+EnvironmentFile=/etc/kuaiyu-site/slides-course-auth.env
+ExecStart=/usr/bin/python3 /opt/slides-course-auth/server.py
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+SyslogIdentifier=slides-course-auth
+
+[Install]
+WantedBy=multi-user.target
