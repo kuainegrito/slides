@@ -17,4 +17,7 @@ Nginx 配置由 `kuainegrito/my_website` 仓库的
 本次发布对线上现有文件仅替换 URL，不覆盖当前课件内容或并发修改；
 入口分类新建 `ai/index.html`。Portal 两处“课件中心”入口均进入 `/slides/`。
 发布证据与回滚清单位于
-`F:/codex_worktrees/projects/cycling/runs/portal-slides-20261115/`。
+`F:/codex_worktrees/projects/cycling/evidence/portal-courseware-20261115/`。
+
+已上线：教师 / 学生旧深链保留 query 与 `#s21`，规范入口与资源通过 HTTP 哈希
+及 Chrome 验证。回滚备份 `/root/releases/portal-courseware-20261115-070527/`。
