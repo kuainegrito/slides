@@ -62,6 +62,11 @@ player=player.replace('Page (1–63)','Slide ID (1–68)').replace('页码（1�
 player=player.replace('for(const slide of data.slides){','for(const slide of [...data.slides,...(data.backupSlides||[])]){')
 player=player.replace('if(i<0){if(notify)',"if(i<0){if(deck.backupSlides?.some(s=>s.n===n)){const u=new URL(location.href);u.searchParams.set('backups','1');u.hash='s'+n;location.assign(u.href);return true;}if(notify)")
 player=player.replace("deck=data;slides=data.slides;","deck=data;slides=data.slides;const backupLink=document.createElement('a');const backupURL=new URL(location.href);const inBackups=new URLSearchParams(location.search).get('backups')==='1';if(inBackups)backupURL.searchParams.delete('backups');else backupURL.searchParams.set('backups','1');backupURL.hash=inBackups?'s1':'s3';backupLink.href=backupURL.href;backupLink.className='opening-backups';backupLink.textContent=inBackups?'Return to presentation / 返回正式放映':'Opening backups (original pages 3–4) / 开场备份（原第 3–4 页）';document.querySelector('#overview .panel-head').after(backupLink);")
+player="import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';\n"+player
+player=player.replace("    if(slide.interactive==='descent'){","    if(slide.n===18)disposeInteraction=mountMeaning(content,slide.svg);\n    if(slide.interactive==='descent'){")
+player=player.replace('.context-lab,.survey-lab','.context-lab,.survey-lab,.meaning-lab')
+shutil.copy2(ROOT.parents[2]/'ai/survival/meaning-flow.js',HUB/'meaning-flow.js')
+shutil.copy2(ROOT.parents[2]/'ai/survival/meaning-art.js',HUB/'meaning-art.js')
 (HUB/'player.js').write_text(player,encoding='utf8')
 template=(SOURCE/'index.html').read_text(encoding='utf8')
 for edition,caption in [('teacher','教师版'),('student','学生版')]:
@@ -84,7 +89,7 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
-    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261117-spending1')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261117-particles2')
     doc=doc.replace('id="total">62','id="total">65')
     doc=doc.replace('max="64"','max="68"').replace('页码（1–63）','页码（1–68）')
     doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261117-spending1')

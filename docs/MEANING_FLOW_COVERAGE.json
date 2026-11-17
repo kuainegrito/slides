@@ -1,0 +1,62 @@
+{
+  "build": "20261117-particles2",
+  "contentId": 18,
+  "displayPage": 20,
+  "events": [
+    {
+      "control": "autoplay-phase",
+      "status": "deployed-verified",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    },
+    {
+      "control": "pause-resume",
+      "status": "deployed-verified",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    },
+    {
+      "control": "replay",
+      "status": "deployed-verified",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    },
+    {
+      "control": "phase-select",
+      "status": "deployed-verified",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    },
+    {
+      "control": "original-view",
+      "status": "deployed-verified",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    },
+    {
+      "control": "global-motion",
+      "status": "deployed-verified",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    },
+    {
+      "control": "visibility",
+      "status": "implemented-local",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    },
+    {
+      "control": "unmount",
+      "status": "deployed-verified",
+      "collection": "local DOM state only; no learner identity or answer collection"
+    }
+  ],
+  "model": "Authored teaching illustration; not model activations or evidence of consciousness.",
+  "release": "/root/releases/slides-meaning-particles-20261117-120033",
+  "visuals": {
+    "flowParticles": 180,
+    "coreNodes": 70,
+    "semanticEffects": [
+      "scene links",
+      "waveform",
+      "expression morph",
+      "target beam",
+      "meaning branches",
+      "idea burst"
+    ],
+    "timeline": "24-second reveal; continuous final effects; manual all-view pauses"
+  }
+}

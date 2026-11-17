@@ -771,3 +771,21 @@ Navigation buttons now live at the bottom right inside the stage. Fullscreen req
 Validation: JS syntax checks; local browser teacher P19 one bilingual bullet per click, Down reveals next; student P4 three items then Right advances to P5, P5 number and corresponding bilingual paragraph reveal together, Up hides the last revealed item. Teacher/student fullscreen accessibility trees contain only slide content and the two internal navigation buttons; screenshot at F:/codex_worktrees/projects/slides/ai-survival-202608/work/presentation-v1/fullscreen.png. No new particle or timeline work.
 
 Published six files with preflight hashes for all previous managed files; 337 existing files protected. Release /root/releases/slides-presentation-v1-20261113-105707 has backups and rollback.py. Public SHA/MIME verification passed for six files and all three entrance HTML routes. Browser checks were localhost, public checks were HTTP hashes. The edition generator now separates playerVersion from unchanged data and interaction versions.
+
+## 2026-11-17：P20 从知识到含义动态叙事
+
+当前放映 P20（稳定内容 ID `#s18`）升级为两版共享的 SVG 动画：12 个学科依次汇聚，模型关联逐步点亮，再展开上下文、语气、情感线索、意图、细微含义与跨学科灵感。24 秒播放后停留全景，支持暂停/继续、重播、阶段选择、原图切换；遵守全局动效开关、后台冻结和减少动态效果偏好，切页卸载并重入复位。原始图文不删除，正常生成器保留挂载。中文楷体与英文无衬线字体沿用课件风格；手机独立控制区避免遮图。动画为编排的教学示意，非真实模型激活或情感体验证据。
+
+本地与公网两版浏览器测试通过：正确页码、自动播放、暂停、四阶段、六输出、原图、重播、全局动效、窄屏、卸载/重入与 reduced motion。公网学生版完整 24 秒播放验证通过；本机 Chrome 采样 1460 帧，帧间隔 p95 16.8 ms，最大 145.5 ms（包含页面早期加载，不能视为零卡顿或其他设备保证）。截图已检查，未进行实体手机/微信测试。无新增用户事件上传；阶段及时间状态保留在 DOM 用于本地验收，采集边界见 `docs/MEANING_FLOW_COVERAGE.json`。
+
+已窄范围部署 4 文件，公网 SHA256 全部一致，521 个其他课件文件不变。发布与备份：/root/releases/slides-meaning-20261117-105354，`rollback.py` 已验证语法，未执行回滚。证据唯一保留于 `F:/codex_worktrees/projects/slides/evidence/meaning-20261117/`。本次未提交或推送 Git。
+
+## 2026-11-17：P20 SVG 图形与粒子特效重制
+
+根据用户反馈，去掉以单字符代表学科的做法，改为原生 SVG DNA、听诊器、曲线图、原子轨道、对话气泡、书页、乐谱、调色盘、齿轮、人物、历史建筑与显微镜插画。中央模型采用深蓝粒子球、70 个旋转投影节点、45 条网络连接、三层旋转轨道和扩散脉冲；18 条固定曲线路径承载 180 个光粒，路径采样缓存不在逐帧重复计算。
+
+六种输出分别有独立图形及特效：上下文的场景与人物连接，语气的 21 根动态声波，情感线索的三张表情变化，意图的目标聚焦光束，细微含义的双路径分岔，以及灯泡灵感的旋转粒子绽放。编排为 24 秒逐步展开，随后持续运行全景特效；手动全景停留、暂停、全局关闭动效、原图查看、重入和减少动态效果继续适用。说明文字保留但不是画面主角。
+
+本地两版回归通过，并新增“展开完成后特效继续改变 / 暂停后图形冻结”的断言；公网两版回归与完整实时播放通过。零页面异常。当前 Chrome 1468 帧采样 p95 16.8 ms，最大 66.7 ms；不等同于真机或所有设备表现。正常生成器同步新图形模块；未新增追踪或上传用户数据。
+
+发布：/root/releases/slides-meaning-particles-20261117-120033，5 个公网文件哈希一致，521 个其他课件文件保持不变，覆盖前备份与回滚脚本已保留。证据：`F:/codex_worktrees/projects/slides/evidence/meaning-particles-20261117/`。本轮独立提交纳入 P20 动画、两版入口、生成器与验收脚本。
