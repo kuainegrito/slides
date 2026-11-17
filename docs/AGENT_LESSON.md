@@ -55,3 +55,9 @@ P31 以实际 Cycling 游戏与 CardiacCycle 3D 页面录屏为素材。Word 场
 原 Agent 主线证据：`F:/codex_worktrees/projects/slides/evidence/agent-lesson-20261117/`；上一轮连续场景及 P31 证据：`F:/codex_worktrees/projects/slides/evidence/agent-story-20261117/`。本轮 P31 录屏制作场景证据：`F:/codex_worktrees/projects/slides/evidence/agent-studio-20261118/`。正常生成器同步八个 Agent 资源文件、五个素材/来源文件、入口与挂载逻辑；本轮发布十四个前端/媒体文件。问卷数据及后台服务不改动。
 
 `scripts/test-agent-studio.cjs` 验证两版实际媒体解码、讲稿逐步写出、六工具切换、自动检查失败与返工全时间线、文件传递、成片单/双画面切换、录屏暂停与全局动效、减少动态效果、离页释放媒体和窄屏布局。素材完整解码及容器探测单独保存；本机 Chrome 性能采样区分 JS 更新耗时和实际帧间隔，不等同于所有设备性能。
+
+## 2026-11-18：P31 全流程双语
+
+P31 的任务、工具步骤、讲稿、渲染/PPT 注释、轨道标签、文件传递、检查失败/返工/复查、片段标题、成片字幕和控件均提供中英文本。主要解释使用英文上行、中文下行，中文沿用楷体；深色面板使用浅色中文以保证对比度。Word 的两种语言按同一进度逐步出现，成片字幕和失败返工反馈同步切换。命令和文件名保留原样，真实应用录屏保留原始界面，外围解释和字幕提供双语。
+
+`scripts/test-agent-studio-bilingual.cjs` 对两版各八个状态检查语言配对与 SVG 文本边界，验证双语字幕、错误反馈、控件、视频暂停及 390px 控件布局，并保存本地和公网截图。证据：`F:/codex_worktrees/projects/slides/evidence/agent-studio-bilingual-20261118/`。

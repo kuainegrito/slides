@@ -73,7 +73,7 @@ player=player.replace('.survey-lab,.meaning-lab','.survey-lab,.meaning-lab,.appl
 for module in ['application-scenes.js','prose-scene.js','code-scene.js','scene-particles.js','scene-results.js']:
     shutil.copy2(ROOT.parents[2]/('ai/survival/'+module),HUB/module)
 # Agent bridge follows basic applications; stable source IDs and original artwork remain.
-player="import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-studio1';\n"+player
+player="import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-studio-bi1';\n"+player
 player=player.replace('resolveSource(addSurveySlides(raw))','resolveSource(addAgentSlides(addSurveySlides(raw)))')
 player=player.replace('    if(slide.n===18)',"    if(slide.interactive?.startsWith('agent-'))disposeInteraction=mountAgentLesson(content,slide,edition);\n    if(slide.n===18)")
 player=player.replace('.meaning-lab,.application-scene','.meaning-lab,.application-scene,.agent-lab')
@@ -105,7 +105,7 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
-    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261118-studio1')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261118-studio-bi1')
     doc=doc.replace('id="total">62','id="total">70')
     doc=doc.replace('max="64"','max="73"').replace('页码（1–63）','页码（1–73）')
     doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261117-spending1')

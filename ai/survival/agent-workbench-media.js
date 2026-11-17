@@ -6,9 +6,9 @@ export function createWorkbenchMedia(svg, make) {
  const movies=['cycling','heart'].map(name=>{
   const pane=document.createElementNS(ns,'div');pane.style.cssText='position:absolute;overflow:hidden;background:#091321;border:1px solid #82b7cb55;box-sizing:border-box;transform-origin:50% 50%';
   const video=document.createElementNS(ns,'video');video.dataset.capture=name;video.muted=true;video.defaultMuted=true;video.loop=true;video.playsInline=true;video.preload='auto';video.playbackRate=1.2;
-  video.setAttribute('aria-label',name==='cycling'?'Cycling 游戏真实录屏':'CardiacCycle 3D 心脏真实录屏');
+  video.setAttribute('aria-label',name==='cycling'?'Cycling gameplay recording / 骑行游戏真实录屏':'CardiacCycle 3D recording / 心脏真实录屏');
   video.src=new URL(`./agent-media/${name}-v1.mp4`,import.meta.url).href;video.poster=new URL(`./agent-media/${name}-v1.webp`,import.meta.url).href;video.style.cssText='width:100%;height:100%;object-fit:contain;display:block';
-  const note=document.createElementNS(ns,'div');note.textContent='录屏暂不可用 · 显示静态截图';note.style.cssText='display:none;position:absolute;bottom:8px;left:8px;color:#fff;background:#652c3b;padding:5px;font:12px sans-serif';pane.append(video,note);frame.append(pane);
+  const note=document.createElementNS(ns,'div');note.textContent='Recording unavailable; still frame / 录屏不可用，显示静态截图';note.style.cssText='display:none;position:absolute;bottom:8px;left:8px;color:#fff;background:#652c3b;padding:5px;font:12px sans-serif';pane.append(video,note);frame.append(pane);
   video.addEventListener('error',()=>{if(!disposed){note.style.display='block';svg.dataset.mediaError='true';}});
   video.addEventListener('loadedmetadata',()=>{if(!disposed){video.currentTime=clock%video.duration;if(playing)video.play().catch(()=>{});}});
   return {pane,video};

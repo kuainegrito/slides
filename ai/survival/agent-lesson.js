@@ -1,4 +1,4 @@
-import {mountAgentScene} from './agent-scenes.js?v=20261118-studio1';
+import {mountAgentScene} from './agent-scenes.js?v=20261118-studio-bi1';
 import {sessionId,validSession,request,questions} from './survey/schema.js?v=20261117-spending1';
 
 export const agentSource='https://www.anthropic.com/research/building-effective-agents';
@@ -21,7 +21,7 @@ const texts={
 function fallback(en,zh){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 600"><rect width="1080" height="600" fill="#eaf2f8"/><text x="48" y="200" font-family="sans-serif" font-size="36" fill="#3f3f46">${en}</text><text x="48" y="260" font-family="KaiTi,serif" font-size="34" fill="#7030a0">${zh}</text></svg>`;}
 export function addAgentSlides(data){
  if(data.agentVersion||!data.slides.some(s=>s.n===22))return data;
- data.agentVersion='20261118-studio1';const original=data.slides.find(s=>s.n===36),chapter=data.slides.find(s=>s.n===22).chapter;
+ data.agentVersion='20261118-studio-bi1';const original=data.slides.find(s=>s.n===36),chapter=data.slides.find(s=>s.n===22).chapter;
  data.slides=data.slides.filter(s=>![36,69,70,71,72,73].includes(s.n));
  const slides=topics.map(([n,kind,en,zh])=>{const svg=fallback(en,zh);return {n,chapter,title:zh,titleEn:en,titleZh:zh,svg,thumb:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg),text:texts[kind],textExcerpt:false,originalLinks:n===73?[agentSource,'https://www.kuaiyu.site/apps/cycling/','https://www.kuaiyu.site/apps/cardiac_cycle/','https://ffmpeg.org/ffmpeg.html','https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html','https://python-pptx.readthedocs.io/en/latest/','https://python-docx.readthedocs.io/en/latest/']:[agentSource],interactive:'agent-'+kind,originalSvg:n===36?original?.svg:null,studentTask:'挑选一个多步骤任务：写出目标、工具、需由你确认的动作，以及怎么验收。',studentTaskEn:'Define a goal, tools, actions requiring your confirmation, and a checkable result.'};});
  data.slides.splice(data.slides.findIndex(s=>s.n===22)+1,0,...slides);return data;
@@ -33,7 +33,7 @@ export function agentRecommendation(values={}){
 }
 const suggestions={small:'样本少或尚未作答：先口头询问，再决定节奏。',intro:'超过半数选择了问答、辅助工具或尚未使用：建议重点讲入门比喻，再做一次完整演示。',clarify:'较多人选择“不确定”：先澄清“问答＋工具”和 Agent 自主推进任务的区别。',advanced:'超过半数自述用过 Agent：可简讲比喻，重点讨论失败、权限和验收。',mixed:'经验混合：保留简短入门，再请有经验者分享一个具体任务。'};
 export function mountAgentLesson(host,slide,edition){
- if(!document.querySelector('link[data-agent-lesson]')){const css=document.createElement('link');css.rel='stylesheet';css.href=new URL('./agent-lesson.css?v=20261118-studio1',import.meta.url).href;css.dataset.agentLesson='true';document.head.append(css);}
+ if(!document.querySelector('link[data-agent-lesson]')){const css=document.createElement('link');css.rel='stylesheet';css.href=new URL('./agent-lesson.css?v=20261118-studio-bi1',import.meta.url).href;css.dataset.agentLesson='true';document.head.append(css);}
  if(slide.interactive!=='agent-poll')return mountAgentScene(host,slide,edition);
  const root=document.createElement('section');root.className='agent-lab agent-poll';host.append(root);
  root.innerHTML=`<h1>Back to our AI pulse <span class="agent-poll-title-zh">回看问卷：我们用到哪一步？</span></h1><p>Same room, same question · 本场课前问卷的“目前用到哪一步”</p><div class="agent-poll-controls"><label>Group / 分组 <select aria-label="Agent poll group"><option value="all">全体 / Everyone</option><option value="student">学生 / Students</option><option value="teacher">教师 / Teachers</option><option value="both">两者都是 / Both</option><option value="other">其他 / Other</option></select></label><button data-refresh>Refresh / 刷新</button><a href="#s66">回看完整画像 ↗</a></div><p class="agent-poll-status" role="status"></p><div class="agent-poll-bars"></div><div class="agent-recommendation" aria-live="polite"></div><p class="agent-poll-note">按本题实际作答数计算；“不确定”单列。自述不等于熟练程度，只描述本场参与者。建议不自动跳页，讲者决定节奏。若含测试答卷，请换正式场次后解读。</p>`;
