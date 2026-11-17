@@ -4,7 +4,7 @@ const assert = require('assert');
 const {chromium} = require('C:/Users/kuaiy/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const root = path.resolve(__dirname, '..');
 const live = process.argv.includes('--live');
-const out = path.resolve(root, '../evidence/application-particles-20261117');
+const out = path.resolve(root, '../evidence/application-speed-20261117');
 fs.mkdirSync(out, {recursive:true});
 const base = live ? 'https://www.kuaiyu.site' : 'https://slides.test';
 const errors = [], checks = [];

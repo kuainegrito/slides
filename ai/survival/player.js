@@ -1,4 +1,4 @@
-import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes2';
+import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
 import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';
 import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261114-coverflood1';
