@@ -5,9 +5,9 @@ ROOT=Path(__file__).resolve().parent
 SOURCE=ROOT/'site/ai/survival-202608';HUB=ROOT/'site/ai/survival'
 HUB.mkdir(parents=True,exist_ok=True)
 shared='/slides/ai/survival-202608/'
-version='20261113-tk12'
-sourceVersion='20261113-tk12'
-playerVersion='20261115-urdu2'
+version='20261115-context1'
+sourceVersion='20261115-context1'
+playerVersion='20261115-context1'
 
 player=(SOURCE/'deck.js').read_text(encoding='utf8')
 player=player.replace("const $ = id => document.getElementById(id);", """const $ = id => document.getElementById(id);
@@ -26,12 +26,13 @@ player=player.replace("const $ = id => document.getElementById(id);", """const $
     return data;
   }""")
 player=player.replace("'ai-survival-motion'","storageKey('motion')").replace("'ai-survival-last-page'","storageKey('last-page')")
-player=player.replace("import('./gradient.js?v=20261112-bi4')","import('/slides/ai/survival-202608/gradient.js?v=20261112-bi4')")
+player=player.replace("import('./valley.js?v=20261113-valley2')","import('/slides/ai/survival-202608/valley.js?v=20261113-valley2')")
 player=player.replace("import('./descent.js?v=20261113-gd5')","import('/slides/ai/survival-202608/descent.js?v=20261113-gd5')")
 player=player.replace("import('./tokens.js?v=20261115-urdu2')","import('/slides/ai/survival-202608/tokens.js?v=20261115-urdu2')")
 player=player.replace("fetch('slides.json?v="+sourceVersion+"')","fetch(sourceURL)")
+player=player.replace("import('./context-window.js?v=20261115-context1')","import('/slides/ai/survival-202608/context-window.js?v=20261115-context1')")
 player=player.replace("import('./neural.js?v=20261112-bi4')","import('/slides/ai/survival-202608/neural.js?v=20261112-bi4')")
-player=player.replace("from './bilingual.js?v=20261112-bi4'","from '/slides/ai/survival-202608/bilingual.js?v=20261112-bi4'")
+player=player.replace("from './bilingual.js?v=20261114-aikai1'","from '/slides/ai/survival-202608/bilingual.js?v=20261114-aikai1'")
 player=player.replace(".then(data=>{deck=data;slides=data.slides;", ".then(raw=>{const data=resolveSource(raw);deck=data;slides=data.slides;")
 player=player.replace("slide.title+' · AI 课件 · 于快'","slide.title+' · '+editionLabel+' · 于快'")
 player=player.replace("s.title+' '+s.text).toLowerCase()", "s.title+' '+s.text+' '+(s.studentTask||'')).toLowerCase()")
@@ -44,16 +45,33 @@ player=player.replace("$('text-toggle').addEventListener('click',showText);", ""
       setBi(a,...(uri.includes('/cycling/')?['Open the cycling metabolism simulator ↗','打开骑行能量代谢模拟器 ↗']:uri.includes('/homeostasis/')?['Open the homeostasis simulator ↗','打开稳态模拟器 ↗']:uri==='https://www.kuaiyu.site/'?['Visit Kuai Yu’s website ↗','打开于快的网站 ↗']:['Open reference ↗','打开本页参考链接 ↗']));$('student-task-links').append(a);}
     openPanel('student-task','student-task-toggle');
   });""")
+# Classroom poll: preserve the four runtime slides when rebuilding editions.
+player="import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';\n"+player
+player=player.replace('const data=resolveSource(raw);','const data=resolveSource(addSurveySlides(raw));')
+player=player.replace("    if(slide.interactive==='context'){","    if(slide.interactive?.startsWith('survey-')) disposeInteraction=mountSurvey(content,slide.interactive.slice(7));\n    if(slide.interactive==='context'){")
+player=player.replace(".context-lab'", ".context-lab,.survey-lab'")
+# Keep survey assets next to the existing player; copies go only into the F build tree.
+import shutil
+survey_source=ROOT.parents[2]/'ai/survival/survey'
+if survey_source.is_dir(): shutil.copytree(survey_source,HUB/'survey',dirs_exist_ok=True)
+edition_css=ROOT.parents[2]/'ai/survival/editions.css'
+if edition_css.is_file(): shutil.copy2(edition_css,HUB/'editions.css')
+
+# Edition opening: retain original content IDs and expose backups outside the main sequence.
+player=player.replace('Page (1–63)','Slide ID (1–68)').replace('页码（1–63）','页码（1–68）')
+player=player.replace('for(const slide of data.slides){','for(const slide of [...data.slides,...(data.backupSlides||[])]){')
+player=player.replace('if(i<0){if(notify)',"if(i<0){if(deck.backupSlides?.some(s=>s.n===n)){const u=new URL(location.href);u.searchParams.set('backups','1');u.hash='s'+n;location.assign(u.href);return true;}if(notify)")
+player=player.replace("deck=data;slides=data.slides;","deck=data;slides=data.slides;const backupLink=document.createElement('a');const backupURL=new URL(location.href);const inBackups=new URLSearchParams(location.search).get('backups')==='1';if(inBackups)backupURL.searchParams.delete('backups');else backupURL.searchParams.set('backups','1');backupURL.hash=inBackups?'s1':'s3';backupLink.href=backupURL.href;backupLink.className='opening-backups';backupLink.textContent=inBackups?'Return to presentation / 返回正式放映':'Opening backups (original pages 3–4) / 开场备份（原第 3–4 页）';document.querySelector('#overview .panel-head').after(backupLink);")
 (HUB/'player.js').write_text(player,encoding='utf8')
 template=(SOURCE/'index.html').read_text(encoding='utf8')
 for edition,caption in [('teacher','教师版'),('student','学生版')]:
     target=HUB/edition;target.mkdir(exist_ok=True)
     src=shared+'slides.json?v='+sourceVersion if edition=='teacher' else '/slides/ai/survival/student/slides.json?v='+version
     doc=template.replace('<html lang="zh-CN">',f'<html lang="zh-CN" data-edition="{edition}" data-source="{src}">')
-    doc=doc.replace('href="deck.css?v=20261110-r2a"',f'href="{shared}deck.css?v=20261110-r2a"').replace('href="gradient.css?v=20261110-r2a"',f'href="{shared}gradient.css?v=20261110-r2a"')
+    doc=doc.replace('href="deck.css?v=20261110-r2a"',f'href="{shared}deck.css?v=20261110-r2a"').replace('href="valley.css?v=20261113-valley2"',f'href="{shared}valley.css?v=20261113-valley2"')
     doc=doc.replace(f'<script type="module" src="deck.js?v={playerVersion}"></script>',f'<link rel="stylesheet" href="../editions.css?v={version}">\n  <script type="module" src="../player.js?v={playerVersion}"></script>')
     doc=doc.replace('href="neural.css?v=20261111-nn1"',f'href="{shared}neural.css?v=20261111-nn1"')
-    doc=doc.replace('href="bilingual.css?v=20261112-bi4"',f'href="{shared}bilingual.css?v=20261112-bi4"')
+    doc=doc.replace('href="bilingual.css?v=20261114-aikai1"',f'href="{shared}bilingual.css?v=20261114-aikai1"')
     doc=doc.replace('href="descent.css?v=20261113-gd5"',f'href="{shared}descent.css?v=20261113-gd5"').replace('href="tokens.css?v=20261115-zoom1"',f'href="{shared}tokens.css?v=20261115-zoom1"')
     doc=doc.replace('<title>How to survive in the era of AI · 于快</title>',f'<title>如何在 AI 浪潮中存活 · {caption} · 于快</title>')
     doc=doc.replace('href="/slides/" title="返回课件中心"','href="../" title="选择教师版或学生版"').replace('<span>课件中心</span>','<span>版本选择</span>')
@@ -66,11 +84,27 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261117-spending1')
+    doc=doc.replace('id="total">62','id="total">65')
+    doc=doc.replace('max="64"','max="68"').replace('页码（1–63）','页码（1–68）')
+    doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261117-spending1')
     (target/'index.html').write_text(doc,encoding='utf8')
 
 data=json.loads((ROOT/'site/manifest.json').read_text(encoding='utf8'))
 card=next(d for d in data['decks'] if d['id']=='ai/survival-202608')
-card.update(href='./ai/survival/',structure='教师版 / 学生版 · 各 62 页',statusText='双版本已上线',updated='2026-11-11',highlights=['教师与学生双入口','原声视频与高维交互','学生学习任务与作品实践'])
+card.update(href='./ai/survival/',structure='教师版 / 学生版 · 各 65 页',statusText='双版本已上线',updated='2026-11-11',highlights=['教师与学生双入口','原声视频与高维交互','学生学习任务与作品实践'])
 data['updated_at']='2026-11-11'
 (ROOT/'site/manifest.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf8')
 print('Built two edition players and updated the course index card')
+
+# Keep every generated public course entry connected to Stats. Redirect-only wrappers
+# are counted at their destination; source/reference HTML under dev is excluded.
+for tracking_page in (ROOT/'site').rglob('*.html'):
+    if 'dev' in tracking_page.relative_to(ROOT/'site').parts: continue
+    tracking_data = tracking_page.read_bytes()
+    if b'</body>' in tracking_data and b'visit-log.js' not in tracking_data:
+        tracking_page.write_bytes(tracking_data.replace(b'</body>', b'<script defer src="/slides/visit-log.js?v=20261113.1"></script>\n</body>', 1))
+
+# New teaching addenda are applied after base edition generation.
+from build_context_window import install as install_context_window
+install_context_window(ROOT/'site')

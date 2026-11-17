@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" data-edition="student" data-source="/slides/open_class/ai_survival/student/slides.json?v=20261113-tk12">
+<html lang="zh-CN" data-edition="student" data-source="/slides/open_class/ai_survival/student/slides.json?v=20261115-context1">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -7,13 +7,14 @@
   <meta name="description" content="于快的 AI 主题课件：人工智能的发展、基本架构、学习实践、作品探索，以及如何把 AI 素养练成大学基本功。">
   <title>如何在 AI 浪潮中存活 · 学生版 · 于快</title>
   <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/deck.css?v=20261110-r2a">
-  <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/gradient.css?v=20261110-r2a">
+  <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/valley.css?v=20261113-valley2">
   <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/neural.css?v=20261111-nn1">
-  <link rel="stylesheet" href="../editions.css?v=20261113-tk12">
-  <script type="module" src="../player.js?v=20261115-urdu2"></script>
-  <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/bilingual.css?v=20261112-bi4">
+  <link rel="stylesheet" href="../editions.css?v=20261117-spending1">
+  <script type="module" src="../player.js?v=20261117-spending1"></script>
+  <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/bilingual.css?v=20261114-aikai1">
   <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/descent.css?v=20261113-gd5">
   <link rel="stylesheet" href="/slides/open_class/ai_survival-202608/tokens.css?v=20261115-zoom1">
+<link rel="stylesheet" href="/slides/open_class/ai_survival-202608/context-window.css?v=20261115-context2">
 </head>
 <body>
   <canvas id="ambient" aria-hidden="true"></canvas>
@@ -36,7 +37,7 @@
     </div>
     <nav class="controls" aria-label="放映控制">
       <div class="control-group"><button id="overview-toggle" title="总览 · O" aria-label="课件总览" aria-controls="overview" aria-expanded="false">▦ <span>总览</span></button><button id="text-toggle" title="本页文字 · T" aria-label="本页文字" aria-controls="transcript" aria-expanded="false">T<span>文字</span></button><button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button></div>
-      <div class="pager"><button id="prev" title="上一页 · ←" aria-label="上一页">←</button><button id="page-jump" title="跳转到原 PDF 页码"><b id="current">1</b><span>/</span><span id="total">62</span></button><button id="next" title="下一页 · →" aria-label="下一页">→</button></div>
+      <div class="pager"><button id="prev" title="上一页 · ←" aria-label="上一页">←</button><button id="page-jump" title="跳转到原 PDF 页码"><b id="current">1</b><span>/</span><span id="total">65</span></button><button id="next" title="下一页 · →" aria-label="下一页">→</button></div>
       <div class="control-group right"><span id="source-page">PDF 1</span><button id="laser-toggle" title="激光笔 · L" aria-label="激光笔" aria-pressed="false">⌖ <span>激光笔</span></button><button id="help-toggle" title="快捷键 · ?" aria-label="查看快捷键">?</button></div>
     </nav>
     <div class="progress" aria-hidden="true"><i id="progress-fill"></i></div>
@@ -45,9 +46,10 @@
   <dialog id="overview" class="panel overview-panel"><div class="panel-head"><div><small>SLIDE OVERVIEW</small><h2>课件总览</h2></div><button data-close aria-label="关闭总览">×</button></div><label class="search-label"><span>⌕</span><input id="search" type="search" placeholder="搜索主题、关键词或原 PDF 页码" autocomplete="off"></label><div id="overview-grid"></div></dialog>
   <dialog id="transcript" class="panel transcript-panel"><div class="panel-head"><div><small>SLIDE TEXT</small><h2 id="text-title">本页文字</h2></div><button data-close aria-label="关闭文字面板">×</button></div><div id="text-content"></div><div id="page-links"></div></dialog>
   <dialog id="help" class="panel help-panel"><div class="panel-head"><h2>放映快捷键</h2><button data-close aria-label="关闭快捷键">×</button></div><dl><dt>← / → / 空格</dt><dd>上一页 / 下一页</dd><dt>Home / End</dt><dd>第一张 / 最后一张</dd><dt>F</dt><dd>全屏放映</dd><dt>O / M</dt><dd>缩略图总览 / 章节目录</dd><dt>T / L</dt><dd>本页文字 / 激光笔</dd><dt>Esc</dt><dd>关闭面板或退出全屏</dd></dl><p>触屏可左右轻扫翻页。点击页码可跳到原 PDF 对应页。</p></dialog>
-  <dialog id="jump" class="panel jump-panel"><form id="jump-form"><div class="panel-head"><h2>跳转到原 PDF 页码</h2><button type="button" data-close aria-label="取消跳页">×</button></div><label for="jump-input">页码（1–63）</label><input id="jump-input" type="number" min="1" max="63" required><p id="jump-error" role="alert"></p><button type="submit" class="primary">前往</button></form></dialog>
+  <dialog id="jump" class="panel jump-panel"><form id="jump-form"><div class="panel-head"><h2>跳转到原 PDF 页码</h2><button type="button" data-close aria-label="取消跳页">×</button></div><label for="jump-input">页码（1–68）</label><input id="jump-input" type="number" min="1" max="68" required><p id="jump-error" role="alert"></p><button type="submit" class="primary">前往</button></form></dialog>
   <dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>
   <div id="toast" role="status"></div>
   <noscript>这份交互课件需要启用 JavaScript。</noscript>
+<script defer src="/slides/visit-log.js?v=20261113.1"></script>
 </body>
 </html>

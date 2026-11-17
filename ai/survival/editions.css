@@ -4,3 +4,5 @@
 html[data-edition=student]{font-family:StudentSans,StudentKai,sans-serif}
 html[data-edition=student] .slide-svg text,html[data-edition=student] .gradient-lab,html[data-edition=student] .gl-return{font-family:StudentSans,StudentKai,sans-serif}
 @media(max-width:640px){#student-task-content{font-size:19px}.home-link{min-width:0}.edition-badge{padding-left:6px;margin-left:5px}}
+
+.opening-backups{display:block;padding:12px 18px;color:#503577;font-size:15px}

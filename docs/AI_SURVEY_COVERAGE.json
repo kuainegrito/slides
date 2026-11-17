@@ -1,0 +1,44 @@
+{
+  "build": "20261117-opening1",
+  "privacy": "Aggregate-only classroom poll; no free text or per-answer interaction telemetry. Role is explicit; edition selects question wording, not identity.",
+  "coverage": [
+    {
+      "flow": "edition_qr",
+      "status": "deployed-verified",
+      "meaning": "QR carries explicit edition and room; no additional analytics"
+    },
+    {
+      "flow": "reflection_goal_submit",
+      "status": "deployed-verified",
+      "meaning": "API validates enumerated pairs and persists aggregate counts; optional payment; no row-level answers"
+    },
+    {
+      "flow": "results",
+      "status": "deployed-verified",
+      "meaning": "New questions use their own response denominator; legacy responses remain valid"
+    },
+    {
+      "flow": "backup_navigation",
+      "status": "deployed-verified",
+      "meaning": "Original IDs 3/4 only in separate backup view; opening uses 1,65,66,67,68,2,5,6; no new cross-site identity"
+    },
+    {
+      "flow": "cancel_error_retry",
+      "status": "deployed-verified",
+      "meaning": "Existing duplicate guard, validation, stale results and email cancellation retained"
+    },
+    {
+      "flow": "gender_comparison",
+      "status": "deployed-verified",
+      "meaning": "Optional gender \u2192 real API \u2192 aggregate gender/role counts \u2192 public >=5 suppression \u2192 UI and email exports; no raw answer rows, no causal inference"
+    },
+    {
+      "flow": "result_paging",
+      "status": "deployed-verified",
+      "meaning": "Portrait #66, reflection #67, comparisons #68; keyboard/touch controls unchanged; portrait stage height adapts only while survey is mounted"
+    }
+  ],
+  "verification": "Live browser, actual API/persisted aggregates, real QR decoding and server CSV generator verified 2026-11-17; email delivery not exercised; no added cross-site interaction telemetry.",
+  "release": "/root/releases/slides-opening-20261117-044407",
+  "evidence": "F:\\codex_worktrees\\projects\\slides\\evidence\\opening-20261117"
+}

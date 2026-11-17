@@ -1,5 +1,6 @@
-import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261113-p1';
-import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingual.js?v=20261112-bi4';
+import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';
+import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261114-coverflood1';
+import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingual.js?v=20261114-aikai1';
 /* Original source artwork + native text, with a dependency-free slide player. */
 (() => {
   'use strict';
@@ -11,7 +12,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
   function resolveSource(data){
     const asset=p=>p?new URL(p,sourceURL).href:p;
     data.background=asset(data.background);
-    for(const slide of data.slides){
+    for(const slide of [...data.slides,...(data.backupSlides||[])]){
       slide.svg=slide.svg.replace(/href="([^"]+)"/g,(all,path)=>'href="'+asset(path)+'"');
       slide.thumb=asset(slide.thumb);if(slide.video)slide.video=asset(slide.video);
       if(slide.media){slide.media.src=asset(slide.media.src);slide.media.poster=asset(slide.media.poster);}
@@ -66,7 +67,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     if(previousVideo){previousVideo.pause();previousVideo.removeAttribute('src');previousVideo.load();}
     content.innerHTML=slide.svg;
     prepareSteps(content,current===0,current===slides.length-1);
-    if(slide.video){
+    if(slide.video&&!content.classList.contains('cover-rebuilt')){
       const video=document.createElement('video');
       video.className='slide-video';video.muted=true;video.defaultMuted=true;
       video.loop=true;video.playsInline=true;video.preload='none';
@@ -94,6 +95,13 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
         disposeInteraction=module.mountDescent(content,slide.svg);
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
+    if(slide.interactive?.startsWith('survey-')) disposeInteraction=mountSurvey(content,slide.interactive.slice(7));
+    if(slide.interactive==='context'){
+      import('/slides/open_class/ai_survival-202608/context-window.js?v=20261115-context1').then(module=>{
+        if(generation!==slideGeneration)return;
+        disposeInteraction=module.mountContext(content);
+      }).catch(error=>{console.error(error);toast('Unable to load the context lab.');});
+    }
     if(slide.interactive==='tokens'){
       import('/slides/open_class/ai_survival-202608/tokens.js?v=20261115-urdu2').then(module=>{
         if(generation!==slideGeneration)return;
@@ -107,16 +115,16 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
     if(slide.interactive==='gradient'){
-      import('/slides/open_class/ai_survival-202608/gradient.js?v=20261112-bi4').then(module=>{
+      import('/slides/open_class/ai_survival-202608/valley.js?v=20261113-valley2').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountGradient(content,slide.svg);
       }).catch(error=>{console.error(error);toast('互动加载失败，已保留原图。');});
     }
     content.dataset.pdfPage=String(slide.n);
-    stage.setAttribute('aria-label',slide.title+'，原 PDF 第 '+slide.n+' 页');
+    stage.setAttribute('aria-label',slide.sourceLabel?slide.title:slide.title+'，原 PDF 第 '+slide.n+' 页');
     stage.classList.remove('entering');void stage.offsetWidth;stage.classList.add('entering');
     clearTimeout(enteringTimer);enteringTimer=setTimeout(()=>stage.classList.remove('entering'),450);
-    $('current').textContent=current+1;$('total').textContent=slides.length;$('source-page').textContent='PDF '+slide.n;
+    $('current').textContent=current+1;$('total').textContent=slides.length;$('source-page').textContent=slide.sourceLabel||('PDF '+slide.n);
     $('prev').disabled=current===0;$('next').disabled=current===slides.length-1;
     if(content.querySelector('[aria-hidden="true"][style*="hidden"]'))$('next').disabled=false;
     $('progress-fill').style.width=((current+1)/slides.length*100)+'%';
@@ -131,7 +139,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     const next=slides[current+1];
     if(next){const parser=new DOMParser().parseFromString(next.svg,'image/svg+xml');parser.querySelectorAll('image').forEach(node=>{const im=new Image();im.src=node.getAttribute('href');});}
   }
-  function goPdf(n,{hash=true,notify=false}={}) {const i=slides.findIndex(s=>s.n===n);if(i<0){if(notify)toast('该原 PDF 页未纳入放映。');return false;}setSlide(i,{hash});return true;}
+  function goPdf(n,{hash=true,notify=false}={}) {const i=slides.findIndex(s=>s.n===n);if(i<0){if(deck.backupSlides?.some(s=>s.n===n)){const u=new URL(location.href);u.searchParams.set('backups','1');u.hash='s'+n;location.assign(u.href);return true;}if(notify)toast('该原 PDF 页未纳入放映。');return false;}setSlide(i,{hash});return true;}
   function next(){if(revealNext())return;if(current<slides.length-1)setSlide(current+1);}function prev(){if(hidePrevious())return;if(current>0)setSlide(current-1);}
   $('next').addEventListener('click',next);$('prev').addEventListener('click',prev);
   addEventListener('hashchange',()=>{const n=Number(location.hash.replace(/^#s/,''));if(!goPdf(n,{hash:false,notify:true}))setSlide(current);});
@@ -157,11 +165,11 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
   $('laser-toggle').addEventListener('click',toggleLaser);
   stage.addEventListener('pointermove',e=>{if(!laser)return;const r=stage.getBoundingClientRect();$('laser').hidden=false;$('laser').style.left=(e.clientX-r.left)+'px';$('laser').style.top=(e.clientY-r.top)+'px';});
   stage.addEventListener('pointerleave',()=>{$('laser').hidden=true;});
-  stage.addEventListener('touchstart',e=>{if(e.target.closest('.slide-media,.gradient-lab,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return')){touchStart=null;return;}if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
+  stage.addEventListener('touchstart',e=>{if(e.target.closest('.slide-media,.gradient-lab,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return,.context-lab,.survey-lab')){touchStart=null;return;}if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
   stage.addEventListener('touchend',e=>{if(!touchStart||laser)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev();}},{passive:true});
   $('page-jump').addEventListener('click',()=>{$('jump-error').textContent='';$('jump-input').value=slides[current].n;toggleDialog('jump');$('jump-input').select();});
   $('jump-form').addEventListener('submit',e=>{e.preventDefault();if(goPdf(Number($('jump-input').value))){$('jump').close();}else setBi($('jump-error'),'This page is excluded. Choose another page.','该页未纳入放映，请选择其他页码。');});
-  document.addEventListener('keydown',e=>{if(!slides.length||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,.slide-media,.gradient-lab,.gl-return,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return')||document.querySelector('dialog[open]'))return;switch(e.key){case'ArrowRight':case'ArrowDown':case'PageDown':case' ':e.preventDefault();next();break;case'ArrowLeft':case'ArrowUp':case'PageUp':e.preventDefault();prev();break;case'Home':e.preventDefault();setSlide(0);break;case'End':e.preventDefault();setSlide(slides.length-1);break;case'f':case'F':fullscreen();break;case'o':case'O':showOverview();break;case'm':case'M':openPanel('chapters','chapters-toggle');break;case't':case'T':showText();break;case'l':case'L':toggleLaser();break;case'?':toggleDialog('help');}});
+  document.addEventListener('keydown',e=>{if(!slides.length||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,.slide-media,.gradient-lab,.gl-return,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return,.context-lab,.survey-lab')||document.querySelector('dialog[open]'))return;switch(e.key){case'ArrowRight':case'ArrowDown':case'PageDown':case' ':e.preventDefault();next();break;case'ArrowLeft':case'ArrowUp':case'PageUp':e.preventDefault();prev();break;case'Home':e.preventDefault();setSlide(0);break;case'End':e.preventDefault();setSlide(slides.length-1);break;case'f':case'F':fullscreen();break;case'o':case'O':showOverview();break;case'm':case'M':openPanel('chapters','chapters-toggle');break;case't':case'T':showText();break;case'l':case'L':toggleLaser();break;case'?':toggleDialog('help');}});
   // Quiet portal-style network animation. Its time stops while paused or hidden.
   const canvas=$('ambient'),ctx=canvas.getContext('2d');let raf=0,last=0,phase=0,w=0,h=0;
   function resize(){w=innerWidth;h=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);drawAmbient(performance.now());}
@@ -175,7 +183,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     for(const [id,icon,en,zh] of [['fullscreen','⛶','Fullscreen','全屏'],['overview-toggle','▦','Overview','总览'],['text-toggle','T','Text','文字'],['student-task-toggle','◎','Task','课堂任务'],['laser-toggle','⌖','Pointer','激光笔']]){const el=$(id);if(el)el.innerHTML=icon+' '+bi(en,zh,true);}
     const home=document.querySelector('.home-link>span:last-child');if(home)setBi(home,document.documentElement.dataset.edition?'Editions':'Course hub',document.documentElement.dataset.edition?'版本选择':'课件中心',true);
     const badge=document.querySelector('.edition-badge');if(badge)setBi(badge,document.documentElement.dataset.edition==='student'?'Student':'Teacher',document.documentElement.dataset.edition==='student'?'学生版':'教师版',true);
-    for(const [sel,en,zh] of [['#chapters h2','Contents','章节目录'],['#overview h2','Slide overview','课件总览'],['#help h2','Presentation shortcuts','放映快捷键'],['#jump h2','Go to the original PDF page','跳转到原 PDF 页码'],['label[for="jump-input"]','Page (1–63)','页码（1–63）'],['#jump .primary','Go','前往']]){const el=document.querySelector(sel);if(el)setBi(el,en,zh,true);}
+    for(const [sel,en,zh] of [['#chapters h2','Contents','章节目录'],['#overview h2','Slide overview','课件总览'],['#help h2','Presentation shortcuts','放映快捷键'],['#jump h2','Go to slide ID','跳转到原 PDF 页码'],['label[for="jump-input"]','Slide ID (1–68)','页码（1–68）'],['#jump .primary','Go','前往']]){const el=document.querySelector(sel);if(el)setBi(el,en,zh,true);}
     const descriptions=[['Previous / next slide','上一页 / 下一页'],['First / last slide','第一张 / 最后一张'],['Fullscreen','全屏放映'],['Overview / contents','缩略图总览 / 章节目录'],['Slide text / pointer','本页文字 / 激光笔'],['Close panel or leave fullscreen','关闭面板或退出全屏']];
     document.querySelectorAll('#help dd').forEach((el,i)=>setBi(el,...descriptions[i]));
     setBi(document.querySelector('#help p'),'Swipe left or right on touchscreens. Click the page number to jump to an original PDF page.','触屏可左右轻扫翻页。点击页码可跳到原 PDF 对应页。');
@@ -183,5 +191,5 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     const loading=content.querySelector('.loading');if(loading)setBi(loading,'Opening the slides…','正在打开课件…');
   }
   localizeUi();
-  fetch(sourceURL).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(raw=>{const data=resolveSource(raw);deck=data;slides=data.slides;stage.style.backgroundImage='url("'+data.background+'")';for(const [i,c] of deck.chapters.entries()){const b=document.createElement('button');b.className='chapter-option';b.dataset.chapter=c.id;const number=document.createElement('span');number.className='number';number.textContent=String(i+1).padStart(2,'0');const label=document.createElement('span'),title=document.createElement('b'),subtitle=document.createElement('small');title.textContent=c.en;title.className='lang-en';subtitle.textContent=c.title;subtitle.className='lang-zh';label.append(title,subtitle);b.append(number,label);b.addEventListener('click',()=>{goPdf(c.start);$('chapters').close();});$('chapter-list').append(b);}const n=Number(location.hash.replace(/^#s/,''));if(!goPdf(n))setSlide(0);}).catch(error=>{content.replaceChildren();const p=document.createElement('p');p.className='loading';setBi(p,'Unable to load. Please refresh.','课件暂时未能加载，请刷新重试。');content.append(p);console.error('Slide loading failed',error);});
+  fetch(sourceURL).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(raw=>{const data=resolveSource(addSurveySlides(raw));deck=data;slides=data.slides;const backupLink=document.createElement('a');const backupURL=new URL(location.href);const inBackups=new URLSearchParams(location.search).get('backups')==='1';if(inBackups)backupURL.searchParams.delete('backups');else backupURL.searchParams.set('backups','1');backupURL.hash=inBackups?'s1':'s3';backupLink.href=backupURL.href;backupLink.className='opening-backups';backupLink.textContent=inBackups?'Return to presentation / 返回正式放映':'Opening backups (original pages 3–4) / 开场备份（原第 3–4 页）';document.querySelector('#overview .panel-head').after(backupLink);stage.style.backgroundImage='url("'+data.background+'")';for(const [i,c] of deck.chapters.entries()){const b=document.createElement('button');b.className='chapter-option';b.dataset.chapter=c.id;const number=document.createElement('span');number.className='number';number.textContent=String(i+1).padStart(2,'0');const label=document.createElement('span'),title=document.createElement('b'),subtitle=document.createElement('small');title.textContent=c.en;title.className='lang-en';subtitle.textContent=c.title;subtitle.className='lang-zh';label.append(title,subtitle);b.append(number,label);b.addEventListener('click',()=>{goPdf(c.start);$('chapters').close();});$('chapter-list').append(b);}const n=Number(location.hash.replace(/^#s/,''));if(!goPdf(n))setSlide(0);}).catch(error=>{content.replaceChildren();const p=document.createElement('p');p.className='loading';setBi(p,'Unable to load. Please refresh.','课件暂时未能加载，请刷新重试。');content.append(p);console.error('Slide loading failed',error);});
 })();
