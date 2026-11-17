@@ -1,0 +1,42 @@
+import {buildProse} from './prose-scene.js?v=20261117-scenes1';
+import {buildCode} from './code-scene.js?v=20261117-scenes1';
+
+const NS='http://www.w3.org/2000/svg';
+export const clamp=x=>Math.max(0,Math.min(1,x));
+export const reveal=(time,start,duration=2)=>{const x=clamp((time-start)/duration);return x*x*(3-2*x);};
+export function sceneTools(svg){
+  const make=(tag,attrs={},parent=svg)=>{const node=document.createElementNS(NS,tag);for(const [key,value] of Object.entries(attrs))node.setAttribute(key,value);parent.append(node);return node;};
+  const path=(d,color='#527896',width=2,parent=svg)=>make('path',{d,fill:'none',stroke:color,'stroke-width':width,'stroke-linecap':'round','stroke-linejoin':'round'},parent);
+  const text=(x,y,label,size=16,parent=svg,color='#3f3f46',zh=false)=>{const node=make('text',{x,y,fill:color,'font-size':size,...(zh?{class:'as-zh'}:{})},parent);node.textContent=label;return node;};
+  const label=(x,y,en,zh,parent=svg,size=16)=>{text(x,y,en,size,parent);text(x,y+(size>=24?32:23),zh,size+1,parent,'#7030a0',true);};
+  const flows=[];
+  function stream(d,color,start,count=15){
+    const line=path(d,color,1.5);line.setAttribute('opacity','.2');
+    const length=line.getTotalLength(),points=Array.from({length:121},(_,i)=>{const p=line.getPointAtLength(length*i/120);return [p.x,p.y];});
+    const group=make('g',{'data-flow':start,'pointer-events':'none'});
+    const nodes=Array.from({length:count},(_,i)=>make('circle',{r:i%5===0?3.2:1.6,fill:color},group));
+    flows.push({group,nodes,points,start,line});return group;
+  }
+  function flowTick(t,speed=1){flows.forEach(({group,nodes,points,start,line},j)=>{const alpha=reveal(t,start);group.setAttribute('opacity',alpha*.85);line.setAttribute('opacity',.08+alpha*.2);nodes.forEach((n,i)=>{const q=((t*.13*speed+i/nodes.length+j*.13)%1)*120,k=Math.min(119,Math.floor(q)),f=q-k;n.setAttribute('cx',points[k][0]*(1-f)+points[k+1][0]*f);n.setAttribute('cy',points[k][1]*(1-f)+points[k+1][1]*f);});});}
+  return {make,path,text,label,stream,flowTick};
+}
+
+export function mountApplicationScene(host,slide,edition){
+  const prose=slide.n===20,root=document.createElement('section');root.className='application-scene';root.dataset.scene=prose?'prose':'code';root.setAttribute('aria-label',prose?'From prompt to prose / 从提示到成文':'Code from conversation / 对话成码');host.append(root);
+  const stages=prose?['1 提示','2 成文','3 展开','4 全景']:['1 需求','2 代码','3 测试','4 应用'];
+  root.innerHTML=`<style>
+  .application-scene{position:absolute;inset:0;overflow:hidden;text-align:left;background:radial-gradient(ellipse at 48% 50%,#d8ebfa,transparent 55%),linear-gradient(120deg,#f3f8fc,#e8f1f8 60%,#f1ebf9);font-family:BiSans,'Segoe UI',sans-serif;color:#3f3f46}.application-scene>svg{display:block;width:100%;height:calc(100% - 46px)}.application-scene .as-zh{font-family:KaiTi,'Kaiti SC','Microsoft YaHei',serif}.as-controls{position:absolute;bottom:8px;left:3%;right:4%;display:flex;align-items:center;flex-wrap:wrap;gap:5px}.as-controls button,.as-controls a{font:12px 'Segoe UI','Microsoft YaHei',sans-serif;padding:7px 9px;color:#36516c;background:#f8fcffe8;border:1px solid #a7bacd;border-radius:7px;text-decoration:none;cursor:pointer}.as-controls button[aria-pressed=true]{background:#dce8f5;border-color:#697fa4}.as-controls :focus-visible{outline:3px solid #8963aa;outline-offset:2px}.as-controls output{font-size:11px;color:#52657b;margin-left:auto}.as-original{position:absolute;inset:0 0 48px;background:#eaf3f9}.as-original svg{width:100%;height:100%}.application-scene [hidden]{display:none!important}@media(max-width:600px){body:has(.application-scene) #stage{height:390px;aspect-ratio:auto}body:has(.application-scene) #viewport{max-height:none}.application-scene{display:flex;flex-direction:column}.application-scene>svg{flex:1;min-height:0}.as-controls{position:relative;inset:auto;min-height:88px;padding:5px 42px 7px 8px;flex-shrink:0;gap:4px}.as-controls button,.as-controls a{font-size:10px;padding:5px 6px}.as-controls output{display:none}.as-original{bottom:98px}}
+  </style><svg viewBox="0 0 1080 570" role="img" aria-label="${root.getAttribute('aria-label')}"><defs><radialGradient id="as-halo"><stop stop-color="#54cbe3" stop-opacity=".35"/><stop offset="1" stop-color="#6b8fcd" stop-opacity="0"/></radialGradient><linearGradient id="as-paper" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e0edf9"/></linearGradient><linearGradient id="as-ink"><stop stop-color="#52c6e7"/><stop offset="1" stop-color="#bc80d8"/></linearGradient></defs></svg><div class="as-original" hidden></div><nav class="as-controls" aria-label="Scene controls / 动画控制"><button data-action="pause">Pause / 暂停</button><button data-action="replay">Replay / 重播</button>${stages.map((s,i)=>`<button data-phase="${i}">${s}</button>`).join('')}${prose?'':'<button data-variant="1">展示错误</button><button data-variant="0">修复复测</button>'}<button data-action="original">Original / 原图</button><output aria-live="polite"></output></nav>`;
+  const svg=root.querySelector(':scope>svg'),panel=root.querySelector('.as-original');panel.innerHTML=slide.svg;
+  const art=(prose?buildProse:buildCode)(svg,sceneTools(svg),edition);
+  let elapsed=0,paused=false,original=false,disposed=false,last=null,raf=0,variant=0,phase=-1;
+  const media=matchMedia('(prefers-reduced-motion: reduce)'),off=()=>document.documentElement.classList.contains('motion-paused')||(media.matches&&!document.documentElement.classList.contains('motion-playing'));
+  if(off()){elapsed=24;paused=true;}
+  function render(){const next=elapsed<5?0:elapsed<11?1:elapsed<19?2:3;art.tick(elapsed,variant);root.dataset.elapsed=elapsed.toFixed(3);root.dataset.phase=String(next);root.dataset.variant=String(variant);if(phase!==next){phase=next;root.querySelector('output').textContent=stages[phase];root.querySelectorAll('[data-phase]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.phase===phase)));}root.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.variant===variant)));root.querySelector('[data-action=pause]').textContent=paused?'Play / 播放':'Pause / 暂停';root.querySelector('[data-action=original]').textContent=original?'Animation / 动画':'Original / 原图';}
+  const running=()=>!disposed&&!paused&&!original&&!off()&&!document.hidden;
+  function tick(now){raf=0;if(!running()){last=null;return;}if(last!==null)elapsed+=(now-last)/1000;last=now;render();raf=requestAnimationFrame(tick);}
+  function schedule(){cancelAnimationFrame(raf);raf=0;last=null;if(running())raf=requestAnimationFrame(tick);}
+  function click(e){const b=e.target.closest('button');if(!b)return;if(b.dataset.action==='pause')paused=!paused;if(b.dataset.action==='replay'){elapsed=0;paused=false;original=false;panel.hidden=true;variant=0;}if(b.dataset.phase!==undefined){elapsed=[0,6,13,24][+b.dataset.phase];paused=true;}if(b.dataset.variant!==undefined)variant=+b.dataset.variant;if(b.dataset.action==='original'){original=!original;panel.hidden=!original;}render();schedule();}
+  const controls=root.querySelector('.as-controls');controls.addEventListener('click',click);const observer=new MutationObserver(schedule);observer.observe(document.documentElement,{attributes:true,attributeFilter:['class']});document.addEventListener('visibilitychange',schedule);media.addEventListener('change',schedule);render();schedule();
+  return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();controls.removeEventListener('click',click);document.removeEventListener('visibilitychange',schedule);media.removeEventListener('change',schedule);root.remove();};
+}

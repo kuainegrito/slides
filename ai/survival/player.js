@@ -1,3 +1,4 @@
+import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes1';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
 import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';
 import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261114-coverflood1';
@@ -91,6 +92,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
       holder.append(video,play);content.append(holder);
     }
     if(slide.n===18)disposeInteraction=mountMeaning(content,slide.svg);
+    if(slide.n===20||slide.n===22)disposeInteraction=mountApplicationScene(content,slide,edition);
     if(slide.interactive==='descent'){
       import('/slides/open_class/ai_survival-202608/descent.js?v=20261113-gd5').then(module=>{
         if(generation!==slideGeneration)return;
@@ -167,11 +169,11 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
   $('laser-toggle').addEventListener('click',toggleLaser);
   stage.addEventListener('pointermove',e=>{if(!laser)return;const r=stage.getBoundingClientRect();$('laser').hidden=false;$('laser').style.left=(e.clientX-r.left)+'px';$('laser').style.top=(e.clientY-r.top)+'px';});
   stage.addEventListener('pointerleave',()=>{$('laser').hidden=true;});
-  stage.addEventListener('touchstart',e=>{if(e.target.closest('.slide-media,.gradient-lab,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return,.context-lab,.survey-lab,.meaning-lab')){touchStart=null;return;}if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
+  stage.addEventListener('touchstart',e=>{if(e.target.closest('.slide-media,.gradient-lab,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return,.context-lab,.survey-lab,.meaning-lab,.application-scene')){touchStart=null;return;}if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
   stage.addEventListener('touchend',e=>{if(!touchStart||laser)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev();}},{passive:true});
   $('page-jump').addEventListener('click',()=>{$('jump-error').textContent='';$('jump-input').value=slides[current].n;toggleDialog('jump');$('jump-input').select();});
   $('jump-form').addEventListener('submit',e=>{e.preventDefault();if(goPdf(Number($('jump-input').value))){$('jump').close();}else setBi($('jump-error'),'This page is excluded. Choose another page.','该页未纳入放映，请选择其他页码。');});
-  document.addEventListener('keydown',e=>{if(!slides.length||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,.slide-media,.gradient-lab,.gl-return,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return,.context-lab,.survey-lab,.meaning-lab')||document.querySelector('dialog[open]'))return;switch(e.key){case'ArrowRight':case'ArrowDown':case'PageDown':case' ':e.preventDefault();next();break;case'ArrowLeft':case'ArrowUp':case'PageUp':e.preventDefault();prev();break;case'Home':e.preventDefault();setSlide(0);break;case'End':e.preventDefault();setSlide(slides.length-1);break;case'f':case'F':fullscreen();break;case'o':case'O':showOverview();break;case'm':case'M':openPanel('chapters','chapters-toggle');break;case't':case'T':showText();break;case'l':case'L':toggleLaser();break;case'?':toggleDialog('help');}});
+  document.addEventListener('keydown',e=>{if(!slides.length||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,.slide-media,.gradient-lab,.gl-return,.neural-lab,.nn-return,.descent-lab,.gd-return,.tokens-lab,.tk-return,.context-lab,.survey-lab,.meaning-lab,.application-scene')||document.querySelector('dialog[open]'))return;switch(e.key){case'ArrowRight':case'ArrowDown':case'PageDown':case' ':e.preventDefault();next();break;case'ArrowLeft':case'ArrowUp':case'PageUp':e.preventDefault();prev();break;case'Home':e.preventDefault();setSlide(0);break;case'End':e.preventDefault();setSlide(slides.length-1);break;case'f':case'F':fullscreen();break;case'o':case'O':showOverview();break;case'm':case'M':openPanel('chapters','chapters-toggle');break;case't':case'T':showText();break;case'l':case'L':toggleLaser();break;case'?':toggleDialog('help');}});
   // Quiet portal-style network animation. Its time stops while paused or hidden.
   const canvas=$('ambient'),ctx=canvas.getContext('2d');let raf=0,last=0,phase=0,w=0,h=0;
   function resize(){w=innerWidth;h=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);drawAmbient(performance.now());}

@@ -1,0 +1,73 @@
+{
+  "build": "20261117-scenes1",
+  "slides": [
+    {
+      "displayPage": 22,
+      "contentId": 20,
+      "scene": "prose"
+    },
+    {
+      "displayPage": 25,
+      "contentId": 22,
+      "scene": "code"
+    }
+  ],
+  "editions": [
+    "student",
+    "teacher"
+  ],
+  "collection": "Intentionally local DOM scene state only. No new interaction uploads, personal input, AI service or answer collection. Existing page-visit tracking unchanged.",
+  "controls": [
+    {
+      "name": "autoplay-four-phases",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "pause-resume-all-svg",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "replay",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "manual-phases",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "original-artwork",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "global-motion",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "reduced-motion",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "unmount-reentry",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "keyboard-controls",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "mobile-controls",
+      "status": "deployed-verified"
+    },
+    {
+      "name": "code-bug-and-repair",
+      "status": "deployed-verified"
+    }
+  ],
+  "visibility": {
+    "status": "implemented",
+    "verification": "uses visibilitychange; actual background-tab behavior not independently retested in this change"
+  },
+  "model": "Authored SVG teaching illustration. The three Fahrenheit-to-Celsius cases are computed locally; not a live AI generation or proof of general program correctness.",
+  "evidence": "F:/codex_worktrees/projects/slides/evidence/application-scenes-20261117",
+  "release": "/root/releases/slides-application-scenes-20261117-133728"
+}

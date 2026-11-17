@@ -67,6 +67,11 @@ player=player.replace("    if(slide.interactive==='descent'){","    if(slide.n==
 player=player.replace('.context-lab,.survey-lab','.context-lab,.survey-lab,.meaning-lab')
 shutil.copy2(ROOT.parents[2]/'ai/survival/meaning-flow.js',HUB/'meaning-flow.js')
 shutil.copy2(ROOT.parents[2]/'ai/survival/meaning-art.js',HUB/'meaning-art.js')
+player="import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes1';\n"+player
+player=player.replace("    if(slide.n===18)disposeInteraction=mountMeaning(content,slide.svg);","    if(slide.n===18)disposeInteraction=mountMeaning(content,slide.svg);\n    if(slide.n===20||slide.n===22)disposeInteraction=mountApplicationScene(content,slide,edition);")
+player=player.replace('.survey-lab,.meaning-lab','.survey-lab,.meaning-lab,.application-scene')
+for module in ['application-scenes.js','prose-scene.js','code-scene.js']:
+    shutil.copy2(ROOT.parents[2]/('ai/survival/'+module),HUB/module)
 (HUB/'player.js').write_text(player,encoding='utf8')
 template=(SOURCE/'index.html').read_text(encoding='utf8')
 for edition,caption in [('teacher','教师版'),('student','学生版')]:
@@ -89,7 +94,7 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
-    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261117-particles2')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261117-scenes1')
     doc=doc.replace('id="total">62','id="total">65')
     doc=doc.replace('max="64"','max="68"').replace('页码（1–63）','页码（1–68）')
     doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261117-spending1')
