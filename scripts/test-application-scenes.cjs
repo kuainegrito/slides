@@ -4,7 +4,7 @@ const assert = require('assert');
 const {chromium} = require('C:/Users/kuaiy/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const root = path.resolve(__dirname, '..');
 const live = process.argv.includes('--live');
-const out = path.resolve(root, '../evidence/application-scenes-20261117');
+const out = path.resolve(root, '../evidence/application-particles-20261117');
 fs.mkdirSync(out, {recursive:true});
 const base = live ? 'https://www.kuaiyu.site' : 'https://slides.test';
 const errors = [], checks = [];
@@ -35,8 +35,8 @@ async function localRoute(context) {
       assert.equal(await scene.getAttribute('data-scene'),kind);
       if (process.argv.includes('--timeline') && edition==='student') {
         const sample=await page.evaluate(()=>new Promise(resolve=>{
-          const intervals=[],phases=new Set(),start=performance.now();let previous=start;
-          function frame(now){intervals.push(now-previous);previous=now;phases.add(document.querySelector('.application-scene').dataset.phase);if(now-start<24500)requestAnimationFrame(frame);else {intervals.sort((a,b)=>a-b);resolve({frames:intervals.length,p95:intervals[Math.floor(intervals.length*.95)],max:intervals.at(-1),phases:[...phases]});}}
+          const intervals=[],drawCosts=[],phases=new Set(),start=performance.now();let previous=start;
+          function frame(now){intervals.push(now-previous);drawCosts.push(document.querySelector('.application-scene').sceneRenderMs);previous=now;phases.add(document.querySelector('.application-scene').dataset.phase);if(now-start<24500)requestAnimationFrame(frame);else {intervals.sort((a,b)=>a-b);drawCosts.sort((a,b)=>a-b);resolve({drawP95:drawCosts[Math.floor(drawCosts.length*.95)],drawMax:drawCosts.at(-1),domNodes:document.querySelector('.application-scene').querySelectorAll('*').length,frames:intervals.length,p95:intervals[Math.floor(intervals.length*.95)],max:intervals.at(-1),phases:[...phases]});}}
           requestAnimationFrame(frame);
         }));
         assert.deepEqual(sample.phases,['0','1','2','3']);
@@ -62,10 +62,16 @@ async function localRoute(context) {
         assert.equal(await scene.locator('[data-test][data-pass="false"]').count(),3);
         await scene.locator('[data-variant="0"]').click();
       } else assert.equal(await scene.locator('[data-output]').count(),4);
+      assert.equal(await scene.locator('[data-result]').count(),4);
+      assert.equal(await scene.locator('[data-effect=convergence]').count(),2);
+      assert.equal(await scene.locator('[data-effect=comet-trails]').count(),7);
+      const resultBefore=await scene.locator('[data-effect=result-process]').evaluateAll(nodes=>nodes.map(n=>n.innerHTML));
       const finalArt = await scene.locator(':scope>svg').innerHTML();
       await scene.locator('[data-action=pause]').click();
       await page.waitForTimeout(250);
       assert.notEqual(await scene.locator(':scope>svg').innerHTML(),finalArt,'final view keeps animating');
+      const resultAfter=await scene.locator('[data-effect=result-process]').evaluateAll(nodes=>nodes.map(n=>n.innerHTML));
+      resultBefore.forEach((before,i)=>assert.notEqual(before,resultAfter[i],'each outcome has its own animation'));
       await page.click('#motion');
       const globalFrozen = await scene.locator(':scope>svg').innerHTML();
       await page.waitForTimeout(160);

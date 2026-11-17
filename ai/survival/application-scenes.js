@@ -1,5 +1,6 @@
-import {buildProse} from './prose-scene.js?v=20261117-scenes1';
-import {buildCode} from './code-scene.js?v=20261117-scenes1';
+import {createParticleField} from './scene-particles.js?v=20261117-scenes2';
+import {buildProse} from './prose-scene.js?v=20261117-scenes2';
+import {buildCode} from './code-scene.js?v=20261117-scenes2';
 
 const NS='http://www.w3.org/2000/svg';
 export const clamp=x=>Math.max(0,Math.min(1,x));
@@ -9,16 +10,7 @@ export function sceneTools(svg){
   const path=(d,color='#527896',width=2,parent=svg)=>make('path',{d,fill:'none',stroke:color,'stroke-width':width,'stroke-linecap':'round','stroke-linejoin':'round'},parent);
   const text=(x,y,label,size=16,parent=svg,color='#3f3f46',zh=false)=>{const node=make('text',{x,y,fill:color,'font-size':size,...(zh?{class:'as-zh'}:{})},parent);node.textContent=label;return node;};
   const label=(x,y,en,zh,parent=svg,size=16)=>{text(x,y,en,size,parent);text(x,y+(size>=24?32:23),zh,size+1,parent,'#7030a0',true);};
-  const flows=[];
-  function stream(d,color,start,count=15){
-    const line=path(d,color,1.5);line.setAttribute('opacity','.2');
-    const length=line.getTotalLength(),points=Array.from({length:121},(_,i)=>{const p=line.getPointAtLength(length*i/120);return [p.x,p.y];});
-    const group=make('g',{'data-flow':start,'pointer-events':'none'});
-    const nodes=Array.from({length:count},(_,i)=>make('circle',{r:i%5===0?3.2:1.6,fill:color},group));
-    flows.push({group,nodes,points,start,line});return group;
-  }
-  function flowTick(t,speed=1){flows.forEach(({group,nodes,points,start,line},j)=>{const alpha=reveal(t,start);group.setAttribute('opacity',alpha*.85);line.setAttribute('opacity',.08+alpha*.2);nodes.forEach((n,i)=>{const q=((t*.13*speed+i/nodes.length+j*.13)%1)*120,k=Math.min(119,Math.floor(q)),f=q-k;n.setAttribute('cx',points[k][0]*(1-f)+points[k+1][0]*f);n.setAttribute('cy',points[k][1]*(1-f)+points[k+1][1]*f);});});}
-  return {make,path,text,label,stream,flowTick};
+  return {make,path,text,label,...createParticleField(svg,make,path)};
 }
 
 export function mountApplicationScene(host,slide,edition){
@@ -32,7 +24,7 @@ export function mountApplicationScene(host,slide,edition){
   let elapsed=0,paused=false,original=false,disposed=false,last=null,raf=0,variant=0,phase=-1;
   const media=matchMedia('(prefers-reduced-motion: reduce)'),off=()=>document.documentElement.classList.contains('motion-paused')||(media.matches&&!document.documentElement.classList.contains('motion-playing'));
   if(off()){elapsed=24;paused=true;}
-  function render(){const next=elapsed<5?0:elapsed<11?1:elapsed<19?2:3;art.tick(elapsed,variant);root.dataset.elapsed=elapsed.toFixed(3);root.dataset.phase=String(next);root.dataset.variant=String(variant);if(phase!==next){phase=next;root.querySelector('output').textContent=stages[phase];root.querySelectorAll('[data-phase]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.phase===phase)));}root.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.variant===variant)));root.querySelector('[data-action=pause]').textContent=paused?'Play / 播放':'Pause / 暂停';root.querySelector('[data-action=original]').textContent=original?'Animation / 动画':'Original / 原图';}
+  function render(){const renderStarted=performance.now();const next=elapsed<5?0:elapsed<11?1:elapsed<19?2:3;art.tick(elapsed,variant);root.dataset.elapsed=elapsed.toFixed(3);root.dataset.phase=String(next);root.dataset.variant=String(variant);if(phase!==next){phase=next;root.querySelector('output').textContent=stages[phase];root.querySelectorAll('[data-phase]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.phase===phase)));}root.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.variant===variant)));root.querySelector('[data-action=pause]').textContent=paused?'Play / 播放':'Pause / 暂停';root.querySelector('[data-action=original]').textContent=original?'Animation / 动画':'Original / 原图';root.sceneRenderMs=performance.now()-renderStarted;}
   const running=()=>!disposed&&!paused&&!original&&!off()&&!document.hidden;
   function tick(now){raf=0;if(!running()){last=null;return;}if(last!==null)elapsed+=(now-last)/1000;last=now;render();raf=requestAnimationFrame(tick);}
   function schedule(){cancelAnimationFrame(raf);raf=0;last=null;if(running())raf=requestAnimationFrame(tick);}

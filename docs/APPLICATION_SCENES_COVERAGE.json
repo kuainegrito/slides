@@ -1,5 +1,5 @@
 {
-  "build": "20261117-scenes1",
+  "build": "20261117-scenes2",
   "slides": [
     {
       "displayPage": 22,
@@ -68,6 +68,23 @@
     "verification": "uses visibilitychange; actual background-tab behavior not independently retested in this change"
   },
   "model": "Authored SVG teaching illustration. The three Fahrenheit-to-Celsius cases are computed locally; not a live AI generation or proof of general program correctness.",
-  "evidence": "F:/codex_worktrees/projects/slides/evidence/application-scenes-20261117",
-  "release": "/root/releases/slides-application-scenes-20261117-133728"
+  "evidence": "F:/codex_worktrees/projects/slides/evidence/application-particles-20261117",
+  "release": "/root/releases/slides-application-particles-20261117-135304",
+  "effects": {
+    "status": "deployed-verified",
+    "streams": 7,
+    "convergenceFields": 2,
+    "outcomeProcesses": [
+      "article-writing",
+      "translation-globe",
+      "logic-network",
+      "legal-review",
+      "terminal",
+      "data-chart",
+      "smart-home",
+      "mobile-game"
+    ],
+    "pause": "All SVG driven by the shared scene clock, verified frozen while paused."
+  },
+  "performance": "Local sceneRenderMs property measures JS render only; no network upload. Frame intervals are measured separately by the test."
 }
