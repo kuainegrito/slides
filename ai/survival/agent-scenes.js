@@ -1,6 +1,8 @@
+import {mountAgentStory} from './agent-story.js?v=20261117-story1';
 import {createParticleField} from './scene-particles.js?v=20261117-scenes2';
 const NS='http://www.w3.org/2000/svg';
 export function mountAgentScene(host,slide,edition){
+ if(['care','weather','workbench'].includes(slide.interactive.slice(6)))return mountAgentStory(host,slide,edition);
  const kind=slide.interactive.slice(6),teacher=edition==='teacher',root=document.createElement('section');root.className='agent-lab';root.dataset.kind=kind;host.append(root);
  root.innerHTML=`<svg viewBox="0 0 1080 580" role="img" aria-label="${slide.title}"><defs><radialGradient id="as-halo"><stop stop-color="#58cce1" stop-opacity=".4"/><stop offset="1" stop-color="#7c8ec9" stop-opacity="0"/></radialGradient></defs></svg><div class="agent-original" hidden></div><nav class="agent-controls"><button data-action="pause">暂停 / Pause</button><button data-action="replay">重播 / Replay</button><button data-action="next">下一步 / Next step</button>${kind==='bridge'?'<button data-action="reveal">揭晓：还缺什么？</button>':''}${kind==='care'?'<button data-action="approve">模拟确认采购</button><button data-action="stock">模拟：库存足够</button>':''}${kind==='weather'?'<button data-action="failure">演示工具失败</button><button data-action="retry">模拟重试成功</button>':''}${slide.originalSvg?'<button data-action="original">原 Agent 图 / Original</button>':''}</nav>`;
  const svg=root.querySelector('svg'),make=(tag,attrs={},parent=svg)=>{const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);parent.append(n);return n;},path=(d,c='#508faa',w=2,parent=svg)=>make('path',{d,fill:'none',stroke:c,'stroke-width':w,'stroke-linecap':'round','stroke-linejoin':'round'},parent);

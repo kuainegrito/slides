@@ -1,4 +1,4 @@
-import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261117-agent1';
+import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261117-story1';
 import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
 import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';
@@ -190,7 +190,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     for(const [id,icon,en,zh] of [['fullscreen','⛶','Fullscreen','全屏'],['overview-toggle','▦','Overview','总览'],['text-toggle','T','Text','文字'],['student-task-toggle','◎','Task','课堂任务'],['laser-toggle','⌖','Pointer','激光笔']]){const el=$(id);if(el)el.innerHTML=icon+' '+bi(en,zh,true);}
     const home=document.querySelector('.home-link>span:last-child');if(home)setBi(home,document.documentElement.dataset.edition?'Editions':'Course hub',document.documentElement.dataset.edition?'版本选择':'课件中心',true);
     const badge=document.querySelector('.edition-badge');if(badge)setBi(badge,document.documentElement.dataset.edition==='student'?'Student':'Teacher',document.documentElement.dataset.edition==='student'?'学生版':'教师版',true);
-    for(const [sel,en,zh] of [['#chapters h2','Contents','章节目录'],['#overview h2','Slide overview','课件总览'],['#help h2','Presentation shortcuts','放映快捷键'],['#jump h2','Go to slide ID','跳转到原 PDF 页码'],['label[for="jump-input"]','Slide ID (1–72)','页码（1–72）'],['#jump .primary','Go','前往']]){const el=document.querySelector(sel);if(el)setBi(el,en,zh,true);}
+    for(const [sel,en,zh] of [['#chapters h2','Contents','章节目录'],['#overview h2','Slide overview','课件总览'],['#help h2','Presentation shortcuts','放映快捷键'],['#jump h2','Go to slide ID','跳转到原 PDF 页码'],['label[for="jump-input"]','Slide ID (1–73)','页码（1–73）'],['#jump .primary','Go','前往']]){const el=document.querySelector(sel);if(el)setBi(el,en,zh,true);}
     const descriptions=[['Previous / next slide','上一页 / 下一页'],['First / last slide','第一张 / 最后一张'],['Fullscreen','全屏放映'],['Overview / contents','缩略图总览 / 章节目录'],['Slide text / pointer','本页文字 / 激光笔'],['Close panel or leave fullscreen','关闭面板或退出全屏']];
     document.querySelectorAll('#help dd').forEach((el,i)=>setBi(el,...descriptions[i]));
     setBi(document.querySelector('#help p'),'Swipe left or right on touchscreens. Click the page number to jump to an original PDF page.','触屏可左右轻扫翻页。点击页码可跳到原 PDF 对应页。');
