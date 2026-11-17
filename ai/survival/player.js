@@ -1,4 +1,4 @@
-import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261117-story1';
+import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-studio1';
 import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
 import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';

@@ -17,7 +17,7 @@
 | P28 | 36 | AI 是大脑，Agent 像妈妈；走到冰箱、开门检查、移镜菜摊、确认采购、拿菜回家准备一餐 | 约 60–90 秒。强调妈妈是照料与统筹的类比；角色不限性别 |
 | P29 | 71 | 下午出门：拿手机查天气 → 看到雨情 → 拿包、撑伞出门 | 约 45–60 秒。演示工具失败和重试，未知不能写成晴天 |
 | P30 | 72 | 委托学习/教学包：目标、资料、工具、检查与交付 | 约 45 秒，先定义任务和验收，再看下一页具体工具如何工作 |
-| P31 | 73 | 骑行能量代谢材料 → Word 讲稿 → Blender 场景 → PPTX → FFmpeg → 检查返工 | 教师制作课堂微课；学生制作医学跨学科展示。约 90 秒，可逐幕暂停 |
+| P31 | 73 | Cycling / 3D 心脏实录 → Word 分镜 → Blender 镜头 → PPTX → FFmpeg → 检查返工 | 教师制作课堂微课；学生制作医学跨学科展示。约 90 秒，可逐幕暂停 |
 
 原 ID 36 只出现一次，原 SVG 留在该页“原 Agent 图”按钮中。累计新增五张，主放映两版各 70 张，源 ID 上限 73；开场备份仍独立为两张。旧稳定链接继续按内容 ID 定位；当前放映页码与原 PDF 页码并不相同。原骑行作品 ID 23 接在新工作台后，现为 P32。
 
@@ -36,16 +36,22 @@
 
 厨房、菜摊与同一位妈妈由 SVG 构成连续场景：行走、伸手开冰箱、关门、平移镜头、拿食材、付款回执、回家准备一餐。食材齐全时走不同分支。天气页沿用家庭环境，手机显示查询与返回，窗外雨滴出现，人物拿包、撑伞并走出画面。动作由同一时钟推进，暂停时包括角色、镜头、雨滴和蒸汽均冻结；播放速度沿用 1.2 倍。
 
-P31 的例子来自医学教学中的资料与媒体制作：从审定的运动生理资料，规划 3 分钟视频、6 页展示和来源说明。左侧项目文件，中间逐步出现 Word 分镜、Blender 骑行预览、PPTX 版面和字幕视频，右侧给出示例命令与工具反馈。检查字幕被裁切时退回 FFmpeg，再检查预览；科学知识、来源和最终交付由人核验。
+P31 以实际 Cycling 游戏与 CardiacCycle 3D 页面录屏为素材。Word 场景逐字写出分镜，Blender 场景将两个画面放到有透视的镜头中并逐步显现，PPTX 场景组装两页图文展示，FFmpeg 场景显示视频、旁白示意和字幕三条轨道。产物文件沿轨迹进入下一工具；右侧持续显示输入文件、示例命令、输出与下一步决定。
 
-这是可用于真实工作的工具组合，但课件只演示过程，不在观众电脑运行命令，也不声称已生成这些文件。脚本名为示例；真实任务要先准备资料、脚本和 Blender 场景，安装对应工具/库，设置渲染输出，再执行。Word / PPTX 是文件产物，可通过文档接口或 Python 库生成，并不要求把所有工作当作鼠标操作。检查既包括程序读取文件信息，也包括渲染后的可视预览，不能把 FFprobe 当作字幕内容或医学准确性的判官。
+默认播放约 29 秒完成制作故事：素材 → 写稿 → 渲染 → 排课件 → 合成 → 检查失败 → 返工 → 复查。字幕越出安全区时出现红色检查框，`review.json` 回到 FFmpeg，字幕移动回画面，生成修订版 `lesson_v2.mp4`。随后播放十二秒的 HTML 成片预览：骑行单画面 → 心脏单画面 → 双画面对照，包含交叉转场、字幕、片段标题、时间码与进度条。可单独点击“播放成片”，也可逐幕暂停或手动触发失败和返工。
+
+两段输入是实际应用录屏，各八秒、960×540、25 fps、无音轨。它们是教学模拟器画面，课件按场景编排重播；不是正在执行的模型或观众电脑的实时画面。外围 Word、Blender、PPTX、FFmpeg 操作与文件传递为 HTML/SVG 演示，没有运行这些示例脚本，也没有导出完整微课 MP4。素材准备阶段实际用 FFmpeg 裁剪、缩放和编码录屏。旁白轨明示为示意，不播放虚构口播。
+
+“素材来源”链接给出实际应用入口与心脏图谱署名。心脏录屏与截图保留 BodyParts3D / Z-Anatomy 的 CC BY-SA 署名和许可，见 `ai/survival/agent-media/SOURCES.md`。工具检查通过只代表动画中的检查情节，知识、来源与教学目标仍由人验收。
 
 工具依据：[python-docx](https://python-docx.readthedocs.io/en/latest/)、[python-pptx](https://python-pptx.readthedocs.io/en/latest/)、[Blender 命令行](https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html)、[FFmpeg](https://ffmpeg.org/ffmpeg.html)。本机只读核对过 Blender `--background` / `--render-anim` 帮助，未实际制作微课产物。
 
 ## 实现与验证
 
-`agent-lesson.js` 管理运行时插页、问卷回看与教学建议；`agent-scenes.js` 保留提问与任务迁移光流场景，并将生活/工作台页交给 `agent-story.js`；`agent-story-art.js` 绘制人物和连续环境，`agent-workbench.js` 绘制工具与产物；`agent-lesson.css` 适配独立画布与窄屏。新控件刻意不上传交互、输入或能力评分；`data-*` 和 `sceneRenderMs` 仅供本地状态与验收。沿用现有访问记录。
+`agent-lesson.js` 管理运行时插页、问卷回看与教学建议；`agent-scenes.js` 保留提问与任务迁移光流场景，并将生活/工作台页交给 `agent-story.js`；`agent-story-art.js` 绘制人物和连续环境，`agent-workbench.js` 导出 `agent-studio.js` 的连续制作场景，`agent-workbench-media.js` 管理两段真实录屏的播放、定位与卸载；`agent-lesson.css` 适配独立画布与窄屏。新控件刻意不上传交互、输入或能力评分；`data-*` 和 `sceneRenderMs` 仅供本地状态与验收。沿用现有访问记录。
 
 `scripts/test-agent-lesson.cjs` 覆盖两版顺序、原 ID 移动、问卷身份筛选、模拟分布建议、首次错误与过时状态、自动停在采购确认、库存足够分支、开冰箱与菜摊中间幕、采购返回、天气查询/失败/重试/拿伞、六阶段工具切换与字幕返工、暂停与全局动效、原图、重播、重入、减少动态效果、390px 布局及开场备份。公网测试只读独立 `ai-survival-20261117-qa-agent` 场次，不种入合成答卷。人口分布与故障分支在本地请求夹具验证。
 
-原 Agent 主线证据：`F:/codex_worktrees/projects/slides/evidence/agent-lesson-20261117/`；本次连续场景及 P31 证据：`F:/codex_worktrees/projects/slides/evidence/agent-story-20261117/`。正常生成器同步插入与挂载逻辑、六个 Agent 资源文件、入口页与页数。本次生产发布九个前端文件；问卷数据及后台服务不改动。
+原 Agent 主线证据：`F:/codex_worktrees/projects/slides/evidence/agent-lesson-20261117/`；上一轮连续场景及 P31 证据：`F:/codex_worktrees/projects/slides/evidence/agent-story-20261117/`。本轮 P31 录屏制作场景证据：`F:/codex_worktrees/projects/slides/evidence/agent-studio-20261118/`。正常生成器同步八个 Agent 资源文件、五个素材/来源文件、入口与挂载逻辑；本轮发布十四个前端/媒体文件。问卷数据及后台服务不改动。
+
+`scripts/test-agent-studio.cjs` 验证两版实际媒体解码、讲稿逐步写出、六工具切换、自动检查失败与返工全时间线、文件传递、成片单/双画面切换、录屏暂停与全局动效、减少动态效果、离页释放媒体和窄屏布局。素材完整解码及容器探测单独保存；本机 Chrome 性能采样区分 JS 更新耗时和实际帧间隔，不等同于所有设备性能。
