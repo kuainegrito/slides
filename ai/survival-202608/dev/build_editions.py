@@ -46,7 +46,7 @@ player=player.replace("$('text-toggle').addEventListener('click',showText);", ""
     openPanel('student-task','student-task-toggle');
   });""")
 # Classroom poll: preserve the four runtime slides when rebuilding editions.
-player="import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';\n"+player
+player="import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261118-language1';\n"+player
 player=player.replace('const data=resolveSource(raw);','const data=resolveSource(addSurveySlides(raw));')
 player=player.replace("    if(slide.interactive==='context'){","    if(slide.interactive?.startsWith('survey-')) disposeInteraction=mountSurvey(content,slide.interactive.slice(7));\n    if(slide.interactive==='context'){")
 player=player.replace(".context-lab'", ".context-lab,.survey-lab'")
@@ -83,7 +83,14 @@ for module in ['agent-lesson.js','agent-scenes.js','agent-lesson.css','agent-sto
     shutil.copy2(ROOT.parents[2]/('ai/survival/'+module),HUB/module)
 shutil.copytree(ROOT.parents[2]/'ai/survival/agent-media',HUB/'agent-media',dirs_exist_ok=True)
 shutil.copy2(ROOT.parents[2]/'ai/survival/index.html',HUB/'index.html')
-player=player.replace('presentation.js?v=20261114-coverflood1','presentation.js?v=20261118-chase1')
+player=player.replace('presentation.js?v=20261114-coverflood1','presentation.js?v=20261118-static1')
+player="import {colorEditionArtwork, refineEditionSlide, setBilingualCopy} from './edition-language.js?v=20261118-language1';\n"+player
+player=player.replace('    for(const slide of [...data.slides,...(data.backupSlides||[])]){',"    for(const slide of [...data.slides,...(data.backupSlides||[])]){\n      refineEditionSlide(slide,edition,slide.sourceLabel?.startsWith('Backup'));")
+player=player.replace('    prepareSteps(content,current===0,current===slides.length-1);',"    colorEditionArtwork(content.querySelector(':scope > svg'),slide);\n    prepareSteps(content,current===0,current===slides.length-1,!slide.staticPresentation);")
+player=player.replace("    stage.classList.remove('entering');void stage.offsetWidth;stage.classList.add('entering');","    stage.classList.remove('entering');\n    if(!slide.staticPresentation){void stage.offsetWidth;stage.classList.add('entering');}")
+player=player.replace('  function colorTranscript(value){return String(value).split(\'\\n\').map(line=>escapeText(line).replace(/[\\u3000-\\u9fff\\uff00-\\uffef]+|[^\\u3000-\\u9fff\\uff00-\\uffef]+/g,part=>\'<span class="\'+(/[\\u3400-\\u9fff]/.test(part)?\'lang-zh\':\'lang-en\')+\'">\'+part+\'</span>\')).join(\'\\n\');}',"  function colorTranscript(value){const copy=document.createElement('div');setBilingualCopy(copy,value);return copy.innerHTML;}")
+shutil.copy2(ROOT.parents[2]/'ai/survival/edition-language.js',HUB/'edition-language.js')
+shutil.copy2(ROOT.parents[2]/'ai/survival-202608/assets/lenet-demo-still-v1.webp',SOURCE/'assets/lenet-demo-still-v1.webp')
 (HUB/'player.js').write_text(player,encoding='utf8')
 template=(SOURCE/'index.html').read_text(encoding='utf8')
 for edition,caption in [('teacher','教师版'),('student','学生版')]:
@@ -106,10 +113,10 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
-    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261118-chase1')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261118-language1')
     doc=doc.replace('id="total">62','id="total">70')
     doc=doc.replace('max="64"','max="73"').replace('页码（1–63）','页码（1–73）')
-    doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261118-spacing1')
+    doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261118-language1')
     (target/'index.html').write_text(doc,encoding='utf8')
 
 data=json.loads((ROOT/'site/manifest.json').read_text(encoding='utf8'))

@@ -1,8 +1,9 @@
+import {colorEditionArtwork, refineEditionSlide, setBilingualCopy} from './edition-language.js?v=20261118-language1';
 import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-studio-bi1';
 import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
-import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261117-spending1';
-import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261118-chase1';
+import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261118-language1';
+import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261118-static1';
 import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingual.js?v=20261114-aikai1';
 /* Original source artwork + native text, with a dependency-free slide player. */
 (() => {
@@ -16,6 +17,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     const asset=p=>p?new URL(p,sourceURL).href:p;
     data.background=asset(data.background);
     for(const slide of [...data.slides,...(data.backupSlides||[])]){
+      refineEditionSlide(slide,edition,slide.sourceLabel?.startsWith('Backup'));
       slide.svg=slide.svg.replace(/href="([^"]+)"/g,(all,path)=>'href="'+asset(path)+'"');
       if(slide.originalSvg)slide.originalSvg=slide.originalSvg.replace(/href="([^"]+)"/g,(all,path)=>'href="'+asset(path)+'"');
       slide.thumb=asset(slide.thumb);if(slide.video)slide.video=asset(slide.video);
@@ -70,7 +72,8 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     const previousVideo=content.querySelector('video');
     if(previousVideo){previousVideo.pause();previousVideo.removeAttribute('src');previousVideo.load();}
     content.innerHTML=slide.svg;
-    prepareSteps(content,current===0,current===slides.length-1);
+    colorEditionArtwork(content.querySelector(':scope > svg'),slide);
+    prepareSteps(content,current===0,current===slides.length-1,!slide.staticPresentation);
     if(slide.video&&!content.classList.contains('cover-rebuilt')){
       const video=document.createElement('video');
       video.className='slide-video';video.muted=true;video.defaultMuted=true;
@@ -129,7 +132,8 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     }
     content.dataset.pdfPage=String(slide.n);
     stage.setAttribute('aria-label',slide.sourceLabel?slide.title:slide.title+'，原 PDF 第 '+slide.n+' 页');
-    stage.classList.remove('entering');void stage.offsetWidth;stage.classList.add('entering');
+    stage.classList.remove('entering');
+    if(!slide.staticPresentation){void stage.offsetWidth;stage.classList.add('entering');}
     clearTimeout(enteringTimer);enteringTimer=setTimeout(()=>stage.classList.remove('entering'),450);
     $('current').textContent=current+1;$('total').textContent=slides.length;$('source-page').textContent=slide.sourceLabel||('PDF '+slide.n);
     $('prev').disabled=current===0;$('next').disabled=current===slides.length-1;
@@ -183,7 +187,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
   function drawAmbient(now){cancelAnimationFrame(raf);if(!paused&&!document.hidden){phase+=Math.min(40,now-last||0)*.00012;}last=now;ctx.clearRect(0,0,w,h);const points=[];for(let i=0;i<43;i++){const side=i%2;const x=side?w-6-(i*71%110):6+(i*43%100);const y=(i*137%Math.max(h,1))+Math.sin(phase+i)*12;points.push([x,y]);}ctx.lineWidth=.7;for(let i=0;i<points.length;i++){const [x,y]=points[i];for(let j=i+1;j<points.length;j++){const [x2,y2]=points[j],dist=Math.hypot(x-x2,y-y2);if(dist<125){ctx.strokeStyle='rgba(78,133,170,'+(1-dist/125)*.16+')';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);ctx.stroke();}}ctx.fillStyle=i%5===0?'rgba(143,101,175,.4)':'rgba(81,147,178,.28)';ctx.beginPath();ctx.arc(x,y,i%5===0?2.4:1.4,0,Math.PI*2);ctx.fill();}if(!paused&&!document.hidden)raf=requestAnimationFrame(drawAmbient);}
   addEventListener('resize',resize);document.addEventListener('visibilitychange',()=>{last=performance.now();drawAmbient(last);syncSlideVideo();if(document.hidden)content.querySelector('.slide-media video')?.pause();});resize();applyMotion();
 
-  function colorTranscript(value){return String(value).split('\n').map(line=>escapeText(line).replace(/[\u3000-\u9fff\uff00-\uffef]+|[^\u3000-\u9fff\uff00-\uffef]+/g,part=>'<span class="'+(/[\u3400-\u9fff]/.test(part)?'lang-zh':'lang-en')+'">'+part+'</span>')).join('\n');}
+  function colorTranscript(value){const copy=document.createElement('div');setBilingualCopy(copy,value);return copy.innerHTML;}
   function localizeUi(){
     const brand=document.querySelector('.deck-brand small');if(brand?.firstChild?.nodeType===3){const names=document.createElement('span');setBi(names,'Kuai Yu','于快',true);brand.firstChild.replaceWith(names);}
 

@@ -14,3 +14,12 @@ html[data-edition] svg text,
 html[data-edition] button,
 html[data-edition] input,
 html[data-edition] select { word-spacing: .10em; }
+
+/* Language, rather than alphabet, determines the color of a translation. */
+html[data-edition] :is(.lang-en, .deck-copy-en) { color: #000 !important; }
+html[data-edition] :is(.lang-zh, .deck-copy-zh),
+html[data-edition] :is(.lang-zh, .deck-copy-zh) :is(.lang-en, .deck-copy-en) { color: #7030a0 !important; }
+html[data-edition] .slide-svg :is([data-lang=en], [data-deck-lang=en]),
+html[data-edition] .slide-svg [data-deck-lang=en] tspan:not(.ai-zh) { fill: #000 !important; }
+html[data-edition] .slide-svg :is([data-lang=zh], [data-deck-lang=zh]),
+html[data-edition] .slide-svg :is([data-lang=zh], [data-deck-lang=zh]) tspan { fill: #7030a0 !important; }

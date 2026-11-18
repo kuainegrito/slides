@@ -3,7 +3,7 @@ import {mountAttentionFlow} from './attention-flow.js?v=20261114-attention1';
 import {mountRouteLight} from './route-light.js?v=20261113-route1';
 import {createCoverEscape} from './cover-escape.js?v=20261118-chase1';
 let steps=[],shown=0,first=false,last=false,cover=null,disposeRoute=null,disposeAttention=null,disposeDigital=null;
-export function prepareSteps(content,isFirst=false,isLast=false){
+export function prepareSteps(content,isFirst=false,isLast=false,reveal=true){
  disposeDigital?.();disposeDigital=mountDigitalGrowth(content);
  disposeAttention?.();disposeAttention=mountAttentionFlow(content);
  disposeRoute?.();disposeRoute=mountRouteLight(content);
@@ -12,6 +12,7 @@ export function prepareSteps(content,isFirst=false,isLast=false){
  steps=[];shown=0;
  const svg=content.querySelector(':scope > svg');if(!svg)return;
  if(isFirst){cover=createCoverEscape(content,sync);sync();return;}
+ if(!reveal){sync();return;}
  const y=e=>parseFloat(e.getAttribute('y')||e.querySelector('text')?.getAttribute('y')||'0');
  const children=[...svg.children];
  const bullets=children.filter(e=>e.tagName.toLowerCase()==='text'&&/^[•●▪‣]$/.test(e.textContent.trim()));
