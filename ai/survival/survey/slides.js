@@ -1,4 +1,4 @@
-import {setBilingualCopy} from '../edition-language.js?v=20261118-language1';
+import {setBilingualCopy} from '../edition-language.js?v=20261118-colors1';
 import qrcode from './vendor/qrcode.js';
 import {questions,reflectionQuestions,editionId,sessionId,validSession,defaultSession,request} from './schema.js?v=20261117-spending1';
 const css=new URL('./survey.css?v=20261118-language1',import.meta.url).href;

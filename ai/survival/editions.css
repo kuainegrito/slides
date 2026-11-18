@@ -16,10 +16,25 @@ html[data-edition] input,
 html[data-edition] select { word-spacing: .10em; }
 
 /* Language, rather than alphabet, determines the color of a translation. */
-html[data-edition] :is(.lang-en, .deck-copy-en) { color: #000 !important; }
+html[data-edition] :is(.lang-en, .deck-copy-en),
+html[data-edition] #slide-content [lang=en]:not(svg *) { color: #000 !important; }
 html[data-edition] :is(.lang-zh, .deck-copy-zh),
+html[data-edition] #slide-content [lang=zh-CN]:not(svg *),
 html[data-edition] :is(.lang-zh, .deck-copy-zh) :is(.lang-en, .deck-copy-en) { color: #7030a0 !important; }
-html[data-edition] .slide-svg :is([data-lang=en], [data-deck-lang=en]),
-html[data-edition] .slide-svg [data-deck-lang=en] tspan:not(.ai-zh) { fill: #000 !important; }
-html[data-edition] .slide-svg :is([data-lang=zh], [data-deck-lang=zh]),
-html[data-edition] .slide-svg :is([data-lang=zh], [data-deck-lang=zh]) tspan { fill: #7030a0 !important; }
+/* SVG line paint applies to all glyphs, including nested Latin-word tspans. */
+html[data-edition] #slide-content svg :is([data-deck-lang=en], [data-live-lang=en]) {
+  --deck-line-ink: #000;
+}
+html[data-edition] #slide-content svg :is([data-deck-lang=zh], [data-live-lang=zh]) {
+  --deck-line-ink: #7030a0;
+}
+html[data-edition] #slide-content svg :is(text, tspan):is([data-deck-lang], [data-live-lang]),
+html[data-edition] #slide-content svg :is([data-deck-lang], [data-live-lang]) tspan {
+  fill: var(--deck-line-ink) !important;
+}
+
+/* Dark token illustration, light plates for its reading controls. */
+html[data-edition] .tokens-lab .tk-space :is(.tk-focus, .tk-hint) {
+  background: #eef5fc;
+  border-color: #a6bbd0;
+}

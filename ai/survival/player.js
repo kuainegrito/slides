@@ -1,8 +1,8 @@
-import {colorEditionArtwork, refineEditionSlide, setBilingualCopy} from './edition-language.js?v=20261118-language1';
-import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-studio-bi1';
+import {colorEditionArtwork, refineEditionSlide, setBilingualCopy, watchEditionColors} from './edition-language.js?v=20261118-colors1';
+import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-colors1';
 import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
-import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261118-language1';
+import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261118-colors1';
 import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261118-static1';
 import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingual.js?v=20261114-aikai1';
 /* Original source artwork + native text, with a dependency-free slide player. */
@@ -33,6 +33,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
   let toastTimer, enteringTimer, disposeInteraction=null, slideGeneration=0;
   const stage = $('stage'), content = $('slide-content');
   installPresentation();
+  watchEditionColors(content);
   function syncSlideVideo() {
     const video=content.querySelector('.slide-video');
     if(!video)return;
@@ -113,7 +114,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
       }).catch(error=>{console.error(error);toast('Unable to load the context lab.');});
     }
     if(slide.interactive==='tokens'){
-      import('/slides/open_class/ai_survival-202608/tokens.js?v=20261115-urdu2').then(module=>{
+      import('/slides/open_class/ai_survival-202608/tokens.js?v=20261118-colors1').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountTokens(content,slide.svg);
       }).catch(error=>{console.error(error);toast('星云加载失败，已保留原图。');});
@@ -125,7 +126,7 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
       }).catch(error=>{console.error(error);toast('动画加载失败，已保留原图。');});
     }
     if(slide.interactive==='gradient'){
-      import('/slides/open_class/ai_survival-202608/valley.js?v=20261113-valley2').then(module=>{
+      import('/slides/open_class/ai_survival-202608/valley.js?v=20261118-colors1').then(module=>{
         if(generation!==slideGeneration)return;
         disposeInteraction=module.mountGradient(content,slide.svg);
       }).catch(error=>{console.error(error);toast('互动加载失败，已保留原图。');});

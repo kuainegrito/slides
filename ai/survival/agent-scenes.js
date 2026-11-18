@@ -1,4 +1,4 @@
-import {mountAgentStory} from './agent-story.js?v=20261118-studio-bi1';
+import {mountAgentStory} from './agent-story.js?v=20261118-colors1';
 import {createParticleField} from './scene-particles.js?v=20261117-scenes2';
 const NS='http://www.w3.org/2000/svg';
 export function mountAgentScene(host,slide,edition){

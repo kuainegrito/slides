@@ -1,5 +1,5 @@
 import {buildDomesticStory,storyArt} from './agent-story-art.js?v=20261117-story1';
-import {buildWorkbench,nextWorkbenchTime} from './agent-workbench.js?v=20261118-studio-bi1';
+import {buildWorkbench,nextWorkbenchTime} from './agent-workbench.js?v=20261118-colors1';
 export function mountAgentStory(host,slide,edition){
  const kind=slide.interactive.slice(6),root=document.createElement('section');root.className='agent-lab agent-story';root.dataset.kind=kind;host.append(root);
  root.innerHTML=`<svg viewBox="0 0 1080 580" role="img" aria-label="${slide.title}"></svg><div class="agent-original" hidden></div><nav class="agent-controls"><button data-action="pause">Pause / 暂停</button><button data-action="replay">Replay / 重播</button><button data-action="next">Next scene / 下一幕</button>${kind==='care'?'<button data-action="approve">模拟确认采购</button><button data-action="stock">模拟：库存足够</button>':kind==='weather'?'<button data-action="failure">演示工具失败</button><button data-action="retry">模拟重试成功</button>':'<button data-action="failure">Show error / 演示错误</button><button data-action="retry">Repair / 修复复查</button><button data-action="film">Play film / 播放成片</button><a href="../agent-media/SOURCES.md" target="_blank" rel="noopener">Sources / 素材来源</a>'}${slide.originalSvg?'<button data-action="original">原 Agent 图 / Original</button>':''}</nav>`;
