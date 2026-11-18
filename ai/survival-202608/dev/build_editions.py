@@ -84,7 +84,7 @@ for module in ['agent-lesson.js','agent-scenes.js','agent-lesson.css','agent-sto
 shutil.copytree(ROOT.parents[2]/'ai/survival/agent-media',HUB/'agent-media',dirs_exist_ok=True)
 shutil.copy2(ROOT.parents[2]/'ai/survival/index.html',HUB/'index.html')
 player=player.replace('presentation.js?v=20261114-coverflood1','presentation.js?v=20261118-static1')
-player="import {colorEditionArtwork, refineEditionSlide, setBilingualCopy, watchEditionColors} from './edition-language.js?v=20261118-colors1';\n"+player
+player="import {colorEditionArtwork, refineEditionSlide, setBilingualCopy, watchEditionColors} from './edition-language.js?v=20261118-p9play1';\n"+player
 player=player.replace('    for(const slide of [...data.slides,...(data.backupSlides||[])]){',"    for(const slide of [...data.slides,...(data.backupSlides||[])]){\n      refineEditionSlide(slide,edition,slide.sourceLabel?.startsWith('Backup'));")
 player=player.replace('    prepareSteps(content,current===0,current===slides.length-1);',"    colorEditionArtwork(content.querySelector(':scope > svg'),slide);\n    prepareSteps(content,current===0,current===slides.length-1,!slide.staticPresentation);")
 player=player.replace("    stage.classList.remove('entering');void stage.offsetWidth;stage.classList.add('entering');","    stage.classList.remove('entering');\n    if(!slide.staticPresentation){void stage.offsetWidth;stage.classList.add('entering');}")
@@ -114,7 +114,7 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
-    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261118-colors1')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261118-p9play1')
     doc=doc.replace('id="total">62','id="total">70')
     doc=doc.replace('max="64"','max="73"').replace('页码（1–63）','页码（1–73）')
     doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261118-colors1')

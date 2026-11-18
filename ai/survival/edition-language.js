@@ -135,7 +135,10 @@ export function refineEditionSlide(slide, edition, isBackup) {
     slide.staticPresentation = true;
     slide.text = slide.text?.replace('手写字母', '手写数字');
     delete slide.video;
-    delete slide.media;
+    // Keep the historical video available on demand, using the static frame as its poster.
+    if (slide.media) {
+      slide.media = {...slide.media, poster: slide.media.poster.replace('0cc9d9ebb1bce11f.webp', 'lenet-demo-still-v1.webp')};
+    }
   }
 }
 

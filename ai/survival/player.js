@@ -1,4 +1,4 @@
-import {colorEditionArtwork, refineEditionSlide, setBilingualCopy, watchEditionColors} from './edition-language.js?v=20261118-colors1';
+import {colorEditionArtwork, refineEditionSlide, setBilingualCopy, watchEditionColors} from './edition-language.js?v=20261118-p9play1';
 import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-colors1';
 import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
