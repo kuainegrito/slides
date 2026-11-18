@@ -1,8 +1,17 @@
-let steps=[],shown=0,first=false,last=false;
+import {mountDigitalGrowth} from './digital-growth.js?v=20261114-digital1';
+import {mountAttentionFlow} from './attention-flow.js?v=20261114-attention1';
+import {mountRouteLight} from './route-light.js?v=20261113-route1';
+import {createCoverEscape} from './cover-escape.js?v=20261118-chase1';
+let steps=[],shown=0,first=false,last=false,cover=null,disposeRoute=null,disposeAttention=null,disposeDigital=null;
 export function prepareSteps(content,isFirst=false,isLast=false){
+ disposeDigital?.();disposeDigital=mountDigitalGrowth(content);
+ disposeAttention?.();disposeAttention=mountAttentionFlow(content);
+ disposeRoute?.();disposeRoute=mountRouteLight(content);
+ cover?.dispose();cover=null;
  first=isFirst;last=isLast;
  steps=[];shown=0;
  const svg=content.querySelector(':scope > svg');if(!svg)return;
+ if(isFirst){cover=createCoverEscape(content,sync);sync();return;}
  const y=e=>parseFloat(e.getAttribute('y')||e.querySelector('text')?.getAttribute('y')||'0');
  const children=[...svg.children];
  const bullets=children.filter(e=>e.tagName.toLowerCase()==='text'&&/^[•●▪‣]$/.test(e.textContent.trim()));
@@ -20,9 +29,9 @@ export function prepareSteps(content,isFirst=false,isLast=false){
  for(const group of steps)for(const e of group){e.style.visibility='hidden';e.setAttribute('aria-hidden','true');}
  sync();
 }
-function sync(){const next=document.getElementById('next');if(next)next.disabled=last&&shown===steps.length;const prev=document.getElementById('prev');if(prev)prev.disabled=first&&shown===0;}
-export function revealNext(){if(shown>=steps.length)return false;for(const e of steps[shown++]){e.style.visibility='visible';e.removeAttribute('aria-hidden');}sync();return true;}
-export function hidePrevious(){if(!shown)return false;for(const e of steps[--shown]){e.style.visibility='hidden';e.setAttribute('aria-hidden','true');}sync();return true;}
+function sync(){const next=document.getElementById('next');if(next)next.disabled=!!cover?.running||(last&&shown===steps.length);const prev=document.getElementById('prev');if(prev)prev.disabled=first&&shown===0&&!cover?.started;}
+export function revealNext(){if(cover){if(!cover.started){cover.play();return true;}return cover.running;}if(shown>=steps.length)return false;for(const e of steps[shown++]){e.style.visibility='visible';e.removeAttribute('aria-hidden');}sync();return true;}
+export function hidePrevious(){if(cover?.started){cover.reset();return true;}if(!shown)return false;for(const e of steps[--shown]){e.style.visibility='hidden';e.setAttribute('aria-hidden','true');}sync();return true;}
 export function installPresentation(){
  const stage=document.getElementById('stage'),nav=document.createElement('nav');nav.className='slide-navigation';nav.setAttribute('aria-label','Slide navigation / 幻灯片翻页');
  nav.append(document.getElementById('prev'),document.getElementById('next'));stage.append(nav);

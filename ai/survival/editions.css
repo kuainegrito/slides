@@ -6,3 +6,11 @@ html[data-edition=student] .slide-svg text,html[data-edition=student] .gradient-
 @media(max-width:640px){#student-task-content{font-size:19px}.home-link{min-width:0}.edition-badge{padding-left:6px;margin-left:5px}}
 
 .opening-backups{display:block;padding:12px 18px;color:#503577;font-size:15px}
+
+/* Improve word separation across both decks, including dynamically mounted SVG.
+   Explicit per-glyph PDF coordinates still govern their original text runs. */
+html[data-edition] body,
+html[data-edition] svg text,
+html[data-edition] button,
+html[data-edition] input,
+html[data-edition] select { word-spacing: .10em; }
