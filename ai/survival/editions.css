@@ -56,3 +56,26 @@ html[data-edition] .survey-lab[data-panel="results"] .survey-results-head h1 .de
   descent-override: 20%;
   line-gap-override: 0%;
 }
+
+/* Keep the symbol-to-decision title bilingual on one line. */
+#slide-content:has(.nn-decision-title) { container-type: inline-size; }
+html[data-edition] .nn-header .nn-decision-title { white-space: nowrap; }
+html[data-edition] .nn-header .nn-decision-title .lang-zh { font-size: inherit; }
+@container (max-width: 1040px) {
+  html[data-edition] .nn-header:has(.nn-decision-title) { flex-wrap: wrap; height: auto; min-height: 46px; gap: 6px; }
+  html[data-edition] .nn-header .nn-decision-title { font-size: clamp(7px, 2.52cqw, 26px); }
+}
+
+/* Keep the controls clear of all QR codes, including in fullscreen. */
+#viewport:has(.classroom-poster) { max-height: none; }
+#stage:has(.classroom-poster) {
+  --poster-nav-height: 34px;
+  box-sizing: content-box;
+  padding-bottom: var(--poster-nav-height);
+  background-image: none !important;
+}
+#stage:has(.classroom-poster) #slide-content { bottom: var(--poster-nav-height); }
+#stage:has(.classroom-poster) .edge-light { display: none; }
+#viewport:fullscreen #stage:has(.classroom-poster) {
+  width: min(100vw, calc((100dvh - var(--poster-nav-height)) * 16 / 9));
+}

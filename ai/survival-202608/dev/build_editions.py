@@ -96,6 +96,37 @@ player=player.replace('  installPresentation();','  installPresentation();\n  wa
 player="import {layoutPressTimeline} from './press-timeline.js?v=20261119-qol1';\n"+player
 player=player.replace("    colorEditionArtwork(content.querySelector(':scope > svg'),slide);","    const artwork=content.querySelector(':scope > svg');\n    colorEditionArtwork(artwork,slide);\n    if(slide.n===9&&artwork)layoutPressTimeline(artwork);")
 shutil.copy2(ROOT.parents[2]/'ai/survival/press-timeline.js',HUB/'press-timeline.js')
+# Classroom sequence, app keyboard routing and visible page numbers.
+player="import {arrangeClassroomSlides} from './classroom-sequence.js?v=20261119-classroom1';\nimport {renderClassroomApp,classroomAppConsumesKey} from './classroom-app-slides.js?v=20261119-classroom1';\n"+player
+player=player.replace("    if(slide.interactive?.startsWith('agent-'))disposeInteraction=mountAgentLesson(content,slide,edition);\n","    renderClassroomApp(content,slide);\n    if(slide.interactive?.startsWith('agent-'))disposeInteraction=mountAgentLesson(content,slide,edition);\n",1)
+player=player.replace("      import('/slides/ai/survival-202608/neural.js?v=20261112-bi4').then(module=>{\n","      import('/slides/ai/survival-202608/neural.js?v=20261119-classroom1').then(module=>{\n",1)
+player=player.replace("    stage.setAttribute('aria-label',slide.sourceLabel?slide.title:slide.title+'，原 PDF 第 '+slide.n+' 页');\n","    stage.setAttribute('aria-label',slide.title+'，第 '+(current+1)+' 页');\n",1)
+player=player.replace("    $('current').textContent=current+1;$('total').textContent=slides.length;$('source-page').textContent=slide.sourceLabel||('PDF '+slide.n);\n","    $('current').textContent=current+1;$('total').textContent=slides.length;\n",1)
+player=player.replace("该原 PDF 页未纳入放映。", "找不到该幻灯片。", 1)
+player=player.replace("b.dataset.page=s.n;b.dataset.search=(s.n+", "b.dataset.page=s.n;b.dataset.position=index+1;b.dataset.search=((index+1)+", 1)
+player=player.replace("'原 PDF 第 '+s.n+' 页：'", "'第 '+(index+1)+' 页：'", 1)
+player=player.replace("number.textContent=String(s.n).padStart", "number.textContent=String(index+1).padStart", 1)
+player=player.replace("b.dataset.page===q", "b.dataset.position===q", 1)
+player=player.replace("stage.addEventListener('touchstart',e=>{if(e.target.closest(", "stage.addEventListener('touchstart',e=>{if(slides[current]?.interactive?.startsWith('classroom-')||e.target.closest(", 1)
+player=player.replace("$('jump-input').value=slides[current].n", "$('jump-input').value=current+1", 1)
+player=player.replace(
+    "if(goPdf(Number($('jump-input').value))){$('jump').close();}else setBi($('jump-error'),'This page is excluded. Choose another page.','该页未纳入放映，请选择其他页码。');",
+    "const page=$('jump-input').valueAsNumber;if(Number.isInteger(page)&&page>=1&&page<=slides.length){setSlide(page-1);$('jump').close();}else setBi($('jump-error'),'Enter a slide number from 1 to '+slides.length+'.','请输入 1 至 '+slides.length+' 的放映页码。');",
+    1,
+)
+player=player.replace(
+    "||document.querySelector('dialog[open]'))return;switch(e.key){",
+    "||document.querySelector('dialog[open]'))return;if(classroomAppConsumesKey(slides[current],e.key)){e.preventDefault();return;}switch(e.key){",
+    1,
+)
+player=player.replace("'Go to slide ID','跳转到原 PDF 页码'", "'Go to slide','跳转到幻灯片'", 1)
+player=player.replace("'Slide ID (1–73)','页码（1–73）'", "'Slide number','放映页码'", 1)
+player=player.replace("    setBi(document.querySelector('#help p'),'Swipe left or right on touchscreens. Click the page number to jump to an original PDF page.','触屏可左右轻扫翻页。点击页码可跳到原 PDF 对应页。');\n    document.querySelector('#search').placeholder='Search / 搜索主题、关键词或 PDF 页码';\n","    setBi(document.querySelector('#help p'),'Click the page number to jump. Use the on-screen arrows when a classroom simulator is open.','点击页码可跳转。课堂模拟器开启时，请用屏幕箭头翻页。');\n    document.querySelector('#search').placeholder='Search / 搜索主题、关键词或放映页码';\n",1)
+player=player.replace("resolveSource(addAgentSlides(addSurveySlides(raw)))", "resolveSource(arrangeClassroomSlides(addAgentSlides(addSurveySlides(raw))))", 1)
+player=player.replace("deck=data;slides=data.slides;", "deck=data;slides=data.slides;$('jump-input').max=String(slides.length);", 1)
+for module in ['classroom-sequence.js','classroom-app-slides.js']:
+    shutil.copy2(ROOT.parents[2]/('ai/survival/'+module),HUB/module)
+shutil.copytree(ROOT.parents[2]/'ai/survival/classroom-posters',HUB/'classroom-posters',dirs_exist_ok=True)
 (HUB/'player.js').write_text(player,encoding='utf8')
 template=(SOURCE/'index.html').read_text(encoding='utf8')
 for edition,caption in [('teacher','教师版'),('student','学生版')]:
@@ -118,15 +149,18 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
-    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261119-qol1')
-    doc=doc.replace('id="total">62','id="total">70')
-    doc=doc.replace('max="64"','max="73"').replace('页码（1–63）','页码（1–73）')
-    doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261119-qol1')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261119-classroom1')
+    doc=doc.replace('id="total">62','id="total">67')
+    doc=re.sub(r'<span id="source-page">.*?</span>','',doc)
+    doc=re.sub(r'(id="jump-input"[^>]* max=")\d+',r'\g<1>67',doc)
+    doc=re.sub(r'页码（1–\d+）','放映页码',doc)
+    doc=doc.replace('跳转到原 PDF 页码','跳转到幻灯片').replace('搜索主题、关键词或原 PDF 页码','搜索主题、关键词或放映页码').replace('点击页码可跳到原 PDF 对应页。','点击页码可跳转。课堂模拟器开启时，请用屏幕箭头翻页。')
+    doc=doc.replace('../editions.css?v='+version,'../editions.css?v=20261119-classroom1')
     (target/'index.html').write_text(doc,encoding='utf8')
 
 data=json.loads((ROOT/'site/manifest.json').read_text(encoding='utf8'))
 card=next(d for d in data['decks'] if d['id']=='ai/survival-202608')
-card.update(href='./ai/survival/',structure='教师版 / 学生版 · 各 70 页',statusText='双版本已上线',updated='2026-11-11',highlights=['教师与学生双入口','原声视频与高维交互','学生学习任务与作品实践'])
+card.update(href='./ai/survival/',structure='教师版 / 学生版 · 各 67 页',statusText='双版本已上线',updated='2026-11-11',highlights=['教师与学生双入口','原声视频与高维交互','学生学习任务与作品实践'])
 data['updated_at']='2026-11-11'
 (ROOT/'site/manifest.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf8')
 print('Built two edition players and updated the course index card')
