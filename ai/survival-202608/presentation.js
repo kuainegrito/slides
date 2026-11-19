@@ -30,8 +30,18 @@ export function prepareSteps(content,isFirst=false,isLast=false,reveal=true){
  for(const group of steps)for(const e of group){e.style.visibility='hidden';e.setAttribute('aria-hidden','true');}
  sync();
 }
-function sync(){const next=document.getElementById('next');if(next)next.disabled=!!cover?.running||(last&&shown===steps.length);const prev=document.getElementById('prev');if(prev)prev.disabled=first&&shown===0&&!cover?.started;}
-export function revealNext(){if(cover){if(!cover.started){cover.play();return true;}return cover.running;}if(shown>=steps.length)return false;for(const e of steps[shown++]){e.style.visibility='visible';e.removeAttribute('aria-hidden');}sync();return true;}
+function sync(){const next=document.getElementById('next');if(next)next.disabled=last&&shown===steps.length;const prev=document.getElementById('prev');if(prev)prev.disabled=first&&shown===0&&!cover?.started;}
+export function revealNext(){
+ if(cover){
+  if(cover.started)return false;
+  cover.play();
+  return true;
+ }
+ if(shown>=steps.length)return false;
+ for(const e of steps[shown++]){e.style.visibility='visible';e.removeAttribute('aria-hidden');}
+ sync();
+ return true;
+}
 export function hidePrevious(){if(cover?.started){cover.reset();return true;}if(!shown)return false;for(const e of steps[--shown]){e.style.visibility='hidden';e.setAttribute('aria-hidden','true');}sync();return true;}
 export function installPresentation(){
  const stage=document.getElementById('stage'),nav=document.createElement('nav');nav.className='slide-navigation';nav.setAttribute('aria-label','Slide navigation / 幻灯片翻页');

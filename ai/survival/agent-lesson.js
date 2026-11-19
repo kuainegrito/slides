@@ -1,4 +1,4 @@
-import {mountAgentScene} from './agent-scenes.js?v=20261118-colors1';
+import {mountAgentScene} from './agent-scenes.js?v=20261119-qol1';
 import {sessionId,validSession,request,questions} from './survey/schema.js?v=20261117-spending1';
 
 export const agentSource='https://www.anthropic.com/research/building-effective-agents';

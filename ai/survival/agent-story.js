@@ -1,4 +1,4 @@
-import {buildDomesticStory,storyArt} from './agent-story-art.js?v=20261117-story1';
+import {buildDomesticStory,storyArt} from './agent-story-art.js?v=20261119-qol1';
 import {buildWorkbench,nextWorkbenchTime} from './agent-workbench.js?v=20261118-colors1';
 export function mountAgentStory(host,slide,edition){
  const kind=slide.interactive.slice(6),root=document.createElement('section');root.className='agent-lab agent-story';root.dataset.kind=kind;host.append(root);

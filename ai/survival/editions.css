@@ -38,3 +38,21 @@ html[data-edition] .tokens-lab .tk-space :is(.tk-focus, .tk-hint) {
   background: #eef5fc;
   border-color: #a6bbd0;
 }
+
+/* Keep the survey portrait title in the same Kai face as the deck's Chinese text. */
+html[data-edition] .survey-lab[data-panel="results"] .survey-results-head h1 .deck-copy-zh {
+  font-family: BiKaiAI, BiKai, BiSans, KaiTi, "Kaiti SC", serif;
+  font-weight: 400;
+}
+
+/* U+5212 (划) is absent from the base Kai subset. Build from the full KaiTi font:
+   python -m fontTools.subset C:/Windows/Fonts/simkai.ttf --unicodes=U+5212 --flavor=woff2 --no-recalc-timestamp --output-file=bilingual-kai-hua-v1.woff2 */
+@font-face {
+  font-family: BiKai;
+  src: url('/slides/open_class/ai_survival-202608/assets/bilingual-kai-hua-v1.woff2') format('woff2');
+  font-display: swap;
+  unicode-range: U+5212;
+  ascent-override: 90%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+}

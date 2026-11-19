@@ -1,9 +1,10 @@
+import {layoutPressTimeline} from './press-timeline.js?v=20261119-qol1';
 import {colorEditionArtwork, refineEditionSlide, setBilingualCopy, watchEditionColors} from './edition-language.js?v=20261118-p9play1';
-import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261118-colors1';
+import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261119-qol1';
 import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
 import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261118-colors1';
-import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261118-static1';
+import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261119-qol1';
 import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingual.js?v=20261114-aikai1';
 /* Original source artwork + native text, with a dependency-free slide player. */
 (() => {
@@ -73,7 +74,9 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     const previousVideo=content.querySelector('video');
     if(previousVideo){previousVideo.pause();previousVideo.removeAttribute('src');previousVideo.load();}
     content.innerHTML=slide.svg;
-    colorEditionArtwork(content.querySelector(':scope > svg'),slide);
+    const artwork=content.querySelector(':scope > svg');
+    colorEditionArtwork(artwork,slide);
+    if(slide.n===9&&artwork)layoutPressTimeline(artwork);
     prepareSteps(content,current===0,current===slides.length-1,!slide.staticPresentation);
     if(slide.video&&!content.classList.contains('cover-rebuilt')){
       const video=document.createElement('video');
