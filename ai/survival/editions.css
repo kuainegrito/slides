@@ -79,3 +79,13 @@ html[data-edition] .nn-header .nn-decision-title .lang-zh { font-size: inherit; 
 #viewport:fullscreen #stage:has(.classroom-poster) {
   width: min(100vw, calc((100dvh - var(--poster-nav-height)) * 16 / 9));
 }
+
+/* Embedded KaiTi for teaching toolkits and the closing reflection. */
+@font-face {
+  font-family: ToolkitKai;
+  src: url('toolkit-kai-v1.woff2') format('woff2');
+  font-display: swap;
+}
+html[data-edition] #slide-content:is([data-pdf-page="49"], [data-pdf-page="50"], [data-pdf-page="51"], [data-pdf-page="79"], [data-pdf-page="80"], [data-pdf-page="81"], [data-pdf-page="63"]) .slide-svg :is(text, tspan):is([data-lang="zh"], [data-deck-lang="zh"], [data-live-lang="zh"]) {
+  font-family: ToolkitKai, BiSans, BiKai, KaiTi, serif;
+}

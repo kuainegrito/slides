@@ -65,3 +65,37 @@ test('gender aggregate comparisons suppress small groups and sparse questions in
 });
 
 test('spending is optional and restricted to current payers',()=>{const {validate}=require('./server.cjs');const b={session:'ai-survival-20261117-test',responseId:crypto.randomUUID(),answers:{...baseAnswers,paid:'current',spending:'20to80'}};assert.doesNotThrow(()=>validate(b));assert.throws(()=>validate({...b,answers:{...b.answers,paid:'never'}}));assert.throws(()=>validate({...b,answers:{...b.answers,spending:'invalid'}}));assert.doesNotThrow(()=>validate({...b,answers:baseAnswers}));});
+
+test('closing poll validates three choices and aggregates separately from the opening survey',async()=>{
+ const dir=await fs.mkdtemp(path.join(process.env.TEMP||os.tmpdir(),'survey-closing-'));
+ const server=createService({dataDir:dir});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));
+ const url='http://127.0.0.1:'+server.address().port+'/api/ai-survey/v1/';
+ const session='ai-survival-20261120-qa-closing',responseId=crypto.randomUUID();
+ const post=(answers,closing=true,id=responseId)=>fetch(url+'responses'+(closing?'?poll=closing':''),{
+  method:'POST',headers:{'Content-Type':'application/json',Origin:'https://www.kuaiyu.site'},
+  body:JSON.stringify({session,responseId:id,answers}),
+ });
+ try{
+  const {closingQuestion}=await import('../../ai/survival/survey/schema.js');
+  assert.deepEqual(require('./server.cjs').CLOSING_OPTIONS,closingQuestion.options.map(([id])=>id));
+  for(const standout of [[],['cycling','cycling'],['invalid'],['cycling','cardiac','tokens','comics']]){
+   assert.equal((await post({standout})).status,400);
+  }
+  assert.equal((await post({standout:['cycling'],role:'student'})).status,400);
+  assert.equal((await post(baseAnswers,false)).status,200);
+  const vote={standout:['cycling','cardiac','tokens']};
+  assert.equal((await post(vote)).status,200);
+  assert.equal((await (await post(vote)).json()).duplicate,true);
+  assert.equal((await post({standout:['cycling']},true,crypto.randomUUID())).status,200);
+  const result=await (await fetch(url+'results?poll=closing&session='+session)).json();
+  assert.deepEqual(Object.keys(result).sort(),['counts','total','updatedAt']);
+  assert.equal(result.total,2);
+  assert.equal(result.counts.cycling,2);
+  assert.equal(result.counts.cardiac,1);
+  assert.equal(result.counts.tokens,1);
+  const opening=await (await fetch(url+'results?session='+session)).json();
+  assert.equal(opening.total,1);
+  assert.equal(opening.counts.standout,undefined);
+ }finally{await new Promise(r=>server.close(r));}
+});

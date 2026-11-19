@@ -4,7 +4,7 @@ const os = require('node:os');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const evidence = path.resolve(root, '../evidence/classroom-demo-20261119');
+const evidence = path.resolve(root, '../evidence/survival-closing-20261120');
 const live = process.argv.includes('--live');
 const mode = live ? 'live' : 'local';
 const origin = live ? 'https://www.kuaiyu.site' : 'https://slides.test';
@@ -108,10 +108,12 @@ async function checkTitle(page, edition) {
 async function inspectOverview(page) {
   await page.locator('#overview-toggle').click();
   const ids = await page.locator('#overview-grid .thumb').evaluateAll(buttons => buttons.map(button => Number(button.dataset.page)));
-  assert.equal(ids.length, 67);
+  assert.equal(ids.length, 64);
+  assert.deepEqual(ids.slice(-4), [63, 82, 83, 84]);
   assert.equal(new Set(ids).size, ids.length);
-  for (const removed of [19, 24, 25, 26, 27, 28, 29]) assert(!ids.includes(removed), `Retired slide #s${removed}`);
+  for (const removed of [19, 24, 25, 26, 27, 28, 29, 33, 37, 41, 42, 43, 44, 45, 46, 47, 48]) assert(!ids.includes(removed), `Retired slide #s${removed}`);
   assert.deepEqual(ids.slice(28, 36), sequence);
+  assert.deepEqual(ids.slice(36, 50), [31, 78, 34, 35, 38, 39, 40, 49, 50, 51, 79, 80, 81, 52]);
   await page.locator('#search').fill('32');
   assert.deepEqual(await page.locator('#overview-grid .thumb:visible').evaluateAll(buttons =>
     buttons.map(button => button.dataset.page)), ['75']);
@@ -119,6 +121,12 @@ async function inspectOverview(page) {
   await page.locator('#chapters-toggle').click();
   await page.locator('.chapter-option[data-chapter="applications"]').click();
   await expectSlide(page, 20, 21);
+  await page.locator('#chapters-toggle').click();
+  await page.locator('.chapter-option[data-chapter="future"]').click();
+  await expectSlide(page, 52, 50);
+  await page.locator('#chapters-toggle').click();
+  await page.locator('.chapter-option[data-chapter="survive"]').click();
+  await expectSlide(page, 56, 54);
   return ids;
 }
 
@@ -286,7 +294,7 @@ async function checkEdition(browser, edition) {
     await page.goto(`${origin}${deckPath}${edition}/?qa=classroom-${Date.now()}#s12`, { waitUntil: 'domcontentloaded' });
     await expectSlide(page, 12, 14);
     assert.equal(await page.locator('#source-page').count(), 0);
-    assert.equal(await page.locator('#total').textContent(), '67');
+    assert.equal(await page.locator('#total').textContent(), '64');
     await checkTitle(page, edition);
     const ids = await inspectOverview(page);
     await jump(page, 72, 29);
@@ -329,6 +337,11 @@ async function checkEdition(browser, edition) {
     await expectNoFrame(page);
     await page.locator('[data-kind=workbench]').waitFor();
     await buttonNavigate(page, '#next', 30, 36, 73, 8);
+    await jump(page, 51, 46);
+    await buttonNavigate(page, '#next', 79, 47, 51, 8);
+    await buttonNavigate(page, '#next', 80, 48, 79, 8);
+    await buttonNavigate(page, '#next', 81, 49, 80, 8);
+    await buttonNavigate(page, '#next', 52, 50, 81, 8);
     assert.deepEqual([...new Set(errors)], []);
     return {
       edition, count: ids.length, sequence, title: titleText, cycling: cycling.info, cardiac: cardiac.info,

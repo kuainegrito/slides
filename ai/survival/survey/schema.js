@@ -9,6 +9,41 @@ export const questions=[
  {id:'uses',title:'Your main uses / 主要用途',hint:'Choose up to 3 / 最多选 3 项',multi:true,max:3,options:[['learning','Learning / 学习答疑'],['writing','Writing & translation / 写作翻译'],['research','Research / 科研文献'],['coding','Coding & data / 编程数据'],['teaching','Teaching / 教学备课'],['admin','Administration / 行政办公'],['creative','Images & creativity / 图像创意'],['life','Everyday life / 日常生活'],['none','Not using it / 尚未使用']]},
  {id:'concerns',title:'Your biggest concerns / 最担心什么？',hint:'Choose up to 3 / 最多选 3 项',multi:true,max:3,options:[['accuracy','Wrong answers / 内容不准'],['privacy','Privacy / 隐私泄露'],['dependency','Overreliance / 过度依赖'],['integrity','Academic integrity / 学术诚信'],['cost','Cost / 费用'],['skills','Not knowing how / 不会使用'],['jobs','Jobs & skills / 工作被替代'],['access','Access & availability / 使用门槛'],['none','No major concern / 暂无担忧']]}
 ];
+export const closingQuestion = {
+  id: 'standout',
+  title: 'Which parts of today’s lecture stood out to you most? / 今天的讲座中，哪些部分给你留下的印象最深？',
+  hint: 'Choose one to three. / 请选择 1–3 项。',
+  multi: true,
+  max: 3,
+  groups: [
+    ['Opening and AI principles / 开场与原理', [
+      ['cover', 'The opening animation with rising water / 海水追着人跑的开场动画'],
+      ['lenet', 'LeNet recognizing handwritten digits / LeNet 手写数字识别'],
+      ['gradient', 'Gradient descent and high-dimensional slices / 梯度下降与高维切片'],
+      ['tokens', 'The Galaxy of Tokens / 词元星空'],
+      ['context', 'The context window and what AI can retain / 上下文窗口：AI 能记住什么？'],
+    ]],
+    ['Agents and live demos / Agent 与现场体验', [
+      ['mum', 'The “AI is the brain, the agent is like Mum” story / AI 是大脑，Agent 像妈妈'],
+      ['cycling', 'Cycling Energy Metabolism Simulator / 骑行能量代谢模拟器'],
+      ['cardiac', 'CardiacCycle 3D / CardiacCycle 3D 心动周期模拟器'],
+      ['workbench', 'The Agent workbench: video, verification and revision / Agent 工作台：做视频、核验与返工'],
+    ]],
+    ['Culture and creativity / 文化与创作', [
+      ['culture', 'The English-prompt comic and its multilingual comparison / 英文提示词漫画与多语言对照'],
+      ['comics', 'Explaining physiology through teaching comics / 用教学漫画讲清生理机制'],
+      ['student-work', 'The student-created work showcase / 学生作品展示'],
+    ]],
+    ['Methods and reflection / 方法与反思', [
+      ['ai-toolkit', 'The AI toolkit: asking, checking and explaining / AI 工具包：提问、核验、自己解释'],
+      ['agent-toolkit', 'Agent tips: permissions, work logs and verification / Agent 进阶：权限、留痕、验收'],
+      ['zhao', 'From Zhao Yijiong to the AI era / 从赵以炯到 AI 时代'],
+      ['reflection', 'Reflection to action: choosing a real task / 从反思到行动：定一个真实任务'],
+    ]],
+    ['', [['other', 'Other / 其他']]],
+  ],
+};
+closingQuestion.options = closingQuestion.groups.flatMap(([, options]) => options);
 export function editionId(){return new URLSearchParams(location.search).get('edition')==='teacher'?'teacher':document.documentElement.dataset.edition==='teacher'?'teacher':'student';}
 export const reflectionQuestions={
  student:[

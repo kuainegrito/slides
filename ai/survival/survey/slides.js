@@ -1,7 +1,7 @@
 import {setBilingualCopy} from '../edition-language.js?v=20261118-colors1';
 import qrcode from './vendor/qrcode.js';
-import {questions,reflectionQuestions,editionId,sessionId,validSession,defaultSession,request} from './schema.js?v=20261117-spending1';
-const css=new URL('./survey.css?v=20261118-language1',import.meta.url).href;
+import {closingQuestion,questions,reflectionQuestions,editionId,sessionId,validSession,defaultSession,request} from './schema.js?v=20261120-closing1';
+const css=new URL('./survey.css?v=20261120-closing1',import.meta.url).href;
 export function addSurveySlides(data){
  if(data.openingVersion)return data;data.openingVersion='20261117-spending1';
  const chapter=data.slides[0].chapter;
@@ -17,7 +17,71 @@ export function addSurveySlides(data){
 }
 function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)setBilingualCopy(x,text);return x;}
 function button(text,fn){const b=el('button','',text);b.type='button';b.addEventListener('click',fn);return b;}
+function mountClosingSurvey(host, kind) {
+ const root=el('section','survey-lab');
+ root.dataset.panel=kind;
+ root.append(el('p','survey-eyebrow','LECTURE HIGHLIGHTS / 课末快问'));
+ host.append(root);
+ const session=sessionId();
+ const status=el('p','survey-live-status');
+ status.setAttribute('role','status');
+ if(kind==='closing-join'){
+  const layout=el('div','survey-join-grid'),copy=el('div','survey-join-copy');
+  copy.append(el('h1','',closingQuestion.title.replace(' / ','\n')));
+  copy.append(el('p','',closingQuestion.hint),el('p','','Results appear on the next slide. / 下一页公布本场汇总。'));
+  layout.append(copy);
+  root.append(layout,status);
+  if(validSession(session)){
+   const url=new URL('/slides/open_class/ai_survival/survey/',location.origin);
+   url.searchParams.set('session',session);
+   url.searchParams.set('poll','closing');
+   const qr=el('a','survey-qr');
+   qr.href=url.href;qr.target='_blank';qr.rel='noopener';
+   const code=qrcode(0,'M');code.addData(url.href);code.make();
+   qr.innerHTML=code.createSvgTag({cellSize:4,margin:16,scalable:true});
+   qr.append(el('span','','Scan or click to vote / 扫码或点击投票'));
+   layout.append(qr);
+  }else setBilingualCopy(status,'Invalid session link. / 场次链接无效。');
+  return ()=>root.remove();
+ }
+ const header=el('div','survey-results-head'),total=el('div','survey-total','—');
+ header.append(el('h1','','What stood out today? / 哪些内容最令人印象深刻？'),total);
+ const controls=el('div','survey-result-controls'),list=el('ol','survey-closing-results');
+ controls.append(button('Refresh / 刷新',refresh),status);
+ root.append(header,controls,list,el('p','survey-small-note','Percent of respondents. Each person can choose up to three. / 比例以作答人数为分母，每人最多选三项。'));
+ let busy=false,disposed=false,hasData=false;
+ async function refresh(){
+  if(busy||disposed)return;
+  if(!validSession(session)){setBilingualCopy(status,'Invalid session link. / 场次链接无效。');return;}
+  busy=true;
+  try{
+   const data=await request('/results?poll=closing&session='+encodeURIComponent(session));
+   if(disposed)return;
+   hasData=true;
+   const n=Number(data.total)||0;
+   total.replaceChildren(document.createTextNode(String(n)),el('small','','respondents / 人作答'));
+   const counts=closingQuestion.options.map(([id,label])=>({label,count:Number(data.counts?.[id])||0})).sort((a,b)=>b.count-a.count);
+   list.replaceChildren();
+   if(n)for(const {label,count} of counts){
+    const item=el('li','survey-closing-result');
+    const share=Math.round(100*count/n);
+    const track=el('div','survey-bar-track'),fill=el('div','survey-bar-fill');
+    fill.style.width=share+'%';
+    track.append(fill);
+    item.append(el('span','survey-closing-label',label.replace(' / ','\n')),el('span','survey-closing-count',count+' · '+share+'%'),track);
+    list.append(item);
+   }
+   setBilingualCopy(status,n?'Live · Updates every 5 seconds / 实时 · 每 5 秒更新':'Waiting for votes. / 等待投票。');
+  }catch{
+   if(!disposed)setBilingualCopy(status,hasData?'Refresh failed. Showing the last result. / 刷新失败，显示上次结果。':'Results unavailable. / 暂时无法读取结果。');
+  }finally{busy=false;}
+ }
+ const timer=setInterval(refresh,5000);
+ refresh();
+ return ()=>{disposed=true;clearInterval(timer);root.remove();};
+}
 export function mountSurvey(host,kind){if(!document.querySelector('link[data-survey]')){const link=el('link');link.rel='stylesheet';link.href=css;link.dataset.survey='true';document.head.append(link);}
+ if(kind==='closing-join'||kind==='closing-results')return mountClosingSurvey(host,kind);
  const edition=editionId(),reflection=kind==='reflection';const root=el('section','survey-lab');root.dataset.panel=kind;root.setAttribute('aria-label',kind==='join'?'Classroom questionnaire':'Live questionnaire results');host.append(root);let session=sessionId(),disposed=false,busy=false,poll=0,timer=0,remaining=180,running=false,lastData=null;const clean=[];
  root.append(el('p','survey-eyebrow','AI PULSE / 课前快问'));
  const status=el('p','survey-live-status');status.setAttribute('role','status');

@@ -1,6 +1,6 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
 const {chromium}=require('C:/Users/kuaiy/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
-const root=path.resolve(__dirname,'..'),out=path.resolve(root,'../evidence/classroom-demo-20261119/agent-studio'),live=process.argv.includes('--live');
+const root=path.resolve(__dirname,'..'),out=path.resolve(root,'../evidence/survival-agent-tips-20261120/agent-studio'),live=process.argv.includes('--live');
 fs.mkdirSync(out,{recursive:true});
 async function routeLocal(route){const u=new URL(route.request().url());if(!u.pathname.startsWith('/slides/'))return route.fulfill({status:204});const rel=u.pathname.slice(8).replace('open_class/ai_survival-202608/','ai/survival-202608/').replace('open_class/ai_survival/','ai/survival/');let f=path.join(root,rel);if(fs.existsSync(f)&&fs.statSync(f).isDirectory())f=path.join(f,'index.html');return fs.existsSync(f)?route.fulfill({path:f,contentType:({'.js':'application/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.html':'text/html','.woff2':'font/woff2','.mp4':'video/mp4','.webp':'image/webp','.md':'text/plain'})[path.extname(f)]}):route.fulfill({status:404});}
 (async()=>{
@@ -10,7 +10,7 @@ async function routeLocal(route){const u=new URL(route.request().url());if(!u.pa
  try{for(const edition of ['student','teacher']){
   const c=await browser.newContext({viewport:{width:1440,height:1000}});if(!live)await c.route('**/*',routeLocal);const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400&&new URL(r.url()).pathname.startsWith('/slides/'))errors.push(r.status()+' '+r.url());});
   await p.goto(`${live?'https://www.kuaiyu.site':'https://slides.test'}/slides/open_class/ai_survival/${edition}/?qa=agent-studio#s73`,{waitUntil:'domcontentloaded'});await p.waitForSelector('[data-kind=workbench]');await p.waitForFunction(()=>[...document.querySelectorAll('.agent-lab video')].length===2&&[...document.querySelectorAll('.agent-lab video')].every(v=>v.readyState>=2));
-  assert.equal(await p.locator('#current').textContent(),'35');assert.equal(await p.locator('#total').textContent(),'67');assert((await p.locator('.agent-lab').textContent()).includes(edition==='teacher'?'课堂微课':'医学跨学科展示'));
+  assert.equal(await p.locator('#current').textContent(),'35');assert.equal(await p.locator('#total').textContent(),'64');assert((await p.locator('.agent-lab').textContent()).includes(edition==='teacher'?'课堂微课':'医学跨学科展示'));
   await p.click('[data-action=next]');const textBefore=await p.locator('[data-studio-panel=Word]').textContent();await p.click('[data-action=pause]');await p.waitForTimeout(600);await p.click('[data-action=pause]');assert((await p.locator('[data-studio-panel=Word]').textContent()).length>textBefore.length);
   for(const tool of ['Blender','PPTX','FFmpeg','Review']){await p.click('[data-action=next]');assert.equal(await p.locator('.agent-lab>svg').getAttribute('data-tool'),tool);}
   assert.equal(await p.locator('.agent-lab').getAttribute('data-failed'),'true');await p.click('[data-action=retry]');await p.waitForSelector('[data-studio-phase=repair]');await p.waitForSelector('[data-repaired=true]',{timeout:7000});

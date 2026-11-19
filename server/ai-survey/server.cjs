@@ -19,6 +19,7 @@ const OPTIONS = {
  teacher_goal:['mechanism','design','feedback','verify','create','unsure']
 };
 const MULTI={models:12,uses:3,concerns:3};
+const CLOSING_OPTIONS=['cover','lenet','gradient','tokens','context','mum','cycling','cardiac','workbench','culture','comics','student-work','ai-toolkit','agent-toolkit','zhao','reflection','other'];
 const PREFIX='/api/ai-survey/v1/';
 function fail(status,message){return Object.assign(new Error(message),{status});}
 function sessionValid(s){
@@ -26,10 +27,15 @@ function sessionValid(s){
  const d=s.slice(12,20); const iso=d.slice(0,4)+'-'+d.slice(4,6)+'-'+d.slice(6,8);
  return !isNaN(Date.parse(iso)) && new Date(iso).toISOString().slice(0,10)===iso;
 }
-function validate(b){
+function validate(b,closing=false){
  if(!b||typeof b!=='object'||Array.isArray(b)||Object.keys(b).some(k=>!['session','responseId','answers'].includes(k))) throw fail(400,'Invalid request');
  if(!sessionValid(b.session)||typeof b.responseId!=='string'||!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(b.responseId)) throw fail(400,'Invalid session or responseId');
  const a=b.answers;
+ if(closing){
+  const picks=a?.standout;
+  if(!a||Object.keys(a).length!==1||!Array.isArray(picks)||!picks.length||picks.length>3||new Set(picks).size!==picks.length||picks.some(id=>!CLOSING_OPTIONS.includes(id))) throw fail(400,'Choose one to three lecture highlights');
+  return b;
+ }
  if(!a||typeof a!=='object'||Array.isArray(a)||Object.keys(a).some(k=>!Object.hasOwn(OPTIONS,k)))throw fail(400,'Invalid questions');
  const required=['role','models','mode','frequency','uses','concerns'];
  if(required.some(k=>!Object.hasOwn(a,k)))throw fail(400,'All core questions required');
@@ -54,19 +60,35 @@ function createService({dataDir,allowedOrigins=['https://www.kuaiyu.site','https
  if(!dataDir)throw Error('dataDir required');
  let queue=Promise.resolve(); const salt=crypto.randomBytes(32); const buckets=new Map();
  const ready=fs.mkdir(dataDir,{recursive:true});
- const filename=s=>path.join(dataDir,s+'.json');
+ const filename=(s,closing=false)=>path.join(dataDir,(closing?'closing-':'')+s+'.json');
+ async function readClosing(s){
+  await ready;
+  try{
+   const data=JSON.parse(await fs.readFile(filename(s,true),'utf8'));
+   if(data.version!==1||!Array.isArray(data.ids))throw Error('Invalid store');
+   return data;
+  }catch(e){
+   if(e.code!=='ENOENT')throw e;
+   return {version:1,total:0,updatedAt:null,counts:Object.fromEntries(CLOSING_OPTIONS.map(id=>[id,0])),ids:[]};
+  }
+ }
  async function read(s){await ready;try{const v=JSON.parse(await fs.readFile(filename(s),'utf8'));if(v.version!==1||!Array.isArray(v.ids))throw Error('Invalid store');v.countsByGender??=genderGroups();v.countsByRoleByGender??=Object.fromEntries(OPTIONS.role.map(r=>[r,genderGroups()]));const defaults=counts();v.counts={...defaults,...v.counts};for(const role of OPTIONS.role)v.countsByRole[role].counts={...counts(),...v.countsByRole[role].counts};for(const groups of [v.countsByGender,...Object.values(v.countsByRoleByGender)])for(const group of Object.values(groups))group.counts={...counts(),...group.counts};return v;}catch(e){if(e.code==='ENOENT')return empty();throw e;}}
  function rate(key,limit){const now=Date.now();if(buckets.size>10000){for(const [k,v]of buckets)if(v.until<now)buckets.delete(k);if(buckets.size>10000)throw fail(429,'Busy, try later');}let v=buckets.get(key);if(!v||v.until<now){v={n:0,until:now+60000};buckets.set(key,v);}if(++v.n>limit)throw fail(429,'Too many requests, try in one minute');}
- async function save(b){
-  const run=async()=>{const s=await read(b.session);const id=crypto.createHash('sha256').update(b.responseId.toLowerCase()).digest('hex');
+ async function save(b,closing=false){
+  const run=async()=>{const s=await (closing?readClosing(b.session):read(b.session));const id=crypto.createHash('sha256').update(b.responseId.toLowerCase()).digest('hex');
    if(s.ids.includes(id))return {ok:true,duplicate:true,total:s.total};
    if(s.total>=maxResponses)throw fail(409,'Session response limit reached');
    if(s.total===0&&(await fs.readdir(dataDir)).filter(x=>x.endsWith('.json')).length>=maxSessions)throw fail(503,'Session storage full');
-   s.ids.push(id);s.total++;s.updatedAt=new Date().toISOString();const r=s.countsByRole[b.answers.role];r.total++;
-   for(const k of Object.keys(b.answers))for(const v of (MULTI[k]?b.answers[k]:[b.answers[k]])){s.counts[k][v]++;r.counts[k][v]++;}
-   const gender=b.answers.gender;
-   if(GENDERS.includes(gender))for(const groups of [s.countsByGender,s.countsByRoleByGender[b.answers.role]]){const group=groups[gender];group.total++;for(const [k,value]of Object.entries(b.answers)){if(k==='gender')continue;for(const v of (MULTI[k]?value:[value]))group.counts[k][v]++;}}
-   const dest=filename(b.session);const tmp=dest+'.tmp';const h=await fs.open(tmp,'w',0o600);try{await h.writeFile(JSON.stringify(s));await h.sync();}finally{await h.close();}await fs.rename(tmp,dest);
+   s.ids.push(id);s.total++;s.updatedAt=new Date().toISOString();
+   if(closing){
+    for(const option of b.answers.standout)s.counts[option]++;
+   }else{
+    const r=s.countsByRole[b.answers.role];r.total++;
+    for(const k of Object.keys(b.answers))for(const v of (MULTI[k]?b.answers[k]:[b.answers[k]])){s.counts[k][v]++;r.counts[k][v]++;}
+    const gender=b.answers.gender;
+    if(GENDERS.includes(gender))for(const groups of [s.countsByGender,s.countsByRoleByGender[b.answers.role]]){const group=groups[gender];group.total++;for(const [k,value]of Object.entries(b.answers)){if(k==='gender')continue;for(const v of (MULTI[k]?value:[value]))group.counts[k][v]++;}}
+   }
+   const dest=filename(b.session,closing);const tmp=dest+'.tmp';const h=await fs.open(tmp,'w',0o600);try{await h.writeFile(JSON.stringify(s));await h.sync();}finally{await h.close();}await fs.rename(tmp,dest);
    return {ok:true,duplicate:false,total:s.total};
   };const p=queue.then(run);queue=p.catch(()=>{});return p;
  }
@@ -74,13 +96,20 @@ function createService({dataDir,allowedOrigins=['https://www.kuaiyu.site','https
  const server=http.createServer(async(req,res)=>{
   try{
    const url=new URL(req.url,'http://localhost');
+   const closing=url.searchParams.get('poll')==='closing';
    if(![PREFIX+'results',PREFIX+'responses',PREFIX+'health',PREFIX+'email'].includes(url.pathname))throw fail(404,'Not found');
    const peer=req.socket.remoteAddress||'';const ip=(['127.0.0.1','::1','::ffff:127.0.0.1'].includes(peer)?req.headers['x-real-ip']:null)||peer;
    const key=crypto.createHmac('sha256',salt).update(String(ip)).digest('hex');
    rate('global',globalLimit);rate(key,req.method==='POST'?postLimit:600);
    if(req.method==='GET'&&url.pathname===PREFIX+'health')return send(res,200,{ok:true});
    if(req.method==='GET'&&url.pathname===PREFIX+'results'){
-    const s=url.searchParams.get('session');if(!sessionValid(s))throw fail(400,'Invalid session');return send(res,200,publicResult(await read(s)));
+    const s=url.searchParams.get('session');
+    if(!sessionValid(s))throw fail(400,'Invalid session');
+    if(closing){
+     const {total,updatedAt,counts}=await readClosing(s);
+     return send(res,200,{total,updatedAt,counts});
+    }
+    return send(res,200,publicResult(await read(s)));
    }
    if(req.method!=='POST'||![PREFIX+'responses',PREFIX+'email'].includes(url.pathname))throw fail(405,'Method not allowed');
    if(!allowedOrigins.includes(req.headers.origin))throw fail(403,'Same-origin submission required');
@@ -93,11 +122,11 @@ function createService({dataDir,allowedOrigins=['https://www.kuaiyu.site','https
     if(!b||typeof b!=='object'||Array.isArray(b)||Object.keys(b).sort().join(',')!=='password,session'||!sessionValid(b.session))throw fail(400,'Invalid email request');
     return send(res,200,await email.send(b,key,publicResult(await read(b.session))));
    }
-   return send(res,200,await save(validate(b)));
+   return send(res,200,await save(validate(b,closing),closing));
   }catch(e){if(!res.headersSent)send(res,e.status||503,{error:e.status?e.message:'Survey temporarily unavailable'});}
  });
  server.requestTimeout=10000;server.headersTimeout=10000;server.keepAliveTimeout=5000;
  return server;
 }
 if(require.main===module){const dataDir=process.env.SURVEY_DATA_DIR||path.join(__dirname,'data');const configPath=process.env.SURVEY_EMAIL_CONFIG||(process.env.CREDENTIALS_DIRECTORY?path.join(process.env.CREDENTIALS_DIRECTORY,'survey-email.json'):null);const email=configPath?require('./email.cjs').createEmail({dataDir,configPath}):null;const server=createService({dataDir,email});server.listen(Number(process.env.PORT||3098),'127.0.0.1',()=>console.log('ai-survey listening on loopback'));}
-module.exports={createService,validate,sessionValid,OPTIONS};
+module.exports={createService,validate,sessionValid,OPTIONS,CLOSING_OPTIONS};

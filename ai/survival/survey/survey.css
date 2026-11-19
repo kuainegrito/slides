@@ -21,3 +21,17 @@
 @media(max-width:760px) and (orientation:portrait){body:has(.survey-lab) #viewport{max-height:none}body:has(.survey-lab) #stage{aspect-ratio:auto;max-width:none;height:calc(100dvh - 195px);min-height:420px}.survey-results-grid{gap:12px}.survey-result-controls select{max-width:100%}}
 
 @media(min-width:761px){.survey-lab[data-panel=results] .survey-results-grid{grid-template-rows:repeat(3,minmax(180px,1fr));overflow:auto}}
+
+.survey-page[data-poll=closing] #survey-main h1{white-space:pre-line}
+.survey-option-group{font-size:1rem;margin:1.35rem 0 .5rem}
+.survey-page[data-poll=closing] .deck-copy-zh{color:#7030a0}
+.survey-lab[data-panel^=closing-] .deck-copy-en{color:#000}
+.survey-lab[data-panel=closing-join] h1{white-space:pre-line}
+.survey-closing-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:8px 0 0;padding:0;list-style:none}
+.survey-closing-result{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;padding:4px 0;border-bottom:1px solid #d4e2ed;font-size:13px}
+.survey-closing-label :is(.deck-copy-en,.deck-copy-zh){display:block}
+.survey-closing-count{white-space:nowrap;font-variant-numeric:tabular-nums;align-self:center}
+.survey-closing-result .survey-bar-track{grid-column:1/-1;height:4px}
+@media(max-width:650px){.survey-closing-results{grid-template-columns:1fr}}
+@font-face{font-family:ClosingKai;src:url('closing-kai-v1.woff2') format('woff2');font-display:swap}
+:is(.survey-page[data-poll=closing],.survey-lab[data-panel^=closing-]) .deck-copy-zh{font-family:ClosingKai,BiKai,KaiTi,serif;font-weight:400;color:#7030a0}
