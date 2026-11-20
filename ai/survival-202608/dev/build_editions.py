@@ -46,7 +46,7 @@ player=player.replace("$('text-toggle').addEventListener('click',showText);", ""
     openPanel('student-task','student-task-toggle');
   });""")
 # Classroom poll: preserve the four runtime slides when rebuilding editions.
-player="import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261120-closing1';\n"+player
+player="import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261120-closingmail1';\n"+player
 player=player.replace('const data=resolveSource(raw);','const data=resolveSource(addSurveySlides(raw));')
 player=player.replace("    if(slide.interactive==='context'){","    if(slide.interactive?.startsWith('survey-')) disposeInteraction=mountSurvey(content,slide.interactive.slice(7));\n    if(slide.interactive==='context'){")
 player=player.replace(".context-lab'", ".context-lab,.survey-lab'")
@@ -150,7 +150,7 @@ for edition,caption in [('teacher','教师版'),('student','学生版')]:
         doc=doc[:end]+'<button id="student-task-toggle" aria-label="本页课堂任务" title="本页课堂任务" aria-controls="student-task" aria-expanded="false">◎ <span>课堂任务</span></button>'+doc[end:]
         panel='<dialog id="student-task" class="panel transcript-panel"><div class="panel-head"><div><small>YOUR TURN</small><h2 id="student-task-title"></h2></div><button data-close aria-label="关闭课堂任务">×</button></div><p id="student-task-content"></p><div id="student-task-links"></div></dialog>'
         doc=doc.replace('<div id="toast"',panel+'\n  <div id="toast"')
-    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261120-closing1')
+    doc=doc.replace('../player.js?v='+playerVersion,'../player.js?v=20261120-closingmail1')
     doc=doc.replace('id="total">62','id="total">64')
     doc=re.sub(r'<span id="source-page">.*?</span>','',doc)
     doc=re.sub(r'(id="jump-input"[^>]* max=")\d+',r'\g<1>64',doc)

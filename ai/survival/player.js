@@ -5,7 +5,7 @@ import {colorEditionArtwork, refineEditionSlide, setBilingualCopy, watchEditionC
 import {addAgentSlides,mountAgentLesson} from './agent-lesson.js?v=20261119-qol1';
 import {mountApplicationScene} from './application-scenes.js?v=20261117-scenes3';
 import {mountMeaning} from './meaning-flow.js?v=20261117-particles2';
-import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261120-closing1';
+import {addSurveySlides,mountSurvey} from './survey/slides.js?v=20261120-closingmail1';
 import {prepareSteps,revealNext,hidePrevious,installPresentation} from '/slides/open_class/ai_survival-202608/presentation.js?v=20261119-qol1';
 import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingual.js?v=20261114-aikai1';
 /* Original source artwork + native text, with a dependency-free slide player. */

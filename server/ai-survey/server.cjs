@@ -120,6 +120,10 @@ function createService({dataDir,allowedOrigins=['https://www.kuaiyu.site','https
    if(url.pathname===PREFIX+'email'){
     if(!email)throw fail(503,'Email export is not configured');
     if(!b||typeof b!=='object'||Array.isArray(b)||Object.keys(b).sort().join(',')!=='password,session'||!sessionValid(b.session))throw fail(400,'Invalid email request');
+    if(closing){
+     const {total,updatedAt,counts}=await readClosing(b.session);
+     return send(res,200,await email.send(b,key,{total,updatedAt,counts:{standout:counts}},'closing'));
+    }
     return send(res,200,await email.send(b,key,publicResult(await read(b.session))));
    }
    return send(res,200,await save(validate(b,closing),closing));
