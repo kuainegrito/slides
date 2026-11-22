@@ -149,7 +149,9 @@ import {bi,setBi,escapeText} from '/slides/open_class/ai_survival-202608/bilingu
     setBi($('chapter-label'),chapter.en,chapter.title);$('chapter-en').textContent=chapter.en;
     document.documentElement.style.setProperty('--accent',chapter.color);
     document.title=slide.title+' · '+editionLabel+' · 于快';
-    if(hash)history.replaceState(null,'','#s'+slide.n);
+    const fragment = '#s' + slide.n;
+    if(hash)history.replaceState(null,'',fragment);
+    document.documentElement.dataset.visitSlide = fragment;
     storage.set(storageKey('last-page'),String(slide.n));
     document.querySelectorAll('.chapter-option').forEach(b=>b.classList.toggle('active',b.dataset.chapter===chapter.id));
     document.querySelectorAll('.thumb').forEach(b=>b.classList.toggle('active',+b.dataset.page===slide.n));

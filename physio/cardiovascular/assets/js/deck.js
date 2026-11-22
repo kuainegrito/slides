@@ -360,10 +360,9 @@
     $('.progress i').style.width = ((idx + 1) / Deck.pages.length * 100) + '%';
     updateNotes(p);
     highlightTopic(p);
-    if (pushHash !== false) {
-      var h = p.type === 'app' ? '#app-' + p.n : '#s' + p.n;
-      history.replaceState(null, '', h);
-    }
+    var fragment = p.type === 'app' ? '#app-' + p.n : '#s' + p.n;
+    if (pushHash !== false) history.replaceState(null, '', fragment);
+    document.documentElement.dataset.visitSlide = fragment;
   }
 
   function highlightTopic(p) {
