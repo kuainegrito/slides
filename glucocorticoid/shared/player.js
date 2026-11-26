@@ -177,13 +177,52 @@
     $('outline').showModal();
     $('contents').querySelector('.current')?.scrollIntoView({block:'nearest'});
   }
+  const rehearsalDuration = 20 * 60 * 1000;
+  let rehearsalRemaining = rehearsalDuration;
+  let rehearsalDeadline = null;
+  function setupRehearsal(window) {
+    const doc = window.document;
+    const time = doc.getElementById('rehearsal-time');
+    const status = doc.getElementById('rehearsal-status');
+    const toggle = doc.getElementById('rehearsal-toggle');
+    function update() {
+      if (rehearsalDeadline !== null) {
+        rehearsalRemaining = Math.max(0, rehearsalDeadline - Date.now());
+        if (rehearsalRemaining === 0) rehearsalDeadline = null;
+      }
+      const seconds = Math.ceil(rehearsalRemaining / 1000);
+      const text = String(Math.floor(seconds / 60)).padStart(2,'0') + ':' + String(seconds % 60).padStart(2,'0');
+      if (time.textContent !== text) time.textContent = text;
+      const expired = seconds === 0;
+      const label = expired ? '时间到' : '';
+      if (status.textContent !== label) status.textContent = label;
+      time.classList.toggle('expired', expired);
+      toggle.textContent = rehearsalDeadline !== null ? '暂停' : expired ? '重新开始' : rehearsalRemaining < rehearsalDuration ? '继续' : '开始';
+    }
+    toggle.onclick = () => {
+      update();
+      if (rehearsalDeadline === null) {
+        if (!rehearsalRemaining) rehearsalRemaining = rehearsalDuration;
+        rehearsalDeadline = Date.now() + rehearsalRemaining;
+      } else rehearsalDeadline = null;
+      update();
+    };
+    doc.getElementById('rehearsal-reset').onclick = () => {
+      rehearsalDeadline = null;
+      rehearsalRemaining = rehearsalDuration;
+      update();
+    };
+    update();
+    window.setInterval(update, 250);
+  }
   function openPresenter() {
     if (!presenter || presenter.closed) {
       presenter = window.open('','_blank','popup=yes,width=760,height=650');
       if (!presenter) return;
       presenter.document.open();
-      presenter.document.write('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>教师讲稿</title><style>*{box-sizing:border-box}body{background:#f3f6f4;color:#15384a;font:19px/1.7 Microsoft YaHei,sans-serif;margin:0;padding:28px}small{color:#386989}h1{font-size:30px;line-height:1.3}article{font-size:24px;white-space:pre-line;color:#161616}.inline-board{color:#a32222;font-weight:700;margin:0 .22em;box-decoration-break:clone}aside{margin-top:12px;color:#7f3e1b;font-weight:600}footer{border-top:1px solid #bcccd0;margin:18px 0;font-size:16px;padding-top:10px}button{font:inherit;padding:6px 14px;margin:4px;border:1px solid #79919c;background:white;color:#143a52;border-radius:5px}body{height:100vh;height:100dvh;display:grid;grid-template-rows:minmax(0,1fr) auto;padding:0}main{overflow-y:auto;padding:22px 28px;scrollbar-gutter:stable}nav{display:flex;gap:12px;padding:8px 28px;border-top:1px solid #bcccd0;background:#f3f6f4}nav button{margin:0;min-width:0}nav #close-presenter{margin-left:auto}@media(max-width:480px){nav{gap:6px;padding:8px}nav button{padding:6px;font-size:14px}}button:disabled{opacity:.5}section#chalkboard{background:#183e39;color:#f3f6ec;border-radius:8px;padding:12px 18px;margin-top:12px;font-size:17px}#chalk-title{text-align:center;font-weight:bold;font-size:25px}.chalk-cols{display:grid;grid-template-columns:1fr 1fr;gap:1em}.chalk-cols div div{white-space:pre-line;line-height:1.42;margin:.5em 0}.fresh{color:#ffde89}</style><main id="script-pane"><small id="pos"></small><div id="pace" style="color:#235b68;font-weight:650;font-variant-numeric:tabular-nums"></div><h1 id="topic"></h1><article id="words"></article><aside id="board"></aside><section id="chalkboard" aria-label="截至本步的板书">'+chalkDiagram+'</section><footer id="next"></footer></main><nav aria-label="讲稿翻页"><button id="prev">← 上一步</button><button id="advance">下一步 →</button><button id="close-presenter" aria-keyshortcuts="Escape P" title="Esc 或 P 返回放映">关闭讲稿</button></nav></html>');
+      presenter.document.write('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>教师讲稿</title><style>*{box-sizing:border-box}body{background:#f3f6f4;color:#15384a;font:19px/1.7 Microsoft YaHei,sans-serif;margin:0;padding:28px}small{color:#386989}h1{font-size:30px;line-height:1.3}article{font-size:24px;white-space:pre-line;color:#161616}.inline-board{color:#a32222;font-weight:700;margin:0 .22em;box-decoration-break:clone}aside{margin-top:12px;color:#7f3e1b;font-weight:600}footer{border-top:1px solid #bcccd0;margin:18px 0;font-size:16px;padding-top:10px}button{font:inherit;padding:6px 14px;margin:4px;border:1px solid #79919c;background:white;color:#143a52;border-radius:5px}body{height:100vh;height:100dvh;display:grid;grid-template-rows:minmax(0,1fr) auto auto;padding:0}main{overflow-y:auto;padding:22px 28px;scrollbar-gutter:stable}nav{display:flex;gap:12px;padding:8px 28px;border-top:1px solid #bcccd0;background:#f3f6f4}nav button{margin:0;min-width:0}nav #close-presenter{margin-left:auto}.rehearsal{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:7px 12px;background:#f3f6f4;border-top:1px solid #bcccd0;font-size:15px}.rehearsal output{min-width:5ch;font-size:23px;font-weight:700;font-variant-numeric:tabular-nums}.rehearsal button{margin:0;padding:4px 10px;min-width:5ch}.rehearsal .expired,.rehearsal #rehearsal-status{color:#a32222}@media(max-width:480px){nav{gap:6px;padding:8px}nav button{padding:6px;font-size:14px}}button:disabled{opacity:.5}section#chalkboard{background:#183e39;color:#f3f6ec;border-radius:8px;padding:12px 18px;margin-top:12px;font-size:17px}#chalk-title{text-align:center;font-weight:bold;font-size:25px}.chalk-cols{display:grid;grid-template-columns:1fr 1fr;gap:1em}.chalk-cols div div{white-space:pre-line;line-height:1.42;margin:.5em 0}.fresh{color:#ffde89}</style><main id="script-pane"><small id="pos"></small><div id="pace" style="color:#235b68;font-weight:650;font-variant-numeric:tabular-nums"></div><h1 id="topic"></h1><article id="words"></article><aside id="board"></aside><section id="chalkboard" aria-label="截至本步的板书">'+chalkDiagram+'</section><footer id="next"></footer></main><div class="rehearsal" role="group" aria-label="20 分钟排练倒计时"><span>排练模式</span><output id="rehearsal-time" role="timer" aria-live="off">20:00</output><button id="rehearsal-toggle" type="button">开始</button><button id="rehearsal-reset" type="button">重置</button><span id="rehearsal-status" role="status"></span></div><nav aria-label="讲稿翻页"><button id="prev">← 上一步</button><button id="advance">下一步 →</button><button id="close-presenter" aria-keyshortcuts="Escape P" title="Esc 或 P 返回放映">关闭讲稿</button></nav></html>');
       presenter.document.close();
+      setupRehearsal(presenter);
       presenter.document.getElementById('prev').onclick = () => go(cursor-1);
       presenter.document.getElementById('advance').onclick = () => go(cursor+1);
       const closePresenter = () => {
