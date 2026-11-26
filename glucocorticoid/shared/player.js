@@ -182,11 +182,23 @@
       presenter = window.open('','_blank','popup=yes,width=760,height=650');
       if (!presenter) return;
       presenter.document.open();
-      presenter.document.write('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>教师讲稿</title><style>*{box-sizing:border-box}body{background:#f3f6f4;color:#15384a;font:19px/1.7 Microsoft YaHei,sans-serif;margin:0;padding:28px}small{color:#386989}h1{font-size:30px;line-height:1.3}article{font-size:24px;white-space:pre-line;color:#161616}.inline-board{color:#a32222;font-weight:700;margin:0 .22em;box-decoration-break:clone}aside{margin-top:12px;color:#7f3e1b;font-weight:600}footer{border-top:1px solid #bcccd0;margin:18px 0;font-size:16px;padding-top:10px}button{font:inherit;padding:6px 14px;margin:4px;border:1px solid #79919c;background:white;color:#143a52;border-radius:5px}body{height:100dvh;display:grid;grid-template-rows:minmax(0,1fr) auto;padding:0}main{overflow-y:auto;padding:22px 28px;scrollbar-gutter:stable}nav{display:flex;gap:12px;padding:8px 28px;border-top:1px solid #bcccd0;background:#f3f6f4}nav button{margin:0;min-width:110px}button:disabled{opacity:.5}section#chalkboard{background:#183e39;color:#f3f6ec;border-radius:8px;padding:12px 18px;margin-top:12px;font-size:17px}#chalk-title{text-align:center;font-weight:bold;font-size:25px}.chalk-cols{display:grid;grid-template-columns:1fr 1fr;gap:1em}.chalk-cols div div{white-space:pre-line;line-height:1.42;margin:.5em 0}.fresh{color:#ffde89}</style><main id="script-pane"><small id="pos"></small><div id="pace" style="color:#235b68;font-weight:650;font-variant-numeric:tabular-nums"></div><h1 id="topic"></h1><article id="words"></article><aside id="board"></aside><section id="chalkboard" aria-label="截至本步的板书">'+chalkDiagram+'</section><footer id="next"></footer></main><nav aria-label="讲稿翻页"><button id="prev">← 上一步</button><button id="advance">下一步 →</button></nav></html>');
+      presenter.document.write('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>教师讲稿</title><style>*{box-sizing:border-box}body{background:#f3f6f4;color:#15384a;font:19px/1.7 Microsoft YaHei,sans-serif;margin:0;padding:28px}small{color:#386989}h1{font-size:30px;line-height:1.3}article{font-size:24px;white-space:pre-line;color:#161616}.inline-board{color:#a32222;font-weight:700;margin:0 .22em;box-decoration-break:clone}aside{margin-top:12px;color:#7f3e1b;font-weight:600}footer{border-top:1px solid #bcccd0;margin:18px 0;font-size:16px;padding-top:10px}button{font:inherit;padding:6px 14px;margin:4px;border:1px solid #79919c;background:white;color:#143a52;border-radius:5px}body{height:100vh;height:100dvh;display:grid;grid-template-rows:minmax(0,1fr) auto;padding:0}main{overflow-y:auto;padding:22px 28px;scrollbar-gutter:stable}nav{display:flex;gap:12px;padding:8px 28px;border-top:1px solid #bcccd0;background:#f3f6f4}nav button{margin:0;min-width:0}nav #close-presenter{margin-left:auto}@media(max-width:480px){nav{gap:6px;padding:8px}nav button{padding:6px;font-size:14px}}button:disabled{opacity:.5}section#chalkboard{background:#183e39;color:#f3f6ec;border-radius:8px;padding:12px 18px;margin-top:12px;font-size:17px}#chalk-title{text-align:center;font-weight:bold;font-size:25px}.chalk-cols{display:grid;grid-template-columns:1fr 1fr;gap:1em}.chalk-cols div div{white-space:pre-line;line-height:1.42;margin:.5em 0}.fresh{color:#ffde89}</style><main id="script-pane"><small id="pos"></small><div id="pace" style="color:#235b68;font-weight:650;font-variant-numeric:tabular-nums"></div><h1 id="topic"></h1><article id="words"></article><aside id="board"></aside><section id="chalkboard" aria-label="截至本步的板书">'+chalkDiagram+'</section><footer id="next"></footer></main><nav aria-label="讲稿翻页"><button id="prev">← 上一步</button><button id="advance">下一步 →</button><button id="close-presenter" aria-keyshortcuts="Escape P" title="Esc 或 P 返回放映">关闭讲稿</button></nav></html>');
       presenter.document.close();
       presenter.document.getElementById('prev').onclick = () => go(cursor-1);
       presenter.document.getElementById('advance').onclick = () => go(cursor+1);
+      const closePresenter = () => {
+        const windowToClose = presenter;
+        presenter = null;
+        windowToClose.close();
+        window.focus();
+      };
+      presenter.document.getElementById('close-presenter').onclick = closePresenter;
       presenter.addEventListener('keydown',e => {
+        if (!e.altKey && !e.ctrlKey && !e.metaKey && (e.key === 'Escape' || e.key.toLowerCase() === 'p')) {
+          e.preventDefault();
+          if (!e.repeat) closePresenter();
+          return;
+        }
         if(['ArrowRight','PageDown','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();if(!e.repeat)go(cursor+(['ArrowRight','PageDown'].includes(e.key)?1:-1));}
       });
     }
