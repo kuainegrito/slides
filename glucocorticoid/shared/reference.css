@@ -1,0 +1,31 @@
+
+body{background:#061526;color:#f0f7fc}
+#stage{background:#0b243a url('lecture-ground.jpg') center/100% 100% no-repeat;color:#f0f7fc}
+#ribbon{left:56px;right:56px;height:52px;border-bottom:0}
+#course{color:#74deef;font-size:18px;letter-spacing:.025em}
+#chapters span{color:#bfd2de;font-size:18px;line-height:48px}#chapters .picked{color:#74deef}
+#chapters .picked::before{background:#74deef;width:6px;height:6px}
+#heading{top:55px;left:56px;right:56px}
+#title{color:#f0f7fc;font-size:47px;line-height:1.18}
+#subtitle{margin-top:7px;padding-top:9px;border-top:1px solid #3b5669;color:#74deef;font-size:24px;line-height:1.27}
+#illustration{top:172px;height:424px;left:54px;right:54px;background:transparent;border-radius:0}
+#stage.source-art #illustration{left:0;right:0;top:160px;height:448px;background:transparent}
+#stage.research #illustration{top:166px;height:418px}
+#explanation{left:56px;right:56px;top:613px;bottom:12px;justify-content:flex-start;gap:3px;border-top:1px solid #3b5669;padding-top:12px}
+#caption{font-size:24px;font-weight:550;color:#c5eaf0;border:0;padding:0;line-height:1.38}
+#stage.research #explanation{top:601px;bottom:10px;padding-top:11px}#stage.research #caption{font-size:24px}
+#citation:not([hidden]){padding:4px 0 0;gap:7px;background:transparent;border:0;border-radius:0;color:#bed3de}
+#citation span{font:500 17px/1.35 "Microsoft YaHei",sans-serif;letter-spacing:0;color:#bed3de}
+#doi{font:500 18px/1.35 Arial,sans-serif;color:#c9dce4}
+.original-crop{position:relative;overflow:hidden;max-width:none!important;max-height:none!important;pointer-events:none}
+.original-surface{position:absolute;left:0;transform-origin:top left;width:1280px;height:720px;border:0;max-width:none!important;max-height:none!important;pointer-events:none;display:block}
+#stage.film #ribbon,#stage.film #heading,#stage.film #explanation{display:none}
+#stage.film #illustration{inset:0;width:1280px;height:720px;border-radius:0;background:#061526}
+.full-film{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.film-tag{position:absolute;left:38px;bottom:24px;font-size:18px;color:#eff7fa;background:#082439dd;padding:4px 13px;pointer-events:none}
+#stage.full #explanation{border-top:0}
+#tools{background:#0c2539ed;border-color:#385466}
+#tools button[hidden]{display:none}
+dialog,.dialogbar{background:#102c43;color:#eff7fa}#contents h3,dialog p{color:#74deef}
+.dialogbar button,dialog #contents button{color:#eff7fa;background:#183b53;border-color:#436070}#contents button.current{background:#235468;color:#74deef}
+
